@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Loader</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .filter-input {
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">CSV Loader</h2>
+        <div class="form-group">
+            <label for="csvSelector">Select an option:</label>
+            <select id="csvSelector" class="form-control">
+                <!-- Options will be populated by JavaScript -->
+            </select>
+        </div>
+        <input type="text" id="nameFilter" class="form-control filter-input" placeholder="Filter by Name">
+        <div id="tableContainer"></div>
+    </div>
+
+    <script>
+        // Load the CSV file list and populate the dropdown
+        fetch('file_list.csv')
+            .then(response => response.text())
+            .then(data => {
+                const lines = data.split('\n');
+                lines.forEach(line => {
+                    const [label, filename] = line.split(',');
+                    if (label && filename) {
+                        const option = document.createElement('option');
+                        option.value = filename.trim();
+                        option.text = label.trim();
+                        document.getElementById('csvSelector').appendChild(option);
+                    }
+                });
+                // Load the first CSV file by default
+                loadCSV();
+            });
+
+        document.getElementById('csvSelector').addEventListener('change', loadCSV);
+        document.getElementById('nameFilter').addEventListener('input', filterTable);
+
+        function loadCSV() {
+            const selectedFile = document.getElementById('csvSelector').value;
+            fetch(selectedFile)
+                .then(response => response.text())
+                .then(data => {
+                    const rows = data.split('\n').map(row => row.split(','));
+                    displayTable(rows);
+                });
+        }
+
+        function displayTable(rows) {
+            let tableHtml = '<table class="table table-bordered table-striped">';
+            tableHtml += '<thead><tr>';
+            rows[0].forEach(header => {
+                tableHtml += `<th>${header}</th>`;
+            });
+            tableHtml += '</tr></thead>';
+            tableHtml += '<tbody>';
+            for (let i = 1; i < rows.length; i++) {
+                tableHtml += '<tr>';
+                rows[i].forEach(cell => {
+                    tableHtml += `<td>${cell}</td>`;
+                });
+                tableHtml += '</tr>';
+            }
+            tableHtml += '</tbody></table>';
+            document.getElementById('tableContainer').innerHTML = tableHtml;
+        }
+
+        function filterTable() {
+            const filter = document.getElementById('nameFilter').value.toLowerCase();
+            const rows = document.querySelectorAll('table tbody tr');
+            rows.forEach(row => {
+                const nameCell = row.querySelector('td').innerText.toLowerCase();
+                if (nameCell.includes(filter)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
