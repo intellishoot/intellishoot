@@ -36,49 +36,7 @@
           "eventName": "10M PISTOL YOUTH MIXED TEAM ISSF"
         }
       ],
-      "secretary": "RAJIV BHATIA",
-      "equipment": {
-        "eqcNo": "17558",
-        "nocCode": "KARNATAKA",
-        "pistols": [
-          {
-            "type": "10m Air Pistol",
-            "make": "morini",
-            "model": "CM 1620EI",
-            "pistolNo": "37216",
-            "stickerNo": ""
-          },
-          {
-            "type": "10m Air Pistol",
-            "make": "Morini",
-            "model": "Cm 162ei",
-            "pistolNo": "34462",
-            "stickerNo": ""
-          }
-        ],
-        "equipment": [
-          {
-            "name": "Shooting Shoes (R / P)",
-            "stickerNo": ""
-          },
-          {
-            "name": "Waist Belt",
-            "stickerNo": ""
-          },
-          {
-            "name": "Case Catcher",
-            "stickerNo": ""
-          },
-          {
-            "name": "Front Blinder",
-            "stickerNo": ""
-          },
-          {
-            "name": "Side Blinder",
-            "stickerNo": ""
-          }
-        ]
-      }
+      "secretary": "RAJIV BHATIA"
     },
     {
       "id": "1536",
@@ -101,42 +59,7 @@
           "eventName": "10M PISTOL JUNIOR MEN - ISSF"
         }
       ],
-      "secretary": "RAJIV BHATIA",
-      "equipment": {
-        "eqcNo": "17559",
-        "nocCode": "DELHI",
-        "pistols": [
-          {
-            "type": "10m Air Pistol",
-            "make": "Walther",
-            "model": "LP400",
-            "pistolNo": "45123",
-            "stickerNo": ""
-          }
-        ],
-        "equipment": [
-          {
-            "name": "Shooting Shoes (R / P)",
-            "stickerNo": ""
-          },
-          {
-            "name": "Waist Belt",
-            "stickerNo": ""
-          },
-          {
-            "name": "Case Catcher",
-            "stickerNo": ""
-          },
-          {
-            "name": "Front Blinder",
-            "stickerNo": ""
-          },
-          {
-            "name": "Side Blinder",
-            "stickerNo": ""
-          }
-        ]
-      }
+      "secretary": "RAJIV BHATIA"
     }
   ]
 }
