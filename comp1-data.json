@@ -1,94 +1,8339 @@
 {
   "competitors": [
     {
-      "id": "1535",
-      "name": "AVANTHIKA MADHU",
-      "association": "KARNATAKA STATE RIFLE ASSOCIATION",
-      "registrationId": "SHF1101201101",
+      "id": "1",
+      "name": "AMAAN SHARIFF",
+      "association": "GFG Chennai",
+      "registrationId": "",
       "events": [
         {
           "srNo": "1",
-          "eventNo": "N39",
-          "eventName": "10M PISTOL WOMEN - ISSF"
+          "eventNo": "RT-M",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "INDUMATHI",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "SMITHA PRADEEP KRISHNA",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MW",
+          "eventName": "10 M Air Pistol Women Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "RAGHAV",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "HARINE N",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-YW",
+          "eventName": "10 M Air Rifle Women Youth ISSF"
         },
         {
           "srNo": "2",
-          "eventNo": "N40",
-          "eventName": "10M PISTOL JUNIOR WOMEN - ISSF"
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "SAGHANA VENGOPAN",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "SIDHARTH GOUTHAM",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "RUDRA SAI CHANDRA",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-JM",
+          "eventName": "10 M Air Rifle Men Junior NR"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "ANSHUL RAJESH MENON",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "SHRAVAN",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "SAI SHARVESSH ADITYA",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "ANIKA A I",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-YW",
+          "eventName": "10 M Air Rifle Women Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "name": "SHIVA KANYA R",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "NARASIAMMAN P",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "name": "MAHESH RAJAMANI",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "name": "VIVAN K SANGHAVI",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-JM",
+          "eventName": "10 M Air Rifle Men Junior ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "name": "SNIKITHA JAYAKUMAR",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-YW",
+          "eventName": "10 M Air Rifle Women Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "name": "RAKSHNA LEKA",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "name": "SELVA VIGNESH",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "name": "SRINIVAS PRASAD ARANALLI",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "name": "MAHALAKSHMI T",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "name": "HARISH",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JM",
+          "eventName": "10 M Air Rifle Men Junior ISSF"
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "name": "VIGNESHWARAN",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "name": "SHAKTHIVEL",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "name": "Sameeksha Arun",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-JW",
+          "eventName": "10 M Air Pistol Women Junior ISSF"
         },
         {
           "srNo": "3",
-          "eventNo": "N41",
-          "eventName": "10M PISTOL YOUTH WOMEN - ISSF"
+          "eventNo": "PI-YW",
+          "eventName": "10 M Air Pistol Women Youth ISSF"
         },
         {
           "srNo": "4",
-          "eventNo": "N147",
-          "eventName": "10M PISTOL SUB YOUTH WOMEN - ISSF"
-        },
-        {
-          "srNo": "5",
-          "eventNo": "N49",
-          "eventName": "10M PISTOL YOUTH MIXED TEAM ISSF"
+          "eventNo": "PI-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth ISSF"
         }
       ]
     },
     {
-      "id": "1536",
-      "name": "ROHIT SHARMA",
-      "association": "DELHI RIFLE ASSOCIATION",
-      "registrationId": "SHF1101201102",
+      "id": "26",
+      "name": "Sparsha Arun",
+      "association": "Eklavya",
+      "registrationId": "",
       "events": [
         {
           "srNo": "1",
-          "eventNo": "N21",
-          "eventName": "10M PISTOL MEN - ISSF"
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
         },
         {
           "srNo": "2",
-          "eventNo": "N22",
-          "eventName": "10M PISTOL JUNIOR MEN - ISSF"
+          "eventNo": "PI-JW",
+          "eventName": "10 M Air Pistol Women Junior ISSF"
         }
       ]
     },
     {
-      "id": "1537",
-      "name": "AKHIL SHEORAN",
-      "association": "UP STATE RIFLE ASSOCIATION",
-      "registrationId": "SHF1101201103",
+      "id": "27",
+      "name": "Prarthana Bhat",
+      "association": "Eklavya",
+      "registrationId": "",
       "events": [
         {
           "srNo": "1",
-          "eventNo": "N23",
-          "eventName": "10M PISTOL MEN - ISSF"
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
         },
         {
           "srNo": "2",
-          "eventNo": "N24",
-          "eventName": "10M AIR RIFLE MEN - ISSF"
+          "eventNo": "PI-JW",
+          "eventName": "10 M Air Pistol Women Junior ISSF"
+        }
+      ]
+    },
+    {
+      "id": "28",
+      "name": "Lovelesh Gupta",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "29",
+      "name": "Sourab L",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "30",
+      "name": "Pahuni Pawar",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "31",
+      "name": "Mallika Singh",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "32",
+      "name": "Kenisha Y",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JW",
+          "eventName": "10 M Air Rifle Women Junior ISSF"
         },
         {
           "srNo": "3",
-          "eventNo": "N27",
-          "eventName": "50M RIFLE 3 POSITIONS MEN - ISSF"
+          "eventNo": "RI-YW",
+          "eventName": "10 M Air Rifle Women Youth ISSF"
         }
       ]
     },
     {
-      "id": "1538",
-      "name": "ANJUM MOUDGIL",
-      "association": "PUNJAB STATE RIFLE ASSOCIATION",
-      "registrationId": "SHF1101201104",
+      "id": "33",
+      "name": "Manika",
+      "association": "Eklavya",
+      "registrationId": "",
       "events": [
         {
           "srNo": "1",
-          "eventNo": "N42",
-          "eventName": "10M AIR RIFLE WOMEN - ISSF"
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
         },
         {
           "srNo": "2",
-          "eventNo": "N45",
-          "eventName": "50M RIFLE 3 POSITIONS WOMEN - ISSF"
+          "eventNo": "PI-MW",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "34",
+      "name": "Vivek Pankaj",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "35",
+      "name": "Kriti Modi",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "36",
+      "name": "Sharvan M S",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "37",
+      "name": "Noel James",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFM",
+          "eventName": "10 M Air Pistol Men Under 14 NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "38",
+      "name": "Vrinda Srivastava",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-JW",
+          "eventName": "10 M Air Rifle Women Junior NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        },
+        {
+          "srNo": "5",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "39",
+      "name": "Kiaan Das",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-JM",
+          "eventName": "10 M Air Rifle Men Junior NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "40",
+      "name": "Thanish Karthik JD",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "41",
+      "name": "Devaansh V",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "42",
+      "name": "Ewan Vibi",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "43",
+      "name": "Aamir",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "44",
+      "name": "Arshiya",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "45",
+      "name": "Elaine",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "46",
+      "name": "Sahasra Chunchula",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "47",
+      "name": "Samhitha Chunchula",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "48",
+      "name": "Guhyaa",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "49",
+      "name": "Navya",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "50",
+      "name": "Asma",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "51",
+      "name": "Vauym Lahotia",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFM",
+          "eventName": "10 M Air Pistol Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "52",
+      "name": "Kiara Das",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "53",
+      "name": "Vinod",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "54",
+      "name": "Lomas Singla",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "55",
+      "name": "Anshul Desai",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "56",
+      "name": "SIDDHANTH AJAY RAYAPATI",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "57",
+      "name": "MANOJ KUMAR H M",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "58",
+      "name": "Dhruva Anurag",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "59",
+      "name": "Chiranthan Reddy",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "60",
+      "name": "Sampreeth R",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "61",
+      "name": "Gowtami Redekar",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        }
+      ]
+    },
+    {
+      "id": "62",
+      "name": "ELINA BHATT",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "63",
+      "name": "ARYA JAYAPRAKASH",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-YM",
+          "eventName": "10 M Air Pistol Men Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-JM",
+          "eventName": "10 M Air Pistol Men Junior NR"
+        }
+      ]
+    },
+    {
+      "id": "64",
+      "name": "CHARITHAA CHANDANKUMARR",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "65",
+      "name": "CHHARVI CHANDANKUMARR",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "66",
+      "name": "Ajay",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "67",
+      "name": "Tejashwani",
+      "association": "TwinBee",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-JW",
+          "eventName": "10 M Air Rifle Women Junior ISSF"
+        }
+      ]
+    },
+    {
+      "id": "68",
+      "name": "AravindKumar Thangamuthu",
+      "association": "EK_TN",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "69",
+      "name": "Nandakumar Gopal",
+      "association": "EK_TN",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "70",
+      "name": "Shiva Rama Krishnan R",
+      "association": "EK_TN",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "71",
+      "name": "Balamurali Tharan B",
+      "association": "EK_TN",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "72",
+      "name": "Harshita R",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JW",
+          "eventName": "10M Open Sight Rifle Women Junior"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-YW",
+          "eventName": "10M Open Sight Rifle Women Youth"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "73",
+      "name": "Deepanshi Mohanty",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JW",
+          "eventName": "10M Open Sight Rifle Women Junior"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-YW",
+          "eventName": "10M Open Sight Rifle Women Youth"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "74",
+      "name": "NYSA UNUS",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JW",
+          "eventName": "10M Open Sight Rifle Women Junior"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-YW",
+          "eventName": "10M Open Sight Rifle Women Youth"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "75",
+      "name": "Aakriti Mehra",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-YW",
+          "eventName": "10M Open Sight Rifle Women Youth"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "76",
+      "name": "Devika Punj",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JW",
+          "eventName": "10M Open Sight Rifle Women Junior"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-YW",
+          "eventName": "10M Open Sight Rifle Women Youth"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "77",
+      "name": "Aadhya Reddy",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JW",
+          "eventName": "10M Open Sight Rifle Women Junior"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-YW",
+          "eventName": "10M Open Sight Rifle Women Youth"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "78",
+      "name": "Devansh Naykar",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "79",
+      "name": "Najeeb Ur Rahaman Shariff",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "80",
+      "name": "Prakash Menon",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "81",
+      "name": "Vihaann D H",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "82",
+      "name": "Riya Patel",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JW",
+          "eventName": "10M Open Sight Rifle Women Junior"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-YW",
+          "eventName": "10M Open Sight Rifle Women Youth"
+        }
+      ]
+    },
+    {
+      "id": "83",
+      "name": "Paridhi Shindhe H L",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-YW",
+          "eventName": "10M Open Sight Rifle Women Youth"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "84",
+      "name": "Rishith",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-YM",
+          "eventName": "10M Open Sight Rifle Men Youth"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "85",
+      "name": "Reyansh Gollamudi",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "86",
+      "name": "Naigel Mathew Philip",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-YM",
+          "eventName": "10M Open Sight Rifle Men Youth"
+        }
+      ]
+    },
+    {
+      "id": "87",
+      "name": "Praneel Dixit",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-YM",
+          "eventName": "10M Open Sight Rifle Men Youth"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "88",
+      "name": "Basavaraja KM",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "89",
+      "name": "Raniya Zikra Rahaman",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "90",
+      "name": "Vivaan Ayyar",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "91",
+      "name": "Chaya Balur",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "92",
+      "name": "Gyan Muthnna",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-JM",
+          "eventName": "10 M Air Rifle Men Junior NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "93",
+      "name": "Siya Adkar",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "94",
+      "name": "Panith Anandkumar",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-JM",
+          "eventName": "10 M Air Rifle Men Junior NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "95",
+      "name": "Pranav Vasanth R",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-JM",
+          "eventName": "10 M Air Rifle Men Junior NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "96",
+      "name": "Nikita Jayaprakash",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        }
+      ]
+    },
+    {
+      "id": "97",
+      "name": "Aniketa Achar",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-JM",
+          "eventName": "10 M Air Rifle Men Junior NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "98",
+      "name": "Varalakshmi R",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "99",
+      "name": "Chaitra Jaiprakash",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "100",
+      "name": "Anjana Krishna V",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "101",
+      "name": "Akshara Vanam",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JW",
+          "eventName": "10 M Air Rifle Women Junior ISSF"
+        }
+      ]
+    },
+    {
+      "id": "102",
+      "name": "Mamindlapelli Varish",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-JM",
+          "eventName": "10 M Air Rifle Men Junior ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "103",
+      "name": "Priya Daniel",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "104",
+      "name": "Deepika Nayak",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "105",
+      "name": "Alok Kumar Singh",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "106",
+      "name": "Aravinth Kumar R",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "107",
+      "name": "Pankaj Gupta",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "108",
+      "name": "Kartik  Kishor Ayyar",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "109",
+      "name": "Venkatalakshmi Jagmohan",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-MW",
+          "eventName": "10 M Air Rifle Women Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "110",
+      "name": "Basavaraja KM",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "111",
+      "name": "Gowri Shankar",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "112",
+      "name": "Priya Daniel",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "113",
+      "name": "Prakash Menon",
+      "association": "Hoysala",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "114",
+      "name": "RAJVEER BATRA",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JM",
+          "eventName": "10 M Air Rifle Men Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RI- SYM",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "115",
+      "name": "THUSHHAR T R",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-JM",
+          "eventName": "10 M Air Pistol Men Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PI-YM",
+          "eventName": "10 M Air Pistol Men Youth ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "PI-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "116",
+      "name": "SARIKA RAGA",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-MW",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "117",
+      "name": "JOSEPHINE ",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-JW",
+          "eventName": "10 M Air Rifle Women Junior NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "118",
+      "name": "AISHANI S K",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-JW",
+          "eventName": "10 M Air Rifle Women Junior NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        },
+        {
+          "srNo": "5",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "119",
+      "name": "KAARTHIKA BIJESH",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "120",
+      "name": "CHERLYN",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-JW",
+          "eventName": "10 M Air Rifle Women Junior NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        },
+        {
+          "srNo": "5",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "121",
+      "name": "LEISHA AADHYA",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-JW",
+          "eventName": "10 M Air Rifle Women Junior NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        },
+        {
+          "srNo": "5",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "122",
+      "name": "SMAYAN K S",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "123",
+      "name": "BEVAN ANTONY",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "124",
+      "name": "PUNYA",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "125",
+      "name": "Mohith Krishna",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "126",
+      "name": "Smera Dhilip",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "127",
+      "name": "Sandiv Santhosh",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "128",
+      "name": "Jayvardhan",
+      "association": "EMINENT SHOOTING HUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "129",
+      "name": "Chikka Rangaswmay R",
+      "association": "SICM",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN- MM",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "130",
+      "name": "Vaishnavi S Jamadar",
+      "association": "SICM",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "131",
+      "name": "sinchana BL",
+      "association": "SICM",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "132",
+      "name": "M. JANANI",
+      "association": "SICM",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "133",
+      "name": "Khushwanth K",
+      "association": "SICM",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "134",
+      "name": "Dineshwary S E",
+      "association": "SICM",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "135",
+      "name": "Mallikarjun M",
+      "association": "SICM",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "136",
+      "name": "Hima Gouri",
+      "association": "SICM",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "137",
+      "name": "VARUN AGASIMANI",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "138",
+      "name": "MRUTHYUNJAYA L M",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "139",
+      "name": "AISHWARYA BALEHOSUR",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-JW",
+          "eventName": "10 M Air Pistol Women Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PI-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "140",
+      "name": "JAYSHREE P PATIL",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-MW",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "141",
+      "name": "ADARSH NIKAM",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JM",
+          "eventName": "10 M Air Rifle Men Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "142",
+      "name": "KIRTHI BALEHOSUR",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "143",
+      "name": "BRUNDA MAROL",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-YW",
+          "eventName": "10 M Air Rifle Women Youth ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "144",
+      "name": "SUSHANK KULKARNI",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "145",
+      "name": "SAGAR TAWADE",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "146",
+      "name": "SAYABANNA PIRAPUR",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "147",
+      "name": "SACHIN KANNOLLI",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "148",
+      "name": "RAGHAVENDRA INDI",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-JM",
+          "eventName": "10 M Air Pistol Men Junior NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "149",
+      "name": "KHUSH PARAMASHETTY",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-YM",
+          "eventName": "10 M Air Pistol Men Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "150",
+      "name": "MAMATA GOUDA",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "151",
+      "name": "GOURI KOCHALPURMATH",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "152",
+      "name": "NEEL PHADNAVIS",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "153",
+      "name": "ANIRUDDA REDDY",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "154",
+      "name": "PUNITH KIRESUR",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "155",
+      "name": "AAKANKSHA HANCHINAL",
+      "association": "HUBLI SPORTS SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "156",
+      "name": "Prabeesh",
+      "association": "Mangalore Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "157",
+      "name": "Shankar shetty",
+      "association": "Mangalore Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-MM",
+          "eventName": "10 M Air Pistol Men Master ISSF (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "158",
+      "name": "Mukesh",
+      "association": "Mangalore Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "159",
+      "name": "Primal",
+      "association": "Mangalore Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "160",
+      "name": "Pranay Pushp",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "161",
+      "name": "Anant Shukla",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "162",
+      "name": "Karthik B K",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "163",
+      "name": "Ameer Salman M",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "164",
+      "name": "Naveen Kumar N",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "165",
+      "name": "Deepak Giri",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "166",
+      "name": "Parsana Jignesh Lakshmanbhai",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "167",
+      "name": "Prasad Garude",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "168",
+      "name": "Sanju A Kumar",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "169",
+      "name": "Jifin J A",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "170",
+      "name": "Ramshankar S",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "171",
+      "name": "Kapil Kaul",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "172",
+      "name": "Kalluri Sandeep Kumar Reddy",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "173",
+      "name": "Abhradeep Karmakar",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "174",
+      "name": "Abhimanyu Negi",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "175",
+      "name": "Praharshi Bandarupalli",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "176",
+      "name": "Sourav Sinha",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "177",
+      "name": "Hanvesh K",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "178",
+      "name": "Kishan C Reddy",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "179",
+      "name": "Shriyash Saraswat",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "180",
+      "name": "Avani hemanth",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "181",
+      "name": "Anjali Vivek",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "182",
+      "name": "C H Phani Vishwaja",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "183",
+      "name": "Yagnashree GD",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "184",
+      "name": "P Hansel Michael Antony",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "185",
+      "name": "Lira Levis",
+      "association": "Asthra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "186",
+      "name": "Apoorva Vaidyanath S",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "187",
+      "name": "Supriya Kumari",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "188",
+      "name": "Suma M",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "189",
+      "name": "Bhashitha D",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "190",
+      "name": "Dvija M Gowda",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-YW",
+          "eventName": "10 M Air Pistol Women Youth ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PI-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "191",
+      "name": "Shivani Kaveramma",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-JW",
+          "eventName": "10 M Air Pistol Women Junior ISSF"
+        }
+      ]
+    },
+    {
+      "id": "192",
+      "name": "Kiran R",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "193",
+      "name": "Vishal Joseph T",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-YM",
+          "eventName": "10 M Air Pistol Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "194",
+      "name": "Laurin J N",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-YW",
+          "eventName": "10 M Air Pistol Women Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "195",
+      "name": "Sarvadhi VVSP",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "196",
+      "name": "Aayush Ravikumar",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "197",
+      "name": "Sarika Jaganath",
+      "association": "Bestshot",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "198",
+      "name": "Medha Naveen",
+      "association": "KSRA(Lakshyan)",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-YW",
+          "eventName": "10 M Air Pistol Women Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "199",
+      "name": "Aadya Rai",
+      "association": "KSRA(Lakshyan)",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "200",
+      "name": "Samir Vasnat Wadodkar",
+      "association": "KSRA(Lakshyan)",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "201",
+      "name": "Harshal Reddy Pengant",
+      "association": "KSRA(Lakshyan)",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "202",
+      "name": "Nivanshi Pradeep",
+      "association": "Roriez Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-UFW",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "203",
+      "name": "Dvitika",
+      "association": "Roriez Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "204",
+      "name": "Shivali P",
+      "association": "Roriez Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-W",
+          "eventName": "10M Open Sight Rifle Women"
+        }
+      ]
+    },
+    {
+      "id": "205",
+      "name": "Monali P",
+      "association": "Roriez Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-W",
+          "eventName": "10M Open Sight Rifle Women"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "206",
+      "name": "Japleen Bindra Kaur",
+      "association": "Roriez Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-W",
+          "eventName": "10M Open Sight Rifle Women"
+        }
+      ]
+    },
+    {
+      "id": "207",
+      "name": "Rakesh G Badiger",
+      "association": "Roriez Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "208",
+      "name": "Likith",
+      "association": "Roriez Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "209",
+      "name": "Likith S",
+      "association": "Roriez Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "210",
+      "name": "Mahesh S",
+      "association": "Roriez Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "211",
+      "name": "Shivali P",
+      "association": "Roriez Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "212",
+      "name": "Himanshu MS",
+      "association": "Roriez Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "213",
+      "name": "Adithya Sanjay",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-YM",
+          "eventName": "10M Open Sight Rifle Men Youth"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        }
+      ]
+    },
+    {
+      "id": "214",
+      "name": "Jason Richard",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-YM",
+          "eventName": "10M Open Sight Rifle Men Youth"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        }
+      ]
+    },
+    {
+      "id": "215",
+      "name": "S Avaneesh",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "216",
+      "name": "M Raja Mehendaran",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "217",
+      "name": "S IRFAN BASHA",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "218",
+      "name": "Ponmudi",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "219",
+      "name": "Abhinav Sarvesh R S",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "220",
+      "name": "Gowtahm R A",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "221",
+      "name": "Vijaya S ",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-W",
+          "eventName": "10M Open Sight Rifle Women"
+        }
+      ]
+    },
+    {
+      "id": "222",
+      "name": "Madhav saishwar G K",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-JM",
+          "eventName": "10 M Air Pistol Men Junior NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-YM",
+          "eventName": "10 M Air Pistol Men Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "PN-UFM",
+          "eventName": "10 M Air Pistol Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "223",
+      "name": "Tirumaran K",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "224",
+      "name": "Niwin Varshan A T",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YM",
+          "eventName": "10 M Air Pistol Men Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "225",
+      "name": "Abhinav Sarvesh",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "226",
+      "name": "M Raja Mehendaran",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "227",
+      "name": "P. Kanishk",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-JM",
+          "eventName": "10 M Air Pistol Men Junior NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-YM",
+          "eventName": "10 M Air Pistol Men Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "228",
+      "name": "Parasmal Porwal",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-MM",
+          "eventName": "10 M Air Pistol Men Master ISSF (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "229",
+      "name": "Pruthvi A",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        }
+      ]
+    },
+    {
+      "id": "230",
+      "name": "Rupesh U",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        }
+      ]
+    },
+    {
+      "id": "231",
+      "name": "NSBVR Harshavardhan P",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        }
+      ]
+    },
+    {
+      "id": "232",
+      "name": "Sanchitha ",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JW",
+          "eventName": "10M Open Sight Rifle Women Junior"
+        }
+      ]
+    },
+    {
+      "id": "233",
+      "name": "Leela K S",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JW",
+          "eventName": "10M Open Sight Rifle Women Junior"
+        }
+      ]
+    },
+    {
+      "id": "234",
+      "name": "Mohith Srivatsav A E ",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        }
+      ]
+    },
+    {
+      "id": "235",
+      "name": "Trupthi R",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JW",
+          "eventName": "10M Open Sight Rifle Women Junior"
+        }
+      ]
+    },
+    {
+      "id": "236",
+      "name": "Shriya Acharya ",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JW",
+          "eventName": "10M Open Sight Rifle Women Junior"
+        }
+      ]
+    },
+    {
+      "id": "237",
+      "name": "Sanjay C",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        }
+      ]
+    },
+    {
+      "id": "238",
+      "name": "Anwita Devi ",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFW",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "239",
+      "name": "Yuktha Shree V",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFW",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "240",
+      "name": "Saanvi Jog ",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFW",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "241",
+      "name": "Ananya P.N ",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFW",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "242",
+      "name": "ABHIRAM.R",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "243",
+      "name": "SHARATH KESHAVA R",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "244",
+      "name": "SUSHANTH GIRISH",
+      "association": "NCC_BLR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "295",
+      "name": "Shiju L",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "296",
+      "name": "Shivkumar ",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "297",
+      "name": "Ankur Yadaw",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "298",
+      "name": "Ramakrishna ",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "299",
+      "name": "Keerthan H R",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        }
+      ]
+    },
+    {
+      "id": "300",
+      "name": "Abhilash D",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        }
+      ]
+    },
+    {
+      "id": "301",
+      "name": "Nagaraj pS",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "302",
+      "name": "Mahesh K S",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "303",
+      "name": "Vivek H S",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS -M",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "304",
+      "name": "Gaurav Anand",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-JM",
+          "eventName": "10M Open Sight Rifle Men Junior"
+        }
+      ]
+    },
+    {
+      "id": "305",
+      "name": "Gurudath",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS_SYM",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "306",
+      "name": "Nivedhan R",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "307",
+      "name": "Dhanusha",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-W",
+          "eventName": "10M Open Sight Rifle Women"
+        }
+      ]
+    },
+    {
+      "id": "308",
+      "name": "Vaishnavi ",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-W",
+          "eventName": "10M Open Sight Rifle Women"
+        }
+      ]
+    },
+    {
+      "id": "309",
+      "name": "Jahnavi M J",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-W",
+          "eventName": "10M Open Sight Rifle Women"
+        }
+      ]
+    },
+    {
+      "id": "310",
+      "name": "Preethi ayyappa Kunjiyanda",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-WW",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "311",
+      "name": "Charitha",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "312",
+      "name": "Avni Sathyendra",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "313",
+      "name": "Devanshi M J",
+      "association": "Mysore Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JW",
+          "eventName": "10 M Air Rifle Women Junior ISSF"
+        }
+      ]
+    },
+    {
+      "id": "314",
+      "name": "Raja ",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "315",
+      "name": "Ritu",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "316",
+      "name": "Veeresh Maste",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "317",
+      "name": "Armaan Gusain",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-JM",
+          "eventName": "10 M Air Pistol Men Junior NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-YM",
+          "eventName": "10 M Air Pistol Men Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "318",
+      "name": "Hardik",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "319",
+      "name": "Karthik L",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "320",
+      "name": "Lionel",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "321",
+      "name": "Prem Kumar",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "322",
+      "name": "Sai Karthik",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "323",
+      "name": "Toshani",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFM",
+          "eventName": "10 M Air Pistol Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "324",
+      "name": "Chinnaraja",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "325",
+      "name": "Harshitha",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "326",
+      "name": "Leann Priya Dsouza",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-YW",
+          "eventName": "10 M Air Rifle Women Youth ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "327",
+      "name": "Sheldon HK",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RI-JM",
+          "eventName": "10 M Air Rifle Men Junior ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "328",
+      "name": "Shivank Bhagat",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RI-JM",
+          "eventName": "10 M Air Rifle Men Junior ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "329",
+      "name": "Aadya",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-JW",
+          "eventName": "10 M Air Rifle Women Junior NR"
+        }
+      ]
+    },
+    {
+      "id": "330",
+      "name": "Geethika",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RN-JW",
+          "eventName": "10 M Air Rifle Women Junior NR"
+        },
+        {
+          "srNo": "5",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        }
+      ]
+    },
+    {
+      "id": "331",
+      "name": "Kiran David",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "332",
+      "name": "Saana",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "333",
+      "name": "Sonal Sibasish",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "334",
+      "name": "Sankalp",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "335",
+      "name": "Surendra",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "336",
+      "name": "Aniketh",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "337",
+      "name": "Srinivasan",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "338",
+      "name": "Sakthi",
+      "association": "Arjun Sports Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "339",
+      "name": "Vrinda Srivastava",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-JW",
+          "eventName": "10 M Air Rifle Women Junior NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        },
+        {
+          "srNo": "5",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "340",
+      "name": "AARUSH",
+      "association": "SARAGARHI SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFM",
+          "eventName": "10 M Air Pistol Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "341",
+      "name": "Aditi G",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JW",
+          "eventName": "10 M Air Rifle Women Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RI-YW",
+          "eventName": "10 M Air Rifle Women Youth ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "342",
+      "name": "Shukthi N",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "343",
+      "name": "Shuchika N",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "344",
+      "name": "MITHUN SURYA. S",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "345",
+      "name": "Satheesh s",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "346",
+      "name": "SUKAN.M",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "347",
+      "name": "JAISHNA K.M",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "348",
+      "name": "Gopal Chandak",
+      "association": "Agasthya Sports academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "349",
+      "name": "Pramod G Devalatkar",
+      "association": "Agasthya Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "350",
+      "name": "DHANAKUMAR N",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "351",
+      "name": "JAISHNA K.M",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "352",
+      "name": "Datta suryawanshi",
+      "association": "Pune pistol and rifle shooting club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "353",
+      "name": "Manya M.P",
+      "association": "Sumeet\u2019s AGS Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-JW",
+          "eventName": "10 M Air Pistol Women Junior NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "354",
+      "name": "S.R.Prathik Varshan",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "355",
+      "name": "Sampa sen",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "356",
+      "name": "Dr Rajendra Prasad yt",
+      "association": "Mdra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "357",
+      "name": "Abhimanyu Anish",
+      "association": "Agasthya Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-YM",
+          "eventName": "10M Open Sight Rifle Men Youth"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "358",
+      "name": "PRASAD DHANANJAY Gaikwad",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "359",
+      "name": "Ganesh m",
+      "association": "Trichy Rifle club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-MM",
+          "eventName": "10 M Air Rifle Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "360",
+      "name": "Sukuraj G",
+      "association": "Trichy Rifle club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "361",
+      "name": "RAMYA. B",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        }
+      ]
+    },
+    {
+      "id": "362",
+      "name": "saravanan",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "363",
+      "name": "THIYAGU S",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "364",
+      "name": "Dhrona Nambi Pandian.R",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "365",
+      "name": "S.K.Sri Shathviha",
+      "association": "Trichy Rifle club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "366",
+      "name": "Mayon Chakravarthi. S",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "367",
+      "name": "Rithikh.P",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "368",
+      "name": "Jeevanandham",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "369",
+      "name": "Siddharthan",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "370",
+      "name": "Niranjanhari",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "371",
+      "name": "Sasvanth",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "372",
+      "name": "Somasundaram Kalipatti Ramasamy",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-MM",
+          "eventName": "10 M Air Rifle Men Master ISSF(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "373",
+      "name": "Sirisha",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFW",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "374",
+      "name": "Venba. S. S",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "375",
+      "name": "Thamilarashan P R",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "376",
+      "name": "Vaishni",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "377",
+      "name": "Bharath Kumar",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "378",
+      "name": "James J",
+      "association": "Ksra",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "379",
+      "name": "Anand Kalidasan",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "380",
+      "name": "Nikhil Bhatnagar",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "381",
+      "name": "Nrupatunga AS",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "382",
+      "name": "R.G.Vinutha",
+      "association": "Sumeet\u2019s AGS Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-JW",
+          "eventName": "10 M Air Pistol Women Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PI-YW",
+          "eventName": "10 M Air Pistol Women Youth ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "PI-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "383",
+      "name": "Neekita Raman",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JW",
+          "eventName": "10 M Air Rifle Women Junior ISSF"
+        }
+      ]
+    },
+    {
+      "id": "384",
+      "name": "Pavan Raj D",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-JM",
+          "eventName": "10 M Air Pistol Men Junior ISSF"
+        }
+      ]
+    },
+    {
+      "id": "385",
+      "name": "Lahari B Nandi",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-JW",
+          "eventName": "10 M Air Rifle Women Junior NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "386",
+      "name": "P.Kirubakaran",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "387",
+      "name": "Vijay Kumar",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "388",
+      "name": "Viha Venugopal",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "389",
+      "name": "Radhika Saraf",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        }
+      ]
+    },
+    {
+      "id": "390",
+      "name": "Radhika Saraf",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "391",
+      "name": "Adithi Ajay A",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "392",
+      "name": "Neel N Doshi",
+      "association": "Sumeet\u2019s AGS Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-JM",
+          "eventName": "10 M Air Pistol Men Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PI-YM",
+          "eventName": "10 M Air Pistol Men Youth ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "PI-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "393",
+      "name": "Saketh Komarla",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "394",
+      "name": "Anoushka Bhandari",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "395",
+      "name": "Abhishek Ramesh",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "396",
+      "name": "V Manasa Sakthi",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "397",
+      "name": "Bhogu Advaith",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "398",
+      "name": "Shiva S",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "399",
+      "name": "GOKULMOORTHY N",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "400",
+      "name": "MAHESH L M",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "401",
+      "name": "Daksh Roshan Raj",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "402",
+      "name": "Rahul Bhattacharya",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "403",
+      "name": "Nithish k",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "404",
+      "name": "Ithazya",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "405",
+      "name": "Yuvanshankar.K.A",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "406",
+      "name": "S.S.RITHIK",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "407",
+      "name": "Suveda Bommisetty",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        }
+      ]
+    },
+    {
+      "id": "408",
+      "name": "Dharaneesh",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "409",
+      "name": "Srushti J K",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "410",
+      "name": "Hemaharini K",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "411",
+      "name": "Murali Gutthi Prasanna",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "412",
+      "name": "Aadyaa Ramesh",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JW",
+          "eventName": "10 M Air Rifle Women Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RI-YW",
+          "eventName": "10 M Air Rifle Women Youth ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "413",
+      "name": "Bhavani Vedula Gayatri",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "414",
+      "name": "Sitaraman P",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "415",
+      "name": "Ullas P",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-JM",
+          "eventName": "10 M Air Pistol Men Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PI-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "416",
+      "name": "Shreemanth S",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "417",
+      "name": "Prabu.B",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "418",
+      "name": "Natchathira",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "419",
+      "name": "Kusuma P M",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JW",
+          "eventName": "10 M Air Rifle Women Junior ISSF"
+        }
+      ]
+    },
+    {
+      "id": "420",
+      "name": "Garimella Srinivas Ravikiran",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "421",
+      "name": "ANVI SHRIVASTAVA",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFW",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "422",
+      "name": "N VARUN",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "423",
+      "name": "VEDAVITH",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "424",
+      "name": "SHWETHA SHIVANNA",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "425",
+      "name": "NITYA P",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "426",
+      "name": "NIHARIKA H GAIKWAD",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-JW",
+          "eventName": "10 M Air Pistol Women Junior NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "427",
+      "name": "ADVITA MOHAN",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-JW",
+          "eventName": "10 M Air Pistol Women Junior NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "428",
+      "name": "AGASTYA CHANDRA",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "429",
+      "name": "PREETHAM CHANDRA",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "430",
+      "name": "DARSHAN N A",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "431",
+      "name": "RAHUL K",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-JM",
+          "eventName": "10 M Air Pistol Men Junior NR"
+        }
+      ]
+    },
+    {
+      "id": "432",
+      "name": "POORNACHANDRA S",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-JM",
+          "eventName": "10 M Air Pistol Men Junior NR"
+        }
+      ]
+    },
+    {
+      "id": "433",
+      "name": "VARCHUS S",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-JM",
+          "eventName": "10 M Air Rifle Men Junior NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "5",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "434",
+      "name": "AJITH KRISHNA R",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "435",
+      "name": "NACHIKETA S",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "436",
+      "name": "THASHNEEM THAQSEEN BHANU",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "437",
+      "name": "S SMAYAN",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "438",
+      "name": "Darsh Pruthvi",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "439",
+      "name": "YUVAANIKA J",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-YW",
+          "eventName": "10 M Air Rifle Women Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "440",
+      "name": "SHRIYANS M",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFM",
+          "eventName": "10 M Air Pistol Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "441",
+      "name": "Keerthi B R",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "442",
+      "name": "VAISHNAVI N PRADEEP",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "443",
+      "name": "MADHUSUDHAN M",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "444",
+      "name": "SACHIV M",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "445",
+      "name": "SHIVAM BHIMRAJKA",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "446",
+      "name": "UJJWAL BHIMRAJKA",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "447",
+      "name": "ANUP BHIMRAJKA",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "448",
+      "name": "Nikhil M",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-JM",
+          "eventName": "10 M Air Pistol Men Junior ISSF"
+        }
+      ]
+    },
+    {
+      "id": "449",
+      "name": "Sreenth Chandrasekaran",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "450",
+      "name": "Arrush Mahesh",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "451",
+      "name": "lakshana",
+      "association": "Coimbatore Rifle Association",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-YW",
+          "eventName": "10 M Air Pistol Women Youth ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "452",
+      "name": "M Prabahakar",
+      "association": "Coimbatore rifle association",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-MM",
+          "eventName": "10 M Air Rifle Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "453",
+      "name": "M S KRISHNAA",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFW",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "454",
+      "name": "NIHARIKA S JADAV",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "455",
+      "name": "CHIRANTH D",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "456",
+      "name": "CHIRANTH D",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "457",
+      "name": "MAHESH M N",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "458",
+      "name": "RUSHANK R BHAT",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "459",
+      "name": "KRANTHI KUMAR NATEKAR",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "460",
+      "name": "JAYANTH P",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "461",
+      "name": "RAMESH R",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "462",
+      "name": "PREETHAM JEVOOR",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-YM",
+          "eventName": "10M Open Sight Rifle Men Youth"
+        }
+      ]
+    },
+    {
+      "id": "463",
+      "name": "PREM H",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-YM",
+          "eventName": "10M Open Sight Rifle Men Youth"
+        }
+      ]
+    },
+    {
+      "id": "464",
+      "name": "JYESHTA R P",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-YM",
+          "eventName": "10M Open Sight Rifle Men Youth"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "465",
+      "name": "ARNAV A SHARMA",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "466",
+      "name": "ROHITH JEVOOR",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "467",
+      "name": "SAMARTH ANIL",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "468",
+      "name": "P Manaswini",
+      "association": "Zakir Rifle shooting academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-JW",
+          "eventName": "10 M Air Pistol Women Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PI-YW",
+          "eventName": "10 M Air Pistol Women Youth ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "PI-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "469",
+      "name": "P Bahula",
+      "association": "Zakir rifle shooting academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-JW",
+          "eventName": "10 M Air Pistol Women Junior NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "470",
+      "name": "Vandana Pandit",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MW",
+          "eventName": "10 M Air Pistol Women Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "471",
+      "name": "SIDDHARTH PRAKASH DIVATE",
+      "association": "KISCE",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "472",
+      "name": "SOHITH A GOWDA",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "473",
+      "name": "LEKHAN B M",
+      "association": "BRSA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "474",
+      "name": "Lakshya Sinha",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "475",
+      "name": "Pavan Rao",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "476",
+      "name": "Nithin V",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "477",
+      "name": "Navya Soni",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "478",
+      "name": "Rudraksh Diwan",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "479",
+      "name": "Rudraksh Ahluwalia",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "480",
+      "name": "Vivek Jha",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "481",
+      "name": "Medhansh Rajput",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "482",
+      "name": "Deeya Chopra",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "483",
+      "name": "Shravya M",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        }
+      ]
+    },
+    {
+      "id": "484",
+      "name": "Anand Ayyadurai",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "485",
+      "name": "Denis D",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "486",
+      "name": "Saket Chauhan",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "487",
+      "name": "Uday T Kumar",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "488",
+      "name": "Varun",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "489",
+      "name": "Ujjwal Dey",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "490",
+      "name": "Tanmai Ram K R",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "491",
+      "name": "Tanush M Matur",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "492",
+      "name": "Vanitha",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-JW",
+          "eventName": "10M Open Sight Rifle Women Junior"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "OS-YW",
+          "eventName": "10M Open Sight Rifle Women Youth"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "OS-SYW",
+          "eventName": "10M Open Sight Rifle Women Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "493",
+      "name": "Samarth Praveen",
+      "association": "ART OF SHOOTING",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-JM",
+          "eventName": "10 M Air Rifle Men Junior NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "494",
+      "name": "Suraj.N",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "495",
+      "name": "Abhishek Shivananda",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "496",
+      "name": "Himadvith KM",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "497",
+      "name": "Jishnu Satish",
+      "association": "Golden ace shooting sports academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JM",
+          "eventName": "10 M Air Rifle Men Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "498",
+      "name": "Swagata Acharjee",
+      "association": "Art of Shooting",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-W",
+          "eventName": "10M Open Sight Rifle Women"
+        }
+      ]
+    },
+    {
+      "id": "499",
+      "name": "SIMILALSINGH",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "500",
+      "name": "Radhika Anand",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MW",
+          "eventName": "10 M Air Pistol Women Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "501",
+      "name": "R VASANTHEE",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "502",
+      "name": "Priyatha G",
+      "association": "SDAT,CHENNAI",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-W",
+          "eventName": "10 M Air Pistol Women NR"
+        }
+      ]
+    },
+    {
+      "id": "503",
+      "name": "Lavanya Chaturvedi",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFW",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "504",
+      "name": "Shagufta",
+      "association": "Gun for glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "505",
+      "name": "ABHISHEK PANIGRAHI",
+      "association": "Gun for glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "506",
+      "name": "ARCHA SUDHEESH",
+      "association": "Gun For Glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PN-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PN-UFW",
+          "eventName": "10 M Air Pistol Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "507",
+      "name": "K B DHARMI KUMARI",
+      "association": "Gun For Glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "508",
+      "name": "Nikhil C R",
+      "association": "Gun For Glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "509",
+      "name": "ROYSTON D SOUZA",
+      "association": "Gun For Glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "510",
+      "name": "EMMA ANTHONY",
+      "association": "Gun For Glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-YW",
+          "eventName": "10 M Air Rifle Women Youth ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "511",
+      "name": "NIVIN SUMOD",
+      "association": "Art of Shooting",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "512",
+      "name": "BIROJA ROY",
+      "association": "Gun For Glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "513",
+      "name": "UDANT SHIVAGMINE B Y",
+      "association": "Gun For Glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "514",
+      "name": "SHRIHAN GANESH",
+      "association": "Gun For Glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "515",
+      "name": "SIVESH VARSHAAN",
+      "association": "Gun For Glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "516",
+      "name": "ANJAN ARUN BHOWMICK",
+      "association": "Gun For Glory Bangalore",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "517",
+      "name": "V Ushashwini",
+      "association": "Art of shooting",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "518",
+      "name": "Prithika Sarkar",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "519",
+      "name": "Meigatheesh",
+      "association": "Erode Rifle Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-SYM",
+          "eventName": "10M Open Sight Rifle Men Sub Youth"
+        }
+      ]
+    },
+    {
+      "id": "520",
+      "name": "Mokshitha BP",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "521",
+      "name": "Avani Santhosh Vishwakarma",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-UFW",
+          "eventName": "10 M Air Rifle Women U14 NR"
+        }
+      ]
+    },
+    {
+      "id": "522",
+      "name": "Bhuvanesh G",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "523",
+      "name": "Subramani S",
+      "association": "Agasthya Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "524",
+      "name": "Suzain Lamboria (Para Shooter)",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "525",
+      "name": "Ritu Lamboria",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-JW",
+          "eventName": "10 M Air Pistol Women Junior NR"
+        }
+      ]
+    },
+    {
+      "id": "526",
+      "name": "Kanish Kavin",
+      "association": "Hosur Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "527",
+      "name": "Vedhashree V",
+      "association": "GFG Chennai",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-YW",
+          "eventName": "10 M Air Pistol Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "528",
+      "name": "Palak Bhadu",
+      "association": "KISCE",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-JW",
+          "eventName": "10 M Air Rifle Women Junior ISSF"
+        }
+      ]
+    },
+    {
+      "id": "529",
+      "name": "Priyan Manickavasaham",
+      "association": "Golden Ace Shooting Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-YM",
+          "eventName": "10 M Air Pistol Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "530",
+      "name": "Shivani",
+      "association": "Art of shooting",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        }
+      ]
+    },
+    {
+      "id": "531",
+      "name": "Bhoomika Sharma",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "532",
+      "name": "M S Nagendra",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "533",
+      "name": "Pavan kerakalmatti",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "534",
+      "name": "Naveen Guzzar",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "535",
+      "name": "Naveen Guzzar",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "536",
+      "name": "Lihal Muthu Gowda",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "537",
+      "name": "Ananya.G",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-YW",
+          "eventName": "10 M Air Rifle Women Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "538",
+      "name": "VINAY CHAVAN R",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "539",
+      "name": "Mallika Singh",
+      "association": "Eklavya",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "540",
+      "name": "Samarth B Gampu",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "541",
+      "name": "JACOB LINCOLN",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-MM",
+          "eventName": "10 M Air Pistol Men Master ISSF (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "542",
+      "name": "PUNITH k r",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "543",
+      "name": "M.KIRTTAN",
+      "association": "Trichy Rifle Club",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "544",
+      "name": "Advaith A R",
+      "association": "Sumeet\u2019s AGS Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-JM",
+          "eventName": "10 M Air Pistol Men Junior ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-YM",
+          "eventName": "10 M Air Pistol Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "545",
+      "name": "Swarna Latha",
+      "association": "Sheen Sports academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-MW",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "546",
+      "name": "SS Guruu Sabari",
+      "association": "TRICHY RIFLE CLUB",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JM",
+          "eventName": "10 M Air Rifle Men Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RI-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "547",
+      "name": "Carreen Singh",
+      "association": "Ziel Rifle Society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-SYW",
+          "eventName": "10 M Air Pistol Women Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "548",
+      "name": "Akash Prasad nonia",
+      "association": "Ziel rifle society",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "549",
+      "name": "Dilip Kumar",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MM",
+          "eventName": "10 M Air Pistol Men Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "550",
+      "name": "Jaishree Singh",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-MW",
+          "eventName": "10 M Air Pistol Women Master NR(Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "551",
+      "name": "Samarth Seshadri",
+      "association": "Agasthya Sports Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "552",
+      "name": "Darshan. V",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "553",
+      "name": "Mahalakshmi",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-W",
+          "eventName": "10 M Air Rifle Women ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JW",
+          "eventName": "10 M Air Rifle Women Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RI-YW",
+          "eventName": "10 M Air Rifle Women Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "554",
+      "name": "Samvidh.N",
+      "association": "Art of shooting",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "555",
+      "name": "Lasyapriya C",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-YW",
+          "eventName": "10M Open Sight Rifle Women Youth"
+        }
+      ]
+    },
+    {
+      "id": "556",
+      "name": "Rohan TM",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "557",
+      "name": "SRINIVASA SAGAR B",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-MM",
+          "eventName": "10M Open Sight Rifle Men Masters (Above 45)"
+        }
+      ]
+    },
+    {
+      "id": "558",
+      "name": "MOHAN KUMAR B",
+      "association": "Art of shooting",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        }
+      ]
+    },
+    {
+      "id": "559",
+      "name": "Hitha N Raj",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "560",
+      "name": "Sritej B S",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "561",
+      "name": "Likith N Kalmane",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "562",
+      "name": "CHARITA DEVARMANI",
+      "association": "JAI CHAMUNDI TARGET SHOOTING ACADEMY,MYSURU",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFW",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "563",
+      "name": "Chinthan k v",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "564",
+      "name": "Bhavesh raj purohit",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "565",
+      "name": "Raju G",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "566",
+      "name": "Raju G",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "567",
+      "name": "RAKSHAN RAJ.S",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "568",
+      "name": "Raju G",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "569",
+      "name": "Raju G",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "570",
+      "name": "rakshit shastry",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "571",
+      "name": "Reyansh bhatia",
+      "association": "ART OF SHOOTING",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "572",
+      "name": "Samar Shanubhog",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-SYM",
+          "eventName": "10 M Air Pistol Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "573",
+      "name": "Aman Singh",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "574",
+      "name": "HIBA AMEEN",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-YW",
+          "eventName": "10M Open Sight Rifle Women Youth"
+        }
+      ]
+    },
+    {
+      "id": "575",
+      "name": "Ekta Seth",
+      "association": "SARAGARHI SHOOTING ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-MW",
+          "eventName": "UNKNOWN EVENT"
+        }
+      ]
+    },
+    {
+      "id": "576",
+      "name": "Adeesh",
+      "association": "Sumeet\u2019s AGS Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "PI-JM",
+          "eventName": "10 M Air Pistol Men Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "PI-YM",
+          "eventName": "10 M Air Pistol Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "577",
+      "name": "Proksha v",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-SYW",
+          "eventName": "10 M Air Rifle Women Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "578",
+      "name": "Varun sai gopinath",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "579",
+      "name": "POORVI S",
+      "association": "VSCA,TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-JW",
+          "eventName": "10 M Air Rifle Women Junior NR"
+        }
+      ]
+    },
+    {
+      "id": "580",
+      "name": "Ashwini Kempraj",
+      "association": "Nalapad Shooting Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-W",
+          "eventName": "10 M Air Rifle Women NR"
+        }
+      ]
+    },
+    {
+      "id": "581",
+      "name": "Laksh",
+      "association": "Sumeet\u2019s AGS Academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-YM",
+          "eventName": "10 M Air Pistol Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "582",
+      "name": "Sharvesh S T",
+      "association": "ERODE RIFLE ACADEMY",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-UFM",
+          "eventName": "10 M Open Sight Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "583",
+      "name": "Bindushree L",
+      "association": "KISCE",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "584",
+      "name": "Deepak",
+      "association": "VSCA, TUMKUR",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "OS-M",
+          "eventName": "10M Open Sight Rifle Men"
+        }
+      ]
+    },
+    {
+      "id": "585",
+      "name": "Sathish M",
+      "association": "MDRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-M",
+          "eventName": "10 M Air Pistol Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "586",
+      "name": "Abishek Sekhar",
+      "association": "Art of Shooting",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RI-JM",
+          "eventName": "10 M Air Rifle Men Junior ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RI-YM",
+          "eventName": "10 M Air Rifle Men Youth ISSF"
+        }
+      ]
+    },
+    {
+      "id": "587",
+      "name": "Chaithra ML",
+      "association": "MDRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PI-W",
+          "eventName": "10 M Air Pistol Women ISSF"
+        }
+      ]
+    },
+    {
+      "id": "588",
+      "name": "Chandan ML",
+      "association": "MDRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RI-M",
+          "eventName": "10 M Air Rifle Men ISSF"
+        }
+      ]
+    },
+    {
+      "id": "589",
+      "name": "Devendra rajapur",
+      "association": "MDRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "590",
+      "name": "Chiranjeevi Rao D V",
+      "association": "KSRA",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-M",
+          "eventName": "10 M Air Rifle Men NR"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "RN-JM",
+          "eventName": "10 M Air Rifle Men Junior NR"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "RN-YM",
+          "eventName": "10 M Air Rifle Men Youth NR"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "RN-SYM",
+          "eventName": "10 M Air Rifle Men Sub Youth NR"
+        }
+      ]
+    },
+    {
+      "id": "591",
+      "name": "Sanjith S",
+      "association": "Arun\u2019s shooting academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-UFM",
+          "eventName": "10 M Air Pistol Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "592",
+      "name": "Mohan Raj",
+      "association": "Arun\u2019s shooting academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
+        }
+      ]
+    },
+    {
+      "id": "593",
+      "name": "S RANA",
+      "association": "Arun\u2019s shooting academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "RN-UFM",
+          "eventName": "10 M Air Rifle Men Under 14 NR"
+        }
+      ]
+    },
+    {
+      "id": "594",
+      "name": "Senthil Arumugam g c",
+      "association": "Arun\u2019s shooting academy",
+      "registrationId": "",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "PN-M",
+          "eventName": "10 M Air Pistol Men NR"
         }
       ]
     }
