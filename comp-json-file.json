@@ -1,0 +1,48 @@
+{
+  "competitions": [
+    {
+      "id": "comp1",
+      "name": "23RD KUMAR SURENDRA SINGH MEMORIAL SHOOTING CHAMPIONSHIP PISTOL EVENTS",
+      "venue": "BHOPAL MADHYA PRADESH",
+      "address": "MP Shooting Academy, Bilkhiria Road, Bhopal, MP",
+      "startDate": "22-04-2025",
+      "endDate": "05-05-2025",
+      "contactInfo": "+91 98765 43210",
+      "email": "info@mpshootingacademy.org",
+      "dataFile": "comp1-data.json"
+    },
+    {
+      "id": "comp2",
+      "name": "NATIONAL SHOTGUN CHAMPIONSHIP",
+      "venue": "NEW DELHI",
+      "address": "Dr. Karni Singh Shooting Range, Tughlakabad, New Delhi",
+      "startDate": "15-06-2025",
+      "endDate": "30-06-2025",
+      "contactInfo": "+91 11 2996 4091",
+      "email": "contact@nrai.in",
+      "dataFile": "comp2-data.json"
+    },
+    {
+      "id": "comp3",
+      "name": "NATIONAL RIFLE CHAMPIONSHIP",
+      "venue": "CHENNAI",
+      "address": "Tamil Nadu Shooting Complex, Guindy, Chennai",
+      "startDate": "10-08-2025",
+      "endDate": "25-08-2025",
+      "contactInfo": "+91 44 2235 6789",
+      "email": "support@tamilnadushooting.org",
+      "dataFile": "comp3-data.json"
+    },
+    {
+      "id": "comp4",
+      "name": "ALL INDIA G.V. MAVLANKAR SHOOTING CHAMPIONSHIP",
+      "venue": "PUNE",
+      "address": "Maharashtra Rifle Association, Balewadi Sports Complex, Pune",
+      "startDate": "05-09-2025",
+      "endDate": "15-09-2025",
+      "contactInfo": "+91 20 2567 8901",
+      "email": "mavlankarshoot@mra.org",
+      "dataFile": "comp4-data.json"
+    }
+  ]
+}

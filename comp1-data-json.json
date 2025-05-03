@@ -1,0 +1,96 @@
+{
+  "competitors": [
+    {
+      "id": "1535",
+      "name": "AVANTHIKA MADHU",
+      "association": "KARNATAKA STATE RIFLE ASSOCIATION",
+      "registrationId": "SHF1101201101",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "N39",
+          "eventName": "10M PISTOL WOMEN - ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "N40",
+          "eventName": "10M PISTOL JUNIOR WOMEN - ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "N41",
+          "eventName": "10M PISTOL YOUTH WOMEN - ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "N147",
+          "eventName": "10M PISTOL SUB YOUTH WOMEN - ISSF"
+        },
+        {
+          "srNo": "5",
+          "eventNo": "N49",
+          "eventName": "10M PISTOL YOUTH MIXED TEAM ISSF"
+        }
+      ]
+    },
+    {
+      "id": "1536",
+      "name": "ROHIT SHARMA",
+      "association": "DELHI RIFLE ASSOCIATION",
+      "registrationId": "SHF1101201102",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "N21",
+          "eventName": "10M PISTOL MEN - ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "N22",
+          "eventName": "10M PISTOL JUNIOR MEN - ISSF"
+        }
+      ]
+    },
+    {
+      "id": "1537",
+      "name": "AKHIL SHEORAN",
+      "association": "UP STATE RIFLE ASSOCIATION",
+      "registrationId": "SHF1101201103",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "N23",
+          "eventName": "10M PISTOL MEN - ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "N24",
+          "eventName": "10M AIR RIFLE MEN - ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "N27",
+          "eventName": "50M RIFLE 3 POSITIONS MEN - ISSF"
+        }
+      ]
+    },
+    {
+      "id": "1538",
+      "name": "ANJUM MOUDGIL",
+      "association": "PUNJAB STATE RIFLE ASSOCIATION",
+      "registrationId": "SHF1101201104",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "N42",
+          "eventName": "10M AIR RIFLE WOMEN - ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "N45",
+          "eventName": "50M RIFLE 3 POSITIONS WOMEN - ISSF"
+        }
+      ]
+    }
+  ]
+}

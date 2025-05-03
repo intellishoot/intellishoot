@@ -1,0 +1,76 @@
+{
+  "competitors": [
+    {
+      "id": "2101",
+      "name": "RAJAT KUMAR",
+      "association": "PUNJAB SHOOTING ASSOCIATION",
+      "registrationId": "SHF2204301201",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "S01",
+          "eventName": "TRAP MEN - ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "S02",
+          "eventName": "DOUBLE TRAP MEN - ISSF"
+        }
+      ]
+    },
+    {
+      "id": "2102",
+      "name": "PRIYA SINGH",
+      "association": "HARYANA SHOOTING ACADEMY",
+      "registrationId": "SHF2204301202",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "S11",
+          "eventName": "TRAP WOMEN - ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "S12",
+          "eventName": "SKEET WOMEN - ISSF"
+        }
+      ]
+    },
+    {
+      "id": "2103",
+      "name": "MANAVJIT SINGH SANDHU",
+      "association": "PUNJAB SHOOTING ASSOCIATION",
+      "registrationId": "SHF2204301203",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "S01",
+          "eventName": "TRAP MEN - ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "S03",
+          "eventName": "MIXED TEAM TRAP - ISSF"
+        }
+      ]
+    },
+    {
+      "id": "2104",
+      "name": "SHREYASI SINGH",
+      "association": "BIHAR SHOOTING ASSOCIATION",
+      "registrationId": "SHF2204301204",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "S11",
+          "eventName": "TRAP WOMEN - ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "S03",
+          "eventName": "MIXED TEAM TRAP - ISSF"
+        }
+      ]
+    }
+  ]
+}
