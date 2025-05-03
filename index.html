@@ -77,6 +77,9 @@
             margin-bottom: 20px;
             border-bottom: 2px solid #000;
             padding-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .dynamic-header h2 {
             margin: 0;
@@ -86,6 +89,11 @@
         .dynamic-header p {
             margin: 5px 0;
             font-size: 14px;
+        }
+        .competition-logo {
+            max-width: 150px;
+            max-height: 100px;
+            margin-bottom: 15px;
         }
         .competitor-title {
             text-align: center;
@@ -350,6 +358,15 @@
             // Clear previous content
             headerElement.innerHTML = '';
             
+            // Add competition logo if available
+            if (competition.logoFile) {
+                const logoImg = document.createElement('img');
+                logoImg.src = competition.logoFile;
+                logoImg.alt = `${competition.name} Logo`;
+                logoImg.className = 'competition-logo';
+                headerElement.appendChild(logoImg);
+            }
+            
             // Create championship heading
             const champHeading = document.createElement('h2');
             champHeading.textContent = competition.name;
@@ -393,11 +410,18 @@
             // Find the selected competition
             currentCompData = competitions.competitions.find(comp => comp.id === selectElement.value);
             
+            // Display a message about loading the competition logo if available
+            if (currentCompData.logoFile) {
+                showMessage(`Loading competition: ${currentCompData.name} with logo ${currentCompData.logoFile}. Please enter a Competitor ID.`, 'success');
+            } else {
+                showMessage(`Competition selected: ${currentCompData.name}. Please enter a Competitor ID.`, 'success');
+            }
+            
             // Load competitor data
             currentCompetitorData = await loadCompetitorData(dataFile);
             
-            if (currentCompetitorData) {
-                showMessage(`Competition selected: ${currentCompData.name}. Please enter a Competitor ID.`, 'success');
+            if (!currentCompetitorData) {
+                showMessage(`Error loading competitor data for ${currentCompData.name}.`, 'error');
             }
         }
 
@@ -518,6 +542,14 @@
                 }
             });
             
+            // Add event listener to handle logo image errors
+            document.addEventListener('error', function(e) {
+                if (e.target.tagName.toLowerCase() === 'img' && e.target.classList.contains('competition-logo')) {
+                    console.warn(`Failed to load logo: ${e.target.src}`);
+                    e.target.style.display = 'none'; // Hide the broken logo
+                }
+            }, true);
+            
             // Simulate data for the demo (this would not be needed in a real app)
             if (!window.fetch) {
                 window.fetch = function(url) {
@@ -538,7 +570,8 @@
                                                 "endDate": "05-05-2025",
                                                 "contactInfo": "+91 98765 43210",
                                                 "email": "info@mpshootingacademy.org",
-                                                "dataFile": "comp1-data.json"
+                                                "dataFile": "comp1-data.json",
+                                                "logoFile": "comp1-logo.jpg"
                                             },
                                             {
                                                 "id": "comp2",
@@ -549,7 +582,8 @@
                                                 "endDate": "30-06-2025",
                                                 "contactInfo": "+91 11 2996 4091",
                                                 "email": "contact@nrai.in",
-                                                "dataFile": "comp2-data.json"
+                                                "dataFile": "comp2-data.json",
+                                                "logoFile": "comp2-logo.jpg"
                                             }
                                         ]
                                     });
