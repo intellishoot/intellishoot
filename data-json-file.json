@@ -1,0 +1,142 @@
+{
+  "competitors": [
+    {
+      "id": "1535",
+      "name": "AVANTHIKA MADHU",
+      "association": "KARNATAKA STATE RIFLE ASSOCIATION",
+      "registrationId": "SHF1101201101",
+      "championship": "23RD KUMAR SURENDRA SINGH MEMORIAL SHOOTING CHAMPIONSHIP PISTOL EVENTS",
+      "venue": "BHOPAL MADHYA PRADESH",
+      "startDate": "22-04-2025",
+      "endDate": "05-05-2025",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "N39",
+          "eventName": "10M PISTOL WOMEN - ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "N40",
+          "eventName": "10M PISTOL JUNIOR WOMEN - ISSF"
+        },
+        {
+          "srNo": "3",
+          "eventNo": "N41",
+          "eventName": "10M PISTOL YOUTH WOMEN - ISSF"
+        },
+        {
+          "srNo": "4",
+          "eventNo": "N147",
+          "eventName": "10M PISTOL SUB YOUTH WOMEN - ISSF"
+        },
+        {
+          "srNo": "5",
+          "eventNo": "N49",
+          "eventName": "10M PISTOL YOUTH MIXED TEAM ISSF"
+        }
+      ],
+      "secretary": "RAJIV BHATIA",
+      "equipment": {
+        "eqcNo": "17558",
+        "nocCode": "KARNATAKA",
+        "pistols": [
+          {
+            "type": "10m Air Pistol",
+            "make": "morini",
+            "model": "CM 1620EI",
+            "pistolNo": "37216",
+            "stickerNo": ""
+          },
+          {
+            "type": "10m Air Pistol",
+            "make": "Morini",
+            "model": "Cm 162ei",
+            "pistolNo": "34462",
+            "stickerNo": ""
+          }
+        ],
+        "equipment": [
+          {
+            "name": "Shooting Shoes (R / P)",
+            "stickerNo": ""
+          },
+          {
+            "name": "Waist Belt",
+            "stickerNo": ""
+          },
+          {
+            "name": "Case Catcher",
+            "stickerNo": ""
+          },
+          {
+            "name": "Front Blinder",
+            "stickerNo": ""
+          },
+          {
+            "name": "Side Blinder",
+            "stickerNo": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "1536",
+      "name": "ROHIT SHARMA",
+      "association": "DELHI RIFLE ASSOCIATION",
+      "registrationId": "SHF1101201102",
+      "championship": "23RD KUMAR SURENDRA SINGH MEMORIAL SHOOTING CHAMPIONSHIP PISTOL EVENTS",
+      "venue": "BHOPAL MADHYA PRADESH",
+      "startDate": "22-04-2025",
+      "endDate": "05-05-2025",
+      "events": [
+        {
+          "srNo": "1",
+          "eventNo": "N21",
+          "eventName": "10M PISTOL MEN - ISSF"
+        },
+        {
+          "srNo": "2",
+          "eventNo": "N22",
+          "eventName": "10M PISTOL JUNIOR MEN - ISSF"
+        }
+      ],
+      "secretary": "RAJIV BHATIA",
+      "equipment": {
+        "eqcNo": "17559",
+        "nocCode": "DELHI",
+        "pistols": [
+          {
+            "type": "10m Air Pistol",
+            "make": "Walther",
+            "model": "LP400",
+            "pistolNo": "45123",
+            "stickerNo": ""
+          }
+        ],
+        "equipment": [
+          {
+            "name": "Shooting Shoes (R / P)",
+            "stickerNo": ""
+          },
+          {
+            "name": "Waist Belt",
+            "stickerNo": ""
+          },
+          {
+            "name": "Case Catcher",
+            "stickerNo": ""
+          },
+          {
+            "name": "Front Blinder",
+            "stickerNo": ""
+          },
+          {
+            "name": "Side Blinder",
+            "stickerNo": ""
+          }
+        ]
+      }
+    }
+  ]
+}
