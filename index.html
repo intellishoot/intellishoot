@@ -35,11 +35,14 @@
             gap: 10px;
             align-items: center;
         }
-        input {
+        input, select {
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
             flex-grow: 1;
+        }
+        select {
+            background-color: white;
         }
         button {
             padding: 10px 20px;
@@ -125,17 +128,6 @@
             padding: 10px;
             border: 1px solid #ddd;
         }
-        .signature {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 50px;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-        .signature p {
-            margin: 0;
-            font-weight: bold;
-        }
         .id-number {
             text-align: right;
             font-size: 14px;
@@ -175,6 +167,11 @@
             text-align: center;
             margin-top: 20px;
         }
+        .warning {
+            color: #ff9900;
+            text-align: center;
+            margin-top: 20px;
+        }
         .btn-container {
             display: flex;
             justify-content: center;
@@ -187,6 +184,12 @@
         #downloadBtn:hover {
             background-color: #0b7dda;
         }
+        .hidden {
+            display: none;
+        }
+        #competitorIdGroup {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -195,9 +198,17 @@
         
         <div class="form-container">
             <div class="form-group">
+                <select id="competitionSelect">
+                    <option value="">-- Select Competition --</option>
+                    <!-- Competition options will be populated here -->
+                </select>
+            </div>
+            
+            <div class="form-group" id="competitorIdGroup">
                 <input type="text" id="competitorId" placeholder="Enter Competitor ID">
                 <button id="generateBtn">Generate Certificate</button>
             </div>
+            
             <div id="message"></div>
         </div>
         
@@ -233,7 +244,6 @@
                 </tbody>
             </table>
             
-           
             <div class="footer">
                 <div class="footer-left">
                     Generated: <span id="generationTime"></span><br>
@@ -251,6 +261,10 @@
     </div>
 
     <script>
+        // Store current competition data
+        let currentCompData = null;
+        let currentCompetitorData = null;
+        
         // Function to generate a GUID
         function generateGuid() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -281,26 +295,56 @@
             messageEl.className = type;
         }
 
-        // Function to load data from JSON file
-        async function loadData() {
+        // Function to load competitions from JSON file
+        async function loadCompetitions() {
             try {
-                // In a real environment, this would fetch from an actual file
-                // For this demo, we'll simulate loading from a file
-                const response = await fetch('data.json');
+                const response = await fetch('comp.json');
                 if (!response.ok) {
-                    throw new Error(`Failed to load data: ${response.status}`);
+                    throw new Error(`Failed to load competitions: ${response.status}`);
                 }
                 const data = await response.json();
                 return data;
             } catch (error) {
-                console.error('Error loading data:', error);
-                showMessage(`Error loading data: ${error.message}`, 'error');
+                console.error('Error loading competitions:', error);
+                showMessage(`Error loading competitions: ${error.message}`, 'error');
+                return null;
+            }
+        }
+        
+        // Function to load competitor data from JSON file
+        async function loadCompetitorData(dataFile) {
+            try {
+                const response = await fetch(dataFile);
+                if (!response.ok) {
+                    throw new Error(`Failed to load competitor data: ${response.status}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error loading competitor data:', error);
+                showMessage(`Error loading competitor data: ${error.message}`, 'error');
                 return null;
             }
         }
 
+        // Function to populate competition dropdown
+        async function populateCompetitionDropdown() {
+            const competitions = await loadCompetitions();
+            if (!competitions) return;
+            
+            const selectElement = document.getElementById('competitionSelect');
+            
+            competitions.competitions.forEach(comp => {
+                const option = document.createElement('option');
+                option.value = comp.id;
+                option.textContent = comp.name;
+                option.dataset.dataFile = comp.dataFile;
+                selectElement.appendChild(option);
+            });
+        }
+
         // Function to generate dynamic header content
-        function generateDynamicHeader(championship, venue, startDate, endDate) {
+        function generateDynamicHeader(competition) {
             const headerElement = document.getElementById('dynamicHeader');
             
             // Clear previous content
@@ -308,13 +352,53 @@
             
             // Create championship heading
             const champHeading = document.createElement('h2');
-            champHeading.textContent = championship;
+            champHeading.textContent = competition.name;
             headerElement.appendChild(champHeading);
             
             // Create venue and date paragraph
             const venueDate = document.createElement('p');
-            venueDate.textContent = `${venue} | ${startDate} to ${endDate}`;
+            venueDate.textContent = `${competition.venue} | ${competition.startDate} to ${competition.endDate}`;
             headerElement.appendChild(venueDate);
+            
+            // Create contact info paragraph
+            if (competition.contactInfo || competition.email) {
+                const contactInfo = document.createElement('p');
+                contactInfo.textContent = `Contact: ${competition.contactInfo || ''} ${competition.email ? '| ' + competition.email : ''}`;
+                headerElement.appendChild(contactInfo);
+            }
+        }
+
+        // Function to handle competition selection
+        async function handleCompetitionSelect() {
+            const selectElement = document.getElementById('competitionSelect');
+            const competitorIdGroup = document.getElementById('competitorIdGroup');
+            
+            if (selectElement.value === '') {
+                competitorIdGroup.style.display = 'none';
+                showMessage('Please select a competition.', 'warning');
+                return;
+            }
+            
+            // Get the selected option
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            const dataFile = selectedOption.dataset.dataFile;
+            
+            // Show competitor ID input
+            competitorIdGroup.style.display = 'flex';
+            
+            // Load competitions data to get the selected competition
+            const competitions = await loadCompetitions();
+            if (!competitions) return;
+            
+            // Find the selected competition
+            currentCompData = competitions.competitions.find(comp => comp.id === selectElement.value);
+            
+            // Load competitor data
+            currentCompetitorData = await loadCompetitorData(dataFile);
+            
+            if (currentCompetitorData) {
+                showMessage(`Competition selected: ${currentCompData.name}. Please enter a Competitor ID.`, 'success');
+            }
         }
 
         // Function to generate certificate
@@ -326,12 +410,13 @@
                 return;
             }
             
-            // Load data from JSON file
-            const data = await loadData();
-            if (!data) return;
+            if (!currentCompData || !currentCompetitorData) {
+                showMessage("Please select a valid competition first.", "error");
+                return;
+            }
             
             // Find competitor by ID
-            const competitor = data.competitors.find(c => c.id === competitorId);
+            const competitor = currentCompetitorData.competitors.find(c => c.id === competitorId);
             
             if (!competitor) {
                 showMessage(`Competitor with ID ${competitorId} not found.`, "error");
@@ -339,21 +424,16 @@
             }
             
             // Generate dynamic header
-            generateDynamicHeader(
-                competitor.championship,
-                competitor.venue,
-                competitor.startDate,
-                competitor.endDate
-            );
+            generateDynamicHeader(currentCompData);
             
             // Populate certificate
             document.getElementById('compNumber').textContent = competitor.id;
             document.getElementById('athleteName').textContent = competitor.name;
             document.getElementById('association').textContent = competitor.association;
-            document.getElementById('championship').textContent = competitor.championship;
-            document.getElementById('venue').textContent = competitor.venue;
-            document.getElementById('startDate').textContent = competitor.startDate;
-            document.getElementById('endDate').textContent = competitor.endDate;
+            document.getElementById('championship').textContent = currentCompData.name;
+            document.getElementById('venue').textContent = currentCompData.venue;
+            document.getElementById('startDate').textContent = currentCompData.startDate;
+            document.getElementById('endDate').textContent = currentCompData.endDate;
             document.getElementById('idNumber').textContent = competitor.registrationId;
             
             // Generate and set certificate timestamp and GUID
@@ -419,7 +499,16 @@
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
+            // Populate competition dropdown
+            populateCompetitionDropdown();
+            
+            // Add event listener for competition select
+            document.getElementById('competitionSelect').addEventListener('change', handleCompetitionSelect);
+            
+            // Add event listener for generate button
             document.getElementById('generateBtn').addEventListener('click', generateCertificate);
+            
+            // Add event listener for download button
             document.getElementById('downloadBtn').addEventListener('click', downloadPDF);
             
             // Also trigger generation when pressing Enter in the input field
@@ -433,7 +522,40 @@
             if (!window.fetch) {
                 window.fetch = function(url) {
                     return new Promise((resolve) => {
-                        if (url === 'data.json') {
+                        if (url === 'comp.json') {
+                            resolve({
+                                ok: true,
+                                status: 200,
+                                json: function() {
+                                    return Promise.resolve({
+                                        "competitions": [
+                                            {
+                                                "id": "comp1",
+                                                "name": "23RD KUMAR SURENDRA SINGH MEMORIAL SHOOTING CHAMPIONSHIP PISTOL EVENTS",
+                                                "venue": "BHOPAL MADHYA PRADESH",
+                                                "address": "MP Shooting Academy, Bilkhiria Road, Bhopal, MP",
+                                                "startDate": "22-04-2025",
+                                                "endDate": "05-05-2025",
+                                                "contactInfo": "+91 98765 43210",
+                                                "email": "info@mpshootingacademy.org",
+                                                "dataFile": "comp1-data.json"
+                                            },
+                                            {
+                                                "id": "comp2",
+                                                "name": "NATIONAL SHOTGUN CHAMPIONSHIP",
+                                                "venue": "NEW DELHI",
+                                                "address": "Dr. Karni Singh Shooting Range, Tughlakabad, New Delhi",
+                                                "startDate": "15-06-2025",
+                                                "endDate": "30-06-2025",
+                                                "contactInfo": "+91 11 2996 4091",
+                                                "email": "contact@nrai.in",
+                                                "dataFile": "comp2-data.json"
+                                            }
+                                        ]
+                                    });
+                                }
+                            });
+                        } else if (url === 'comp1-data.json') {
                             resolve({
                                 ok: true,
                                 status: 200,
@@ -445,10 +567,6 @@
                                                 "name": "AVANTHIKA MADHU",
                                                 "association": "KARNATAKA STATE RIFLE ASSOCIATION",
                                                 "registrationId": "SHF1101201101",
-                                                "championship": "23RD KUMAR SURENDRA SINGH MEMORIAL SHOOTING CHAMPIONSHIP PISTOL EVENTS",
-                                                "venue": "BHOPAL MADHYA PRADESH",
-                                                "startDate": "22-04-2025",
-                                                "endDate": "05-05-2025",
                                                 "events": [
                                                     {
                                                         "srNo": "1",
@@ -475,18 +593,13 @@
                                                         "eventNo": "N49",
                                                         "eventName": "10M PISTOL YOUTH MIXED TEAM ISSF"
                                                     }
-                                                ],
-                                                "secretary": "RAJIV BHATIA"
+                                                ]
                                             },
                                             {
                                                 "id": "1536",
                                                 "name": "ROHIT SHARMA",
                                                 "association": "DELHI RIFLE ASSOCIATION",
                                                 "registrationId": "SHF1101201102",
-                                                "championship": "23RD KUMAR SURENDRA SINGH MEMORIAL SHOOTING CHAMPIONSHIP PISTOL EVENTS",
-                                                "venue": "BHOPAL MADHYA PRADESH",
-                                                "startDate": "22-04-2025",
-                                                "endDate": "05-05-2025",
                                                 "events": [
                                                     {
                                                         "srNo": "1",
@@ -498,8 +611,54 @@
                                                         "eventNo": "N22",
                                                         "eventName": "10M PISTOL JUNIOR MEN - ISSF"
                                                     }
-                                                ],
-                                                "secretary": "RAJIV BHATIA"
+                                                ]
+                                            }
+                                        ]
+                                    });
+                                }
+                            });
+                        } else if (url === 'comp2-data.json') {
+                            resolve({
+                                ok: true,
+                                status: 200,
+                                json: function() {
+                                    return Promise.resolve({
+                                        "competitors": [
+                                            {
+                                                "id": "2101",
+                                                "name": "RAJAT KUMAR",
+                                                "association": "PUNJAB SHOOTING ASSOCIATION",
+                                                "registrationId": "SHF2204301201",
+                                                "events": [
+                                                    {
+                                                        "srNo": "1",
+                                                        "eventNo": "S01",
+                                                        "eventName": "TRAP MEN - ISSF"
+                                                    },
+                                                    {
+                                                        "srNo": "2",
+                                                        "eventNo": "S02",
+                                                        "eventName": "DOUBLE TRAP MEN - ISSF"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "id": "2102",
+                                                "name": "PRIYA SINGH",
+                                                "association": "HARYANA SHOOTING ACADEMY",
+                                                "registrationId": "SHF2204301202",
+                                                "events": [
+                                                    {
+                                                        "srNo": "1",
+                                                        "eventNo": "S11",
+                                                        "eventName": "TRAP WOMEN - ISSF"
+                                                    },
+                                                    {
+                                                        "srNo": "2",
+                                                        "eventNo": "S12",
+                                                        "eventName": "SKEET WOMEN - ISSF"
+                                                    }
+                                                ]
                                             }
                                         ]
                                     });
