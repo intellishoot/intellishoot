@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksmanship Summit-2025 Certificate Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #eaf6ff;
+            border-radius: 5px;
+        }
+        input, button {
+            padding: 8px 15px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Certificate Styles */
+        .certificate {
+            width: 1000px;
+            height: 708px;
+            margin: 20px auto;
+            background-color: white;
+            position: relative;
+            border: 10px solid #d9d18f;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        
+        /* Blue curved background */
+        .blue-curve {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #5b67ab;
+            border-radius: 0 500px 500px 0;
+            z-index: 1;
+        }
+        
+        /* Cream curved overlay */
+        .cream-curve {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 300px;
+            height: 600px;
+            background-color: #f6f4d2;
+            border-radius: 0 500px 500px 0;
+            z-index: 2;
+        }
+        
+        /* Light blue curve */
+        .light-blue-curve {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80%;
+            height: 300px;
+            background-color: #d5e5f2;
+            border-radius: 500px 0 0 0;
+            z-index: 1;
+        }
+        
+        /* Content wrapper */
+        .certificate-content {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 40px;
+        }
+        
+        /* Logo and header */
+        .certificate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo-shooter {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-shooter img {
+            width: 100px;
+            height: auto;
+        }
+        
+        .title {
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .title h1 {
+            color: #000066;
+            margin: 0;
+            font-size: 36px;
+        }
+        
+        .title h2 {
+            color: #cc0000;
+            margin: 0;
+            font-size: 28px;
+        }
+        
+        .title h3 {
+            color: #ff9900;
+            margin: 0;
+            font-style: italic;
+            font-size: 24px;
+        }
+        
+        .logo-govt img {
+            width: 80px;
+            height: auto;
+        }
+        
+        /* Certificate body */
+        .certificate-body {
+            margin-top: 40px;
+            padding: 0 60px;
+        }
+        
+        .certified-line {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .name-line {
+            border-bottom: 1px solid #000;
+            height: 30px;
+            font-weight: bold;
+            font-size: 20px;
+            color: #000066;
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+        
+        .academy-line {
+            border-bottom: 1px solid #000;
+            height: 30px;
+            font-weight: bold;
+            font-size: 20px;
+            color: #000066;
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+        
+        .participation-line {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .participation-text {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        
+        .event-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: #cc0000;
+        }
+        
+        .held-at-line {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .held-at-text {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        
+        .location {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff9900;
+        }
+        
+        .date-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .date-text {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        
+        .dates {
+            font-size: 18px;
+            font-weight: bold;
+            font-style: italic;
+        }
+        
+        .results-text {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* Results table */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .results-table th {
+            text-align: left;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 5px 0;
+        }
+        
+        .results-table td {
+            border-bottom: 1px solid #000;
+            padding: 8px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .sr-col {
+            width: 15%;
+        }
+        
+        .event-col {
+            width: 55%;
+        }
+        
+        .result-col {
+            width: 30%;
+        }
+        
+        /* Footer with sponsors */
+        .certificate-footer {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+        
+        .secretary {
+            font-size: 14px;
+            font-style: italic;
+            font-weight: bold;
+            text-align: center;
+            margin-right: 20px;
+        }
+        
+        .sponsors {
+            display: flex;
+            align-items: center;
+        }
+        
+        .sponsor {
+            width: 60px;
+            height: 40px;
+            margin: 0 5px;
+            background-color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            color: #666;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .error-message {
+            color: #ff0000;
+            font-weight: bold;
+            margin: 10px 0;
+            display: none;
+        }
+        .success-message {
+            color: #008000;
+            font-weight: bold;
+            margin: 10px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Marksmanship Summit-2025 Certificate Generator</h1>
+        
+        <div class="input-section">
+            <h2>Generate Certificate</h2>
+            <label for="shooterId">Enter Shooter ID:</label>
+            <input type="text" id="shooterId" placeholder="e.g., SH001">
+            <button id="generateBtn">Generate Certificate</button>
+            <div class="loading" id="loading">Loading...</div>
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+        </div>
+        
+        <div id="certificateSection" style="display: none;">
+            <div id="certificate" class="certificate">
+                <!-- Background elements -->
+                <div class="blue-curve"></div>
+                <div class="cream-curve"></div>
+                <div class="light-blue-curve"></div>
+                
+                <!-- Certificate content -->
+                <div class="certificate-content">
+                    <!-- Header with logos and title -->
+                    <div class="certificate-header">
+                        <div class="logo-shooter">
+                            <!-- Shooter logo placeholder - replace with actual SVG or text -->
+                            <div style="width: 100px; height: 80px; background-color: transparent; display: flex; justify-content: center; align-items: center; color: #ff9900; font-weight: bold;">
+                                <svg width="100" height="80" viewBox="0 0 100 80">
+                                    <polygon points="50,10 10,40 40,40 40,70 60,70 60,40 90,40" fill="#000066" />
+                                    <circle cx="55" cy="35" r="8" fill="#cc0000" />
+                                    <rect x="65" y="30" width="25" height="10" fill="#ff9900" />
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="title">
+                            <h1>MARKSMANSHIP</h1>
+                            <h2>SUMMIT-2025</h2>
+                            <h3>RELOADED</h3>
+                        </div>
+                        
+                        <div class="logo-govt">
+                            <!-- Government logo placeholder - replace with actual SVG or text -->
+                            <div style="width: 80px; height: 80px; background-color: transparent; display: flex; justify-content: center; align-items: center; color: #000066; font-weight: bold;">
+                                <svg width="80" height="80" viewBox="0 0 80 80">
+                                    <circle cx="40" cy="40" r="35" fill="none" stroke="#000066" stroke-width="2" />
+                                    <circle cx="40" cy="25" r="10" fill="#000066" />
+                                    <rect x="30" y="35" width="20" height="30" fill="#000066" />
+                                    <line x1="20" y1="45" x2="60" y2="45" stroke="#000066" stroke-width="2" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Certificate body -->
+                    <div class="certificate-body">
+                        <div class="certified-line">CERTIFIED THAT</div>
+                        <div class="name-line" id="shooterName"></div>
+                        
+                        <div class="certified-line">Of</div>
+                        <div class="academy-line" id="academyName"></div>
+                        
+                        <div class="participation-line">
+                            <div class="participation-text">has participated in</div>
+                            <div class="event-name">MARKSMANSHIP SUMMIT 2025 - RELOADED</div>
+                        </div>
+                        
+                        <div class="held-at-line">
+                            <div class="held-at-text">held at</div>
+                            <div class="location">Eklavya Sports Shooting Academy, Bangalore</div>
+                        </div>
+                        
+                        <div class="date-line">
+                            <div class="date-text">from</div>
+                            <div class="dates">03rd MAY 2025 to 11th MAY 2025</div>
+                            <div class="date-text" style="margin-left: 10px;">and obtained following results :</div>
+                        </div>
+                        
+                        <!-- Results Table -->
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th class="sr-col">SR No</th>
+                                    <th class="event-col">EVENT</th>
+                                    <th class="result-col">RESULT</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTableBody">
+                                <!-- Results will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Footer with signature and sponsors -->
+                    <div class="certificate-footer">
+                        <div class="secretary">
+                            Hon. Secretary,<br>
+                            Eklavya Sports Shooting Academy
+                        </div>
+                        <div class="sponsors">
+                            <div class="sponsor">NUTRI PLANET</div>
+                            <div class="sponsor">DECATHLON</div>
+                            <div class="sponsor">HUB SPORTS</div>
+                            <div class="sponsor">I-TARGET</div>
+                            <div class="sponsor">CANDOR</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="downloadBtn">Download as PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const generateBtn = document.getElementById('generateBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const shooterIdInput = document.getElementById('shooterId');
+        const certificateSection = document.getElementById('certificateSection');
+        const loadingElement = document.getElementById('loading');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+
+        // Certificate Elements
+        const shooterName = document.getElementById('shooterName');
+        const academyName = document.getElementById('academyName');
+        const resultsTableBody = document.getElementById('resultsTableBody');
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            generateBtn.addEventListener('click', generateCertificate);
+            downloadBtn.addEventListener('click', downloadCertificate);
+        });
+
+        // Generate Certificate
+        async function generateCertificate() {
+            const shooterId = shooterIdInput.value.trim();
+            
+            if (!shooterId) {
+                showError("Please enter a Shooter ID");
+                return;
+            }
+            
+            showLoading(true);
+            hideError();
+            hideSuccess();
+            
+            try {
+                // Fetch shooter data from JSON file
+                const shooterData = await fetchShooterData(shooterId);
+                
+                if (!shooterData) {
+                    showError(`No shooter found with ID: ${shooterId}`);
+                    showLoading(false);
+                    return;
+                }
+                
+                // Populate certificate
+                populateCertificate(shooterData);
+                
+                // Show certificate section
+                certificateSection.style.display = 'block';
+                
+                showSuccess("Certificate generated successfully!");
+            } catch (error) {
+                showError(`Error generating certificate: ${error.message}`);
+                console.error(error);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Fetch Shooter Data
+        async function fetchShooterData(shooterId) {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                
+                // Find shooter by ID
+                return data.shooters.find(shooter => shooter.id === shooterId);
+            } catch (error) {
+                throw new Error(`Failed to fetch shooter data: ${error.message}`);
+            }
+        }
+
+        // Populate Certificate
+        function populateCertificate(shooterData) {
+            // Set shooter name and academy name
+            shooterName.textContent = shooterData.name;
+            academyName.textContent = shooterData.organization;
+            
+            // Clear previous results
+            resultsTableBody.innerHTML = '';
+            
+            // Populate results table - limited to 6 events maximum (based on template)
+            if (shooterData.results && shooterData.results.length > 0) {
+                const maxEvents = Math.min(shooterData.results.length, 6);
+                
+                for (let i = 0; i < maxEvents; i++) {
+                    const result = shooterData.results[i];
+                    const row = document.createElement('tr');
+                    
+                    const srNoCell = document.createElement('td');
+                    srNoCell.className = 'sr-col';
+                    srNoCell.textContent = (i + 1).toString();
+                    
+                    const eventCell = document.createElement('td');
+                    eventCell.className = 'event-col';
+                    eventCell.textContent = result.event;
+                    
+                    const resultCell = document.createElement('td');
+                    resultCell.className = 'result-col';
+                    resultCell.textContent = result.score;
+                    
+                    row.appendChild(srNoCell);
+                    row.appendChild(eventCell);
+                    row.appendChild(resultCell);
+                    
+                    resultsTableBody.appendChild(row);
+                }
+                
+                // Add empty rows to fill up to 6 rows
+                for (let i = maxEvents; i < 6; i++) {
+                    const emptyRow = document.createElement('tr');
+                    
+                    const srNoCell = document.createElement('td');
+                    srNoCell.className = 'sr-col';
+                    srNoCell.innerHTML = '&nbsp;';
+                    
+                    const eventCell = document.createElement('td');
+                    eventCell.className = 'event-col';
+                    eventCell.innerHTML = '&nbsp;';
+                    
+                    const resultCell = document.createElement('td');
+                    resultCell.className = 'result-col';
+                    resultCell.innerHTML = '&nbsp;';
+                    
+                    emptyRow.appendChild(srNoCell);
+                    emptyRow.appendChild(eventCell);
+                    emptyRow.appendChild(resultCell);
+                    
+                    resultsTableBody.appendChild(emptyRow);
+                }
+            } else {
+                // Add 6 empty rows if no results
+                for (let i = 0; i < 6; i++) {
+                    const emptyRow = document.createElement('tr');
+                    
+                    const srNoCell = document.createElement('td');
+                    srNoCell.className = 'sr-col';
+                    srNoCell.innerHTML = i === 0 ? '1' : '&nbsp;';
+                    
+                    const eventCell = document.createElement('td');
+                    eventCell.className = 'event-col';
+                    eventCell.innerHTML = i === 0 ? (shooterData.event || '&nbsp;') : '&nbsp;';
+                    
+                    const resultCell = document.createElement('td');
+                    resultCell.className = 'result-col';
+                    resultCell.innerHTML = i === 0 ? (shooterData.score || '&nbsp;') : '&nbsp;';
+                    
+                    emptyRow.appendChild(srNoCell);
+                    emptyRow.appendChild(eventCell);
+                    emptyRow.appendChild(resultCell);
+                    
+                    resultsTableBody.appendChild(emptyRow);
+                }
+            }
+        }
+
+        // Download Certificate as PDF
+        function downloadCertificate() {
+            const certificate = document.getElementById('certificate');
+            
+            const options = {
+                margin: 0,
+                filename: `marksmanship_summit_certificate_${shooterIdInput.value}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+            };
+            
+            showLoading(true);
+            
+            html2pdf().from(certificate).set(options).save()
+                .then(() => {
+                    showSuccess("Certificate downloaded successfully!");
+                    showLoading(false);
+                })
+                .catch(error => {
+                    showError(`Error downloading certificate: ${error.message}`);
+                    showLoading(false);
+                });
+        }
+
+        // Helper Functions
+        function showLoading(show) {
+            loadingElement.style.display = show ? 'block' : 'none';
+        }
+        
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+        
+        function hideError() {
+            errorMessage.style.display = 'none';
+        }
+        
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+        }
+        
+        function hideSuccess() {
+            successMessage.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
