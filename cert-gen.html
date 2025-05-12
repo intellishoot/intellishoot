@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksmanship Summit-2025 Certificate Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #eaf6ff;
+            border-radius: 5px;
+        }
+        input, button {
+            padding: 8px 15px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .certificate-container {
+            position: relative;
+            width: 1000px;
+            height: 708px; /* Aspect ratio of the template */
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            background-color: white;
+        }
+        .certificate-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .certificate-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .certified-text {
+            position: absolute;
+            left: 155px;
+            top: 285px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .participant-name {
+            position: absolute;
+            left: 710px;
+            top: 285px;
+            right: 155px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 18px;
+            color: #000066;
+        }
+        .participant-org {
+            position: absolute;
+            left: 710px;
+            top: 335px;
+            right: 155px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 18px;
+            color: #000066;
+        }
+        .event-name {
+            position: absolute;
+            left: 780px;
+            top: 400px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #861a1a; /* Dark red color for event name */
+        }
+        .event-location {
+            position: absolute;
+            left: 780px;
+            top: 448px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #ff9900; /* Orange color similar to template */
+        }
+        .event-dates {
+            position: absolute;
+            left: 445px;
+            top: 503px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .results-table {
+            position: absolute;
+            left: 136px;
+            top: 558px;
+            width: 870px;
+            font-size: 16px;
+        }
+        .sr-no-col {
+            position: absolute;
+            left: 0;
+            width: 100px;
+        }
+        .event-col {
+            position: absolute;
+            left: 170px;
+            width: 400px;
+        }
+        .result-col {
+            position: absolute;
+            left: 670px;
+            width: 170px;
+        }
+        .table-row {
+            position: relative;
+            height: 28px;
+            width: 100%;
+        }
+        .signature {
+            position: absolute;
+            left: 270px;
+            bottom: 80px;
+            font-size: 14px;
+            font-weight: bold;
+            font-style: italic;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .error-message {
+            color: #ff0000;
+            font-weight: bold;
+            margin: 10px 0;
+            display: none;
+        }
+        .success-message {
+            color: #008000;
+            font-weight: bold;
+            margin: 10px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Marksmanship Summit-2025 Certificate Generator</h1>
+        
+        <div class="input-section">
+            <h2>Generate Certificate</h2>
+            <label for="shooterId">Enter Shooter ID:</label>
+            <input type="text" id="shooterId" placeholder="e.g., SH001">
+            <button id="generateBtn">Generate Certificate</button>
+            <div class="loading" id="loading">Loading...</div>
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+        </div>
+        
+        <div id="certificateSection" style="display: none;">
+            <div id="certificate" class="certificate-container">
+                <img src="" id="certificateBg" class="certificate-bg" alt="Certificate Background">
+                <div class="certificate-content">
+                    <div class="certified-text">CERTIFIED THAT</div>
+                    <div class="participant-name" id="shooterName">John Doe</div>
+                    <div class="participant-org" id="shooterOrg">Organization Name</div>
+                    
+                    <!-- Fixed event details for Marksmanship Summit -->
+                    <div class="event-name">MARKSMANSHIP SUMMIT 2025 - RELOADED</div>
+                    <div class="event-location">Eklavya Sports Shooting Academy, Bangalore</div>
+                    <div class="event-dates">03rd MAY 2025 to 11th MAY 2025</div>
+                    
+                    <!-- Results table -->
+                    <div class="results-table" id="resultsTable">
+                        <!-- Table rows will be added dynamically -->
+                    </div>
+                    
+                    <div class="signature">Hon. Secretary, Eklavya Sports Shooting Academy</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="downloadBtn">Download as PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Constants
+        const BACKGROUND_IMAGE_PATH = 'marksmanship-summit-bg.jpg'; // Path to your certificate template background
+
+        // DOM Elements
+        const generateBtn = document.getElementById('generateBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const shooterIdInput = document.getElementById('shooterId');
+        const certificateSection = document.getElementById('certificateSection');
+        const certificateBg = document.getElementById('certificateBg');
+        const loadingElement = document.getElementById('loading');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+
+        // Certificate Elements
+        const shooterName = document.getElementById('shooterName');
+        const shooterOrg = document.getElementById('shooterOrg');
+        const resultsTable = document.getElementById('resultsTable');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set the background image
+            certificateBg.src = BACKGROUND_IMAGE_PATH;
+            
+            // Event Listeners
+            generateBtn.addEventListener('click', generateCertificate);
+            downloadBtn.addEventListener('click', downloadCertificate);
+        });
+
+        // Generate Certificate
+        async function generateCertificate() {
+            const shooterId = shooterIdInput.value.trim();
+            
+            if (!shooterId) {
+                showError("Please enter a Shooter ID");
+                return;
+            }
+            
+            showLoading(true);
+            hideError();
+            hideSuccess();
+            
+            try {
+                // Fetch shooter data from JSON file
+                const shooterData = await fetchShooterData(shooterId);
+                
+                if (!shooterData) {
+                    showError(`No shooter found with ID: ${shooterId}`);
+                    showLoading(false);
+                    return;
+                }
+                
+                // Populate certificate
+                populateCertificate(shooterData);
+                
+                // Show certificate section
+                certificateSection.style.display = 'block';
+                
+                showSuccess("Certificate generated successfully!");
+            } catch (error) {
+                showError(`Error generating certificate: ${error.message}`);
+                console.error(error);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Fetch Shooter Data
+        async function fetchShooterData(shooterId) {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                
+                // Find shooter by ID
+                return data.shooters.find(shooter => shooter.id === shooterId);
+            } catch (error) {
+                throw new Error(`Failed to fetch shooter data: ${error.message}`);
+            }
+        }
+
+        // Populate Certificate
+        function populateCertificate(shooterData) {
+            // Set shooter name and organization
+            shooterName.textContent = shooterData.name;
+            shooterOrg.textContent = shooterData.organization || ""; // Use org if available
+            
+            // Clear previous results
+            resultsTable.innerHTML = '';
+            
+            // Populate results table
+            if (shooterData.results && shooterData.results.length > 0) {
+                shooterData.results.forEach((result, index) => {
+                    const rowDiv = document.createElement('div');
+                    rowDiv.className = 'table-row';
+                    
+                    const srNoDiv = document.createElement('div');
+                    srNoDiv.className = 'sr-no-col';
+                    srNoDiv.textContent = (index + 1).toString();
+                    
+                    const eventDiv = document.createElement('div');
+                    eventDiv.className = 'event-col';
+                    eventDiv.textContent = result.event;
+                    
+                    const resultDiv = document.createElement('div');
+                    resultDiv.className = 'result-col';
+                    resultDiv.textContent = result.score;
+                    
+                    rowDiv.appendChild(srNoDiv);
+                    rowDiv.appendChild(eventDiv);
+                    rowDiv.appendChild(resultDiv);
+                    
+                    resultsTable.appendChild(rowDiv);
+                });
+            } else {
+                // If no results array, create a single row with the event and score
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'table-row';
+                
+                const srNoDiv = document.createElement('div');
+                srNoDiv.className = 'sr-no-col';
+                srNoDiv.textContent = "1";
+                
+                const eventDiv = document.createElement('div');
+                eventDiv.className = 'event-col';
+                eventDiv.textContent = shooterData.event || "Marksmanship Event";
+                
+                const resultDiv = document.createElement('div');
+                resultDiv.className = 'result-col';
+                resultDiv.textContent = shooterData.score || "";
+                
+                rowDiv.appendChild(srNoDiv);
+                rowDiv.appendChild(eventDiv);
+                rowDiv.appendChild(resultDiv);
+                
+                resultsTable.appendChild(rowDiv);
+            }
+        }
+
+        // Download Certificate as PDF
+        function downloadCertificate() {
+            const certificate = document.getElementById('certificate');
+            
+            const options = {
+                margin: 0,
+                filename: `marksmanship_summit_certificate_${shooterIdInput.value}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+            };
+            
+            showLoading(true);
+            
+            html2pdf().from(certificate).set(options).save()
+                .then(() => {
+                    showSuccess("Certificate downloaded successfully!");
+                    showLoading(false);
+                })
+                .catch(error => {
+                    showError(`Error downloading certificate: ${error.message}`);
+                    showLoading(false);
+                });
+        }
+
+        // Helper Functions
+        function showLoading(show) {
+            loadingElement.style.display = show ? 'block' : 'none';
+        }
+        
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+        
+        function hideError() {
+            errorMessage.style.display = 'none';
+        }
+        
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+        }
+        
+        function hideSuccess() {
+            successMessage.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

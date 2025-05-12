@@ -1,65 +1,87 @@
 {
-  "competitors": [
+  "shooters": [
     {
-      "id": "1535",
-      "name": "AVANTHIKA MADHU",
-      "association": "KARNATAKA STATE RIFLE ASSOCIATION",
-      "registrationId": "SHF1101201101",
-      "championship": "23RD KUMAR SURENDRA SINGH MEMORIAL SHOOTING CHAMPIONSHIP PISTOL EVENTS",
-      "venue": "BHOPAL MADHYA PRADESH",
-      "startDate": "22-04-2025",
-      "endDate": "05-05-2025",
-      "events": [
+      "id": "SH001",
+      "name": "Rajesh Kumar",
+      "organization": "Indian Army Shooting Team",
+      "results": [
         {
-          "srNo": "1",
-          "eventNo": "N39",
-          "eventName": "10M PISTOL WOMEN - ISSF"
+          "event": "10m Air Rifle",
+          "score": "95/100"
         },
         {
-          "srNo": "2",
-          "eventNo": "N40",
-          "eventName": "10M PISTOL JUNIOR WOMEN - ISSF"
+          "event": "25m Standard Pistol",
+          "score": "92/100"
         },
         {
-          "srNo": "3",
-          "eventNo": "N41",
-          "eventName": "10M PISTOL YOUTH WOMEN - ISSF"
-        },
-        {
-          "srNo": "4",
-          "eventNo": "N147",
-          "eventName": "10M PISTOL SUB YOUTH WOMEN - ISSF"
-        },
-        {
-          "srNo": "5",
-          "eventNo": "N49",
-          "eventName": "10M PISTOL YOUTH MIXED TEAM ISSF"
+          "event": "50m Rifle Prone",
+          "score": "98/100"
         }
-      ],
-      "secretary": "RAJIV BHATIA"
+      ]
     },
     {
-      "id": "1536",
-      "name": "ROHIT SHARMA",
-      "association": "DELHI RIFLE ASSOCIATION",
-      "registrationId": "SHF1101201102",
-      "championship": "23RD KUMAR SURENDRA SINGH MEMORIAL SHOOTING CHAMPIONSHIP PISTOL EVENTS",
-      "venue": "BHOPAL MADHYA PRADESH",
-      "startDate": "22-04-2025",
-      "endDate": "05-05-2025",
-      "events": [
+      "id": "SH002",
+      "name": "Priya Sharma",
+      "organization": "Karnataka State Rifle Association",
+      "results": [
         {
-          "srNo": "1",
-          "eventNo": "N21",
-          "eventName": "10M PISTOL MEN - ISSF"
+          "event": "10m Air Pistol",
+          "score": "96/100"
         },
         {
-          "srNo": "2",
-          "eventNo": "N22",
-          "eventName": "10M PISTOL JUNIOR MEN - ISSF"
+          "event": "25m Rapid Fire Pistol",
+          "score": "88/100"
         }
-      ],
-      "secretary": "RAJIV BHATIA"
+      ]
+    },
+    {
+      "id": "SH003",
+      "name": "Vikram Singh",
+      "organization": "Delhi Sports Shooting Club",
+      "results": [
+        {
+          "event": "Trap Shooting",
+          "score": "89/100"
+        },
+        {
+          "event": "Double Trap",
+          "score": "92/100"
+        },
+        {
+          "event": "Skeet Shooting",
+          "score": "94/100"
+        }
+      ]
+    },
+    {
+      "id": "SH004",
+      "name": "Meera Patel",
+      "organization": "Gujarat State Shooting Academy",
+      "results": [
+        {
+          "event": "50m Rifle 3 Positions",
+          "score": "585/600"
+        }
+      ]
+    },
+    {
+      "id": "SH005",
+      "name": "Arjun Malhotra",
+      "organization": "Punjab Shooting Association",
+      "results": [
+        {
+          "event": "10m Air Rifle",
+          "score": "597/600"
+        },
+        {
+          "event": "50m Rifle Prone",
+          "score": "620/654"
+        },
+        {
+          "event": "50m Rifle 3 Positions",
+          "score": "580/600"
+        }
+      ]
     }
   ]
 }
