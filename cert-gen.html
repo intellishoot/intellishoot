@@ -65,90 +65,54 @@
             height: 100%;
             box-sizing: border-box;
         }
-        .certified-text {
+        /* Updated positioning based on the image */
+        .shooter-name {
             position: absolute;
-            left: 155px;
-            top: 285px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .participant-name {
-            position: absolute;
-            left: 710px;
-            top: 285px;
-            right: 155px;
-            text-align: left;
-            font-weight: bold;
+            left: 345px;
+            top: 280px;
             font-size: 18px;
+            font-weight: bold;
             color: #000066;
-        }
-        .participant-org {
-            position: absolute;
-            left: 710px;
-            top: 335px;
-            right: 155px;
+            width: 640px;
             text-align: left;
-            font-weight: bold;
+        }
+        .academy-name {
+            position: absolute;
+            left: 345px;
+            top: 330px;
             font-size: 18px;
+            font-weight: bold;
             color: #000066;
-        }
-        .event-name {
-            position: absolute;
-            left: 780px;
-            top: 400px;
-            font-weight: bold;
-            font-size: 18px;
-            color: #861a1a; /* Dark red color for event name */
-        }
-        .event-location {
-            position: absolute;
-            left: 780px;
-            top: 448px;
-            font-weight: bold;
-            font-size: 18px;
-            color: #ff9900; /* Orange color similar to template */
-        }
-        .event-dates {
-            position: absolute;
-            left: 445px;
-            top: 503px;
-            font-weight: bold;
-            font-size: 16px;
+            width: 640px;
+            text-align: left;
         }
         .results-table {
             position: absolute;
             left: 136px;
-            top: 558px;
+            top: 580px;
             width: 870px;
             font-size: 16px;
         }
+        .results-row {
+            position: relative;
+            width: 100%;
+            height: 28px;
+            display: flex;
+        }
         .sr-no-col {
-            position: absolute;
-            left: 0;
             width: 100px;
+            padding-left: 10px;
+            font-weight: bold;
         }
         .event-col {
-            position: absolute;
-            left: 170px;
-            width: 400px;
+            width: 500px;
+            padding-left: 30px;
+            font-weight: bold;
         }
         .result-col {
-            position: absolute;
-            left: 670px;
             width: 170px;
-        }
-        .table-row {
-            position: relative;
-            height: 28px;
-            width: 100%;
-        }
-        .signature {
-            position: absolute;
-            left: 270px;
-            bottom: 80px;
-            font-size: 14px;
+            text-align: left;
             font-weight: bold;
-            font-style: italic;
         }
         .loading {
             display: none;
@@ -187,21 +151,10 @@
             <div id="certificate" class="certificate-container">
                 <img src="" id="certificateBg" class="certificate-bg" alt="Certificate Background">
                 <div class="certificate-content">
-                    <div class="certified-text">CERTIFIED THAT</div>
-                    <div class="participant-name" id="shooterName">John Doe</div>
-                    <div class="participant-org" id="shooterOrg">Organization Name</div>
-                    
-                    <!-- Fixed event details for Marksmanship Summit -->
-                    <div class="event-name">MARKSMANSHIP SUMMIT 2025 - RELOADED</div>
-                    <div class="event-location">Eklavya Sports Shooting Academy, Bangalore</div>
-                    <div class="event-dates">03rd MAY 2025 to 11th MAY 2025</div>
-                    
-                    <!-- Results table -->
-                    <div class="results-table" id="resultsTable">
-                        <!-- Table rows will be added dynamically -->
-                    </div>
-                    
-                    <div class="signature">Hon. Secretary, Eklavya Sports Shooting Academy</div>
+                    <!-- Positioned text overlays -->
+                    <div class="shooter-name" id="shooterName"></div>
+                    <div class="academy-name" id="academyName"></div>
+                    <div class="results-table" id="resultsTable"></div>
                 </div>
             </div>
             
@@ -213,7 +166,7 @@
 
     <script>
         // Constants
-        const BACKGROUND_IMAGE_PATH = 'marksmanship-summit-bg.jpg'; // Path to your certificate template background
+        const BACKGROUND_IMAGE_PATH = 'marksmanship-summit-bg.jpg'; // Update this to your image filename
 
         // DOM Elements
         const generateBtn = document.getElementById('generateBtn');
@@ -227,12 +180,12 @@
 
         // Certificate Elements
         const shooterName = document.getElementById('shooterName');
-        const shooterOrg = document.getElementById('shooterOrg');
+        const academyName = document.getElementById('academyName');
         const resultsTable = document.getElementById('resultsTable');
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            // Set the background image
+            // Set the background image - use the exact image you provided
             certificateBg.src = BACKGROUND_IMAGE_PATH;
             
             // Event Listeners
@@ -293,22 +246,25 @@
 
         // Populate Certificate
         function populateCertificate(shooterData) {
-            // Set shooter name and organization
+            // Set shooter name and academy name
             shooterName.textContent = shooterData.name;
-            shooterOrg.textContent = shooterData.organization || ""; // Use org if available
+            academyName.textContent = shooterData.organization;
             
             // Clear previous results
             resultsTable.innerHTML = '';
             
-            // Populate results table
+            // Populate results table - limited to 6 events maximum (based on template)
             if (shooterData.results && shooterData.results.length > 0) {
-                shooterData.results.forEach((result, index) => {
+                const maxEvents = Math.min(shooterData.results.length, 6);
+                
+                for (let i = 0; i < maxEvents; i++) {
+                    const result = shooterData.results[i];
                     const rowDiv = document.createElement('div');
-                    rowDiv.className = 'table-row';
+                    rowDiv.className = 'results-row';
                     
                     const srNoDiv = document.createElement('div');
                     srNoDiv.className = 'sr-no-col';
-                    srNoDiv.textContent = (index + 1).toString();
+                    srNoDiv.textContent = (i + 1).toString();
                     
                     const eventDiv = document.createElement('div');
                     eventDiv.className = 'event-col';
@@ -323,29 +279,7 @@
                     rowDiv.appendChild(resultDiv);
                     
                     resultsTable.appendChild(rowDiv);
-                });
-            } else {
-                // If no results array, create a single row with the event and score
-                const rowDiv = document.createElement('div');
-                rowDiv.className = 'table-row';
-                
-                const srNoDiv = document.createElement('div');
-                srNoDiv.className = 'sr-no-col';
-                srNoDiv.textContent = "1";
-                
-                const eventDiv = document.createElement('div');
-                eventDiv.className = 'event-col';
-                eventDiv.textContent = shooterData.event || "Marksmanship Event";
-                
-                const resultDiv = document.createElement('div');
-                resultDiv.className = 'result-col';
-                resultDiv.textContent = shooterData.score || "";
-                
-                rowDiv.appendChild(srNoDiv);
-                rowDiv.appendChild(eventDiv);
-                rowDiv.appendChild(resultDiv);
-                
-                resultsTable.appendChild(rowDiv);
+                }
             }
         }
 
