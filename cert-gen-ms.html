@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksmanship Summit-2025 Certificate Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #eaf6ff;
+            border-radius: 5px;
+        }
+        input, button {
+            padding: 8px 15px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Certificate with background image */
+        .certificate-container {
+            position: relative;
+            width: 1200px; /* Adjusted for new image */
+            height: 800px; /* Adjusted for new image */
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        .certificate-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            object-fit: cover;
+        }
+        
+        .certificate-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        /* Positioned text fields based on the new clean image */
+        .shooter-name {
+            position: absolute;
+            left: 453px;
+            top: 235px;
+            width: 600px;
+            height: 25px;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            line-height: 25px;
+            background: transparent;
+            padding: 2px 8px;
+        }
+
+        .organization-name {
+            position: absolute;
+            left: 341px;
+            top: 274px;
+            width: 600px;
+            height: 25px;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            line-height: 25px;
+            background: transparent;
+            padding: 2px 8px;
+        }
+
+        /* Results section with table */
+        .results-section {
+            position: absolute;
+            left: 173px;
+            top: 465px;
+            width: 870px;
+            background: transparent;
+        }
+
+        .results-title {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: transparent;
+        }
+
+        .results-table th {
+            background: transparent;
+            border: none;
+            padding: 8px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .results-table td {
+            border: none;
+            padding: 6px 8px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            font-weight: normal;
+            color: #000;
+            background: transparent;
+        }
+
+        .sr-col {
+            width: 15%;
+            text-align: center;
+        }
+
+        .event-col {
+            width: 55%;
+            text-align: left;
+            padding-left: 12px;
+        }
+
+        .result-col {
+            width: 30%;
+            text-align: center;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .error-message {
+            color: #ff0000;
+            font-weight: bold;
+            margin: 10px 0;
+            display: none;
+        }
+        .success-message {
+            color: #008000;
+            font-weight: bold;
+            margin: 10px 0;
+            display: none;
+        }
+        .info-box {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Marksmanship Summit-2025 Certificate Generator</h1>
+        
+        <div class="input-section">
+            <h2>Generate Certificate</h2>
+            <div class="info-box">
+                <strong>Instructions:</strong> 
+                <ol style="margin: 10px 0;">
+                    <li>Save the certificate template image as "certificate-template.png" in the same folder as this HTML file</li>
+                    <li>SH001 is pre-loaded with sample data for testing</li>
+                    <li>Add data.json file for additional shooter records</li>
+                </ol>
+            </div>
+            <label for="shooterId">Enter Shooter ID:</label>
+            <input type="text" id="shooterId" placeholder="e.g., SH001 (sample), SH002, SH003...">
+            <button id="generateBtn">Generate Certificate</button>
+            <div class="loading" id="loading">Loading...</div>
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+        </div>
+        
+        <div id="certificateSection" style="display: none;">
+            <div id="certificate" class="certificate-container">
+                <!-- Background image -->
+                <img src="certificate-template.png" class="certificate-bg" alt="Certificate Template">
+                
+                <!-- Text overlay -->
+                <div class="certificate-overlay">
+                    <!-- Shooter name field -->
+                    <div class="shooter-name" id="shooterNameField"></div>
+                    
+                    <!-- Organization/Academy name field -->
+                    <div class="organization-name" id="organizationField"></div>
+                    
+                    <!-- Results section with proper table -->
+                    <div class="results-section">
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th class="sr-col">SR No</th>
+                                    <th class="event-col">EVENT</th>
+                                    <th class="result-col">RESULT</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTableBody">
+                                <!-- Results will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="downloadBtn">Download as PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data embedded in HTML for testing
+        const sampleData = {
+            shooters: [
+                {
+                    id: "SH001",
+                    name: "Rajesh Kumar Singh",
+                    organization: "Indian Army Shooting Team",
+                    results: [
+                        {
+                            event: "10m Air Rifle Individual",
+                            score: "625.7"
+                        },
+                        {
+                            event: "50m Rifle 3 Positions",
+                            score: "1165"
+                        },
+                        {
+                            event: "10m Air Rifle Team",
+                            score: "1850.2"
+                        },
+                        {
+                            event: "25m Standard Pistol",
+                            score: "572"
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // DOM Elements
+        const generateBtn = document.getElementById('generateBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const shooterIdInput = document.getElementById('shooterId');
+        const certificateSection = document.getElementById('certificateSection');
+        const loadingElement = document.getElementById('loading');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            generateBtn.addEventListener('click', generateCertificate);
+            downloadBtn.addEventListener('click', downloadCertificate);
+            
+            // Auto-populate SH001 for testing on page load
+            shooterIdInput.value = "SH001";
+            generateCertificate();
+        });
+
+        // Generate Certificate
+        async function generateCertificate() {
+            const shooterId = shooterIdInput.value.trim();
+            
+            if (!shooterId) {
+                showError("Please enter a Shooter ID");
+                return;
+            }
+            
+            showLoading(true);
+            hideError();
+            hideSuccess();
+            
+            try {
+                // Fetch shooter data
+                const shooterData = await fetchShooterData(shooterId);
+                
+                if (!shooterData) {
+                    showError(`No shooter found with ID: ${shooterId}`);
+                    showLoading(false);
+                    return;
+                }
+                
+                // Populate certificate
+                populateCertificate(shooterData);
+                
+                // Show certificate section
+                certificateSection.style.display = 'block';
+                
+                showSuccess("Certificate generated successfully!");
+            } catch (error) {
+                showError(`Error generating certificate: ${error.message}`);
+                console.error(error);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Fetch Shooter Data
+        async function fetchShooterData(shooterId) {
+            // First, check if data exists in embedded sample data
+            const sampleShooter = sampleData.shooters.find(shooter => shooter.id === shooterId);
+            if (sampleShooter) {
+                console.log('Using embedded sample data for:', shooterId);
+                return sampleShooter;
+            }
+            
+            // If not found in sample data, try to fetch from external JSON file
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                // Find shooter by ID in external data
+                const externalShooter = data.shooters.find(shooter => shooter.id === shooterId);
+                if (externalShooter) {
+                    console.log('Using external JSON data for:', shooterId);
+                    return externalShooter;
+                }
+                
+                return null; // Shooter not found in either source
+            } catch (error) {
+                console.warn('Could not fetch external data.json, using only embedded sample data:', error.message);
+                return null;
+            }
+        }
+
+        // Populate Certificate
+        function populateCertificate(shooterData) {
+            // Set shooter name and organization in bold
+            document.getElementById('shooterNameField').textContent = shooterData.name;
+            document.getElementById('organizationField').textContent = shooterData.organization;
+            
+            // Clear existing table rows
+            const tableBody = document.getElementById('resultsTableBody');
+            tableBody.innerHTML = '';
+            
+            // Create rows for results (up to 6 rows)
+            const maxRows = 6;
+            const results = shooterData.results || [];
+            
+            for (let i = 0; i < maxRows; i++) {
+                const row = document.createElement('tr');
+                
+                const srCell = document.createElement('td');
+                srCell.className = 'sr-col';
+                
+                const eventCell = document.createElement('td');
+                eventCell.className = 'event-col';
+                
+                const resultCell = document.createElement('td');
+                resultCell.className = 'result-col';
+                
+                if (i < results.length) {
+                    // Populate with actual data
+                    srCell.textContent = (i + 1).toString();
+                    eventCell.textContent = results[i].event;
+                    resultCell.textContent = results[i].score;
+                } else {
+                    // Empty rows for remaining slots
+                    srCell.innerHTML = '&nbsp;';
+                    eventCell.innerHTML = '&nbsp;';
+                    resultCell.innerHTML = '&nbsp;';
+                }
+                
+                row.appendChild(srCell);
+                row.appendChild(eventCell);
+                row.appendChild(resultCell);
+                tableBody.appendChild(row);
+            }
+        }
+
+        // Download Certificate as PDF
+        function downloadCertificate() {
+            const certificate = document.getElementById('certificate');
+            
+            const options = {
+                margin: 0,
+                filename: `marksmanship_summit_certificate_${shooterIdInput.value}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true
+                },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+            };
+            
+            showLoading(true);
+            
+            html2pdf().from(certificate).set(options).save()
+                .then(() => {
+                    showSuccess("Certificate downloaded successfully!");
+                    showLoading(false);
+                })
+                .catch(error => {
+                    showError(`Error downloading certificate: ${error.message}`);
+                    showLoading(false);
+                });
+        }
+
+        // Helper Functions
+        function showLoading(show) {
+            loadingElement.style.display = show ? 'block' : 'none';
+        }
+        
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+        
+        function hideError() {
+            errorMessage.style.display = 'none';
+        }
+        
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+        }
+        
+        function hideSuccess() {
+            successMessage.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
