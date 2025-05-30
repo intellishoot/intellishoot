@@ -42,11 +42,11 @@
             background-color: #45a049;
         }
 
-        /* Certificate with background image - adjusted for better PDF output */
+        /* Certificate with background image */
         .certificate-container {
             position: relative;
-            width: 1000px; /* Reduced width to match content better */
-            height: 700px; /* Adjusted height to match content */
+            width: 1200px; /* Adjusted for new image */
+            height: 800px; /* Adjusted for new image */
             margin: 20px auto;
             border: 1px solid #ddd;
             overflow: hidden;
@@ -61,7 +61,6 @@
             height: 100%;
             z-index: 1;
             object-fit: cover;
-            object-position: center;
         }
         
         .certificate-overlay {
@@ -460,23 +459,20 @@
                 bgImg.src = backgroundImageBase64;
             }
             
-            // Updated certificate dimensions to match content better
-            const certificateWidth = 1000;
-            const certificateHeight = 700;
-            
-            // Calculate PDF dimensions with proper aspect ratio (10:7)
-            const pdfWidth = 285; // mm 
-            const pdfHeight = 200; // mm 
+            // Calculate proper dimensions for landscape certificate
+            // Standard certificate size ratio (similar to 11x8.5 inches)
+            const certificateWidth = 1200;
+            const certificateHeight = 800;
             
             const options = {
-                margin: 0, // No margins for full coverage
+                margin: [5, 5, 5, 5], // Small margins for printing
                 filename: `marksmanship_summit_certificate_${shooterIdInput.value}.pdf`,
                 image: { 
                     type: 'jpeg', 
                     quality: 0.98 
                 },
                 html2canvas: { 
-                    scale: 2.5, // Higher scale for better quality
+                    scale: 2, // Good balance of quality and file size
                     useCORS: false,
                     allowTaint: false,
                     backgroundColor: '#ffffff',
@@ -486,13 +482,11 @@
                     scrollX: 0,
                     scrollY: 0,
                     windowWidth: certificateWidth,
-                    windowHeight: certificateHeight,
-                    x: 0,
-                    y: 0
+                    windowHeight: certificateHeight
                 },
                 jsPDF: { 
                     unit: 'mm',
-                    format: [pdfWidth, pdfHeight], // Custom format matching certificate
+                    format: [297, 210], // A4 Landscape (297mm x 210mm)
                     orientation: 'landscape',
                     putOnlyUsedFonts: true,
                     compress: false
@@ -505,7 +499,7 @@
             setTimeout(() => {
                 html2pdf().from(certificate).set(options).save()
                     .then(() => {
-                        showSuccess("Certificate downloaded - full width PDF created!");
+                        showSuccess("Certificate downloaded successfully! Ready for printing.");
                         showLoading(false);
                     })
                     .catch(error => {
@@ -513,30 +507,29 @@
                         showLoading(false);
                         console.error('PDF generation error:', error);
                         
-                        // Fallback: Use exact content dimensions
-                        console.log('Trying fallback with exact content fit...');
+                        // Fallback: try with US Letter landscape format
+                        console.log('Trying fallback with US Letter format...');
                         const fallbackOptions = {
-                            margin: 0,
-                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_fit.pdf`,
-                            image: { type: 'jpeg', quality: 0.95 },
+                            margin: [10, 10, 10, 10],
+                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_letter.pdf`,
+                            image: { type: 'jpeg', quality: 0.9 },
                             html2canvas: { 
-                                scale: 2, 
+                                scale: 1.5, 
                                 useCORS: false, 
                                 allowTaint: false,
                                 width: certificateWidth,
-                                height: certificateHeight,
-                                backgroundColor: '#ffffff'
+                                height: certificateHeight
                             },
                             jsPDF: { 
-                                unit: 'px', 
-                                format: [certificateWidth, certificateHeight], // Exact pixel dimensions
+                                unit: 'mm', 
+                                format: [279, 216], // US Letter Landscape (11" x 8.5")
                                 orientation: 'landscape' 
                             }
                         };
                         
                         html2pdf().from(certificate).set(fallbackOptions).save()
                             .then(() => {
-                                showSuccess("Certificate downloaded with exact fit!");
+                                showSuccess("Certificate downloaded with US Letter format!");
                                 showLoading(false);
                             })
                             .catch(fallbackError => {
