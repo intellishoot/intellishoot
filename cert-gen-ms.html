@@ -459,20 +459,24 @@
                 bgImg.src = backgroundImageBase64;
             }
             
-            // Calculate proper dimensions for landscape certificate
-            // Standard certificate size ratio (similar to 11x8.5 inches)
+            // Certificate dimensions (1200x800 = 3:2 aspect ratio)
             const certificateWidth = 1200;
             const certificateHeight = 800;
             
+            // Calculate PDF dimensions to match certificate aspect ratio
+            // Using custom dimensions that match the certificate exactly
+            const pdfWidth = 300; // mm (approximately 11.8 inches)
+            const pdfHeight = 200; // mm (approximately 7.9 inches)
+            
             const options = {
-                margin: [5, 5, 5, 5], // Small margins for printing
+                margin: 0, // No margins to use full width
                 filename: `marksmanship_summit_certificate_${shooterIdInput.value}.pdf`,
                 image: { 
                     type: 'jpeg', 
                     quality: 0.98 
                 },
                 html2canvas: { 
-                    scale: 2, // Good balance of quality and file size
+                    scale: 2,
                     useCORS: false,
                     allowTaint: false,
                     backgroundColor: '#ffffff',
@@ -486,7 +490,7 @@
                 },
                 jsPDF: { 
                     unit: 'mm',
-                    format: [297, 210], // A4 Landscape (297mm x 210mm)
+                    format: [pdfWidth, pdfHeight], // Custom format matching certificate ratio
                     orientation: 'landscape',
                     putOnlyUsedFonts: true,
                     compress: false
@@ -499,7 +503,7 @@
             setTimeout(() => {
                 html2pdf().from(certificate).set(options).save()
                     .then(() => {
-                        showSuccess("Certificate downloaded successfully! Ready for printing.");
+                        showSuccess("Certificate downloaded successfully! Full width PDF ready for printing.");
                         showLoading(false);
                     })
                     .catch(error => {
@@ -507,11 +511,11 @@
                         showLoading(false);
                         console.error('PDF generation error:', error);
                         
-                        // Fallback: try with US Letter landscape format
-                        console.log('Trying fallback with US Letter format...');
+                        // Fallback: try with A4 landscape but adjusted margins
+                        console.log('Trying fallback with centered A4 format...');
                         const fallbackOptions = {
-                            margin: [10, 10, 10, 10],
-                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_letter.pdf`,
+                            margin: [15, 20, 15, 20], // Centered margins for A4
+                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_a4.pdf`,
                             image: { type: 'jpeg', quality: 0.9 },
                             html2canvas: { 
                                 scale: 1.5, 
@@ -522,14 +526,14 @@
                             },
                             jsPDF: { 
                                 unit: 'mm', 
-                                format: [279, 216], // US Letter Landscape (11" x 8.5")
+                                format: 'a4',
                                 orientation: 'landscape' 
                             }
                         };
                         
                         html2pdf().from(certificate).set(fallbackOptions).save()
                             .then(() => {
-                                showSuccess("Certificate downloaded with US Letter format!");
+                                showSuccess("Certificate downloaded with A4 format (centered)!");
                                 showLoading(false);
                             })
                             .catch(fallbackError => {
