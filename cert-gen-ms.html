@@ -461,7 +461,7 @@
             
             // Calculate proper dimensions for landscape certificate
             // Standard certificate size ratio (similar to 11x8.5 inches)
-            const certificateWidth = 1200;
+            const certificateWidth = 1350;
             const certificateHeight = 800;
             
             const options = {
@@ -486,7 +486,7 @@
                 },
                 jsPDF: { 
                     unit: 'mm',
-                    format: [285, 210], // A4 Landscape (297mm x 210mm)
+                    format: [297, 210], // A4 Landscape (297mm x 210mm)
                     orientation: 'landscape',
                     putOnlyUsedFonts: true,
                     compress: false
