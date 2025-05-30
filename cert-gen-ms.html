@@ -459,28 +459,37 @@
                 bgImg.src = backgroundImageBase64;
             }
             
+            // Calculate proper dimensions for landscape certificate
+            // Standard certificate size ratio (similar to 11x8.5 inches)
+            const certificateWidth = 1200;
+            const certificateHeight = 800;
+            
             const options = {
-                margin: 0,
+                margin: [5, 5, 5, 5], // Small margins for printing
                 filename: `marksmanship_summit_certificate_${shooterIdInput.value}.pdf`,
                 image: { 
                     type: 'jpeg', 
-                    quality: 0.95 
+                    quality: 0.98 
                 },
                 html2canvas: { 
-                    scale: 2,
+                    scale: 2, // Good balance of quality and file size
                     useCORS: false,
                     allowTaint: false,
                     backgroundColor: '#ffffff',
                     logging: false,
-                    width: 1200,
-                    height: 800,
+                    width: certificateWidth,
+                    height: certificateHeight,
                     scrollX: 0,
-                    scrollY: 0
+                    scrollY: 0,
+                    windowWidth: certificateWidth,
+                    windowHeight: certificateHeight
                 },
                 jsPDF: { 
-                    unit: 'px', 
-                    format: [1200, 800], 
-                    orientation: 'landscape'
+                    unit: 'mm',
+                    format: [297, 210], // A4 Landscape (297mm x 210mm)
+                    orientation: 'landscape',
+                    putOnlyUsedFonts: true,
+                    compress: false
                 }
             };
             
@@ -490,7 +499,7 @@
             setTimeout(() => {
                 html2pdf().from(certificate).set(options).save()
                     .then(() => {
-                        showSuccess("Certificate downloaded successfully!");
+                        showSuccess("Certificate downloaded successfully! Ready for printing.");
                         showLoading(false);
                     })
                     .catch(error => {
@@ -498,23 +507,33 @@
                         showLoading(false);
                         console.error('PDF generation error:', error);
                         
-                        // Fallback: try with different settings
-                        console.log('Trying fallback PDF generation...');
+                        // Fallback: try with US Letter landscape format
+                        console.log('Trying fallback with US Letter format...');
                         const fallbackOptions = {
-                            margin: 0,
-                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_fallback.pdf`,
-                            image: { type: 'png', quality: 0.8 },
-                            html2canvas: { scale: 1, useCORS: false, allowTaint: false },
-                            jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+                            margin: [10, 10, 10, 10],
+                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_letter.pdf`,
+                            image: { type: 'jpeg', quality: 0.9 },
+                            html2canvas: { 
+                                scale: 1.5, 
+                                useCORS: false, 
+                                allowTaint: false,
+                                width: certificateWidth,
+                                height: certificateHeight
+                            },
+                            jsPDF: { 
+                                unit: 'mm', 
+                                format: [279, 216], // US Letter Landscape (11" x 8.5")
+                                orientation: 'landscape' 
+                            }
                         };
                         
                         html2pdf().from(certificate).set(fallbackOptions).save()
                             .then(() => {
-                                showSuccess("Certificate downloaded with fallback settings!");
+                                showSuccess("Certificate downloaded with US Letter format!");
                                 showLoading(false);
                             })
                             .catch(fallbackError => {
-                                showError(`Fallback PDF generation also failed: ${fallbackError.message}`);
+                                showError(`PDF generation failed: ${fallbackError.message}`);
                                 showLoading(false);
                             });
                     });
