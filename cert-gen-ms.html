@@ -461,7 +461,7 @@
             
             // Calculate proper dimensions for landscape certificate
             // Standard certificate size ratio (similar to 11x8.5 inches)
-            const certificateWidth = 1300;
+            const certificateWidth = 1200;
             const certificateHeight = 800;
             
             const options = {
@@ -522,7 +522,7 @@
                             },
                             jsPDF: { 
                                 unit: 'mm', 
-                                format: [279, 216], // US Letter Landscape (11" x 8.5")
+                                format: [265, 216], // US Letter Landscape (11" x 8.5")
                                 orientation: 'landscape' 
                             }
                         };
