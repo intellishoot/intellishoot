@@ -279,6 +279,9 @@
             ]
         };
 
+        // Global variable to store the background image as base64
+        let backgroundImageBase64 = null;
+
         // DOM Elements
         const generateBtn = document.getElementById('generateBtn');
         const downloadBtn = document.getElementById('downloadBtn');
@@ -293,10 +296,39 @@
             generateBtn.addEventListener('click', generateCertificate);
             downloadBtn.addEventListener('click', downloadCertificate);
             
+            // Load and convert background image to base64
+            loadBackgroundImage();
+            
             // Auto-populate SH001 for testing on page load
             shooterIdInput.value = "SH001";
             generateCertificate();
         });
+
+        // Load background image and convert to base64
+        function loadBackgroundImage() {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                backgroundImageBase64 = canvas.toDataURL('image/png');
+                
+                // Update the background image with base64
+                const bgImg = document.querySelector('.certificate-bg');
+                if (bgImg) {
+                    bgImg.src = backgroundImageBase64;
+                }
+                console.log('Background image loaded and converted to base64');
+            };
+            img.onerror = function() {
+                console.error('Failed to load background image: certificate-template.png');
+                showError('Background image not found. Please ensure certificate-template.png is in the same folder.');
+            };
+            img.src = 'certificate-template.png';
+        }
 
         // Generate Certificate
         async function generateCertificate() {
@@ -414,37 +446,47 @@
 
         // Download Certificate as PDF
         function downloadCertificate() {
+            if (!backgroundImageBase64) {
+                showError('Background image not loaded. Please wait and try again.');
+                return;
+            }
+
             const certificate = document.getElementById('certificate');
+            
+            // Ensure background image is using base64 before PDF generation
+            const bgImg = certificate.querySelector('.certificate-bg');
+            if (bgImg && backgroundImageBase64) {
+                bgImg.src = backgroundImageBase64;
+            }
             
             const options = {
                 margin: 0,
                 filename: `marksmanship_summit_certificate_${shooterIdInput.value}.pdf`,
                 image: { 
                     type: 'jpeg', 
-                    quality: 1.0 
+                    quality: 0.95 
                 },
                 html2canvas: { 
-                    scale: 3,
-                    useCORS: true,
-                    allowTaint: true,
+                    scale: 2,
+                    useCORS: false,
+                    allowTaint: false,
                     backgroundColor: '#ffffff',
                     logging: false,
-                    letterRendering: true,
-                    foreignObjectRendering: true,
-                    imageTimeout: 15000,
-                    removeContainer: true
+                    width: 1200,
+                    height: 800,
+                    scrollX: 0,
+                    scrollY: 0
                 },
                 jsPDF: { 
                     unit: 'px', 
                     format: [1200, 800], 
-                    orientation: 'landscape',
-                    compress: true
+                    orientation: 'landscape'
                 }
             };
             
             showLoading(true);
             
-            // Wait a moment for any images to load
+            // Wait for image to be properly set
             setTimeout(() => {
                 html2pdf().from(certificate).set(options).save()
                     .then(() => {
@@ -455,8 +497,28 @@
                         showError(`Error downloading certificate: ${error.message}`);
                         showLoading(false);
                         console.error('PDF generation error:', error);
+                        
+                        // Fallback: try with different settings
+                        console.log('Trying fallback PDF generation...');
+                        const fallbackOptions = {
+                            margin: 0,
+                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_fallback.pdf`,
+                            image: { type: 'png', quality: 0.8 },
+                            html2canvas: { scale: 1, useCORS: false, allowTaint: false },
+                            jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+                        };
+                        
+                        html2pdf().from(certificate).set(fallbackOptions).save()
+                            .then(() => {
+                                showSuccess("Certificate downloaded with fallback settings!");
+                                showLoading(false);
+                            })
+                            .catch(fallbackError => {
+                                showError(`Fallback PDF generation also failed: ${fallbackError.message}`);
+                                showLoading(false);
+                            });
                     });
-            }, 1000);
+            }, 500);
         }
 
         // Helper Functions
