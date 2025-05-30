@@ -444,7 +444,7 @@
             }
         }
 
-        // Download Certificate as PDF - FIXED VERSION
+        // Download Certificate as PDF - SINGLE PAGE FIT VERSION
         function downloadCertificate() {
             if (!backgroundImageBase64) {
                 showError('Background image not loaded. Please wait and try again.');
@@ -459,24 +459,37 @@
                 bgImg.src = backgroundImageBase64;
             }
             
-            // Calculate proper dimensions based on actual template size (1521 x 1080)
+            // Template dimensions
             const templateWidth = 1521;
             const templateHeight = 1080;
             const aspectRatio = templateWidth / templateHeight; // ~1.408
             
-            // Custom page size that matches the aspect ratio
-            const pageWidthMM = 280; // Slightly smaller than A4 width to fit
-            const pageHeightMM = pageWidthMM / aspectRatio; // ~198.86mm
+            // A4 landscape dimensions in mm (297 x 210)
+            const maxPageWidth = 297;
+            const maxPageHeight = 210;
+            
+            // Calculate the best fit while maintaining aspect ratio
+            let pageWidth, pageHeight;
+            
+            if (aspectRatio > (maxPageWidth / maxPageHeight)) {
+                // Template is wider relative to A4, fit to width
+                pageWidth = maxPageWidth - 10; // Leave some margin
+                pageHeight = pageWidth / aspectRatio;
+            } else {
+                // Template is taller relative to A4, fit to height
+                pageHeight = maxPageHeight - 10; // Leave some margin
+                pageWidth = pageHeight * aspectRatio;
+            }
             
             const options = {
-                margin: [2, 2, 2, 2], // Minimal margins
+                margin: [5, 5, 5, 5], // Small consistent margins
                 filename: `marksmanship_summit_certificate_${shooterIdInput.value}.pdf`,
                 image: { 
                     type: 'jpeg', 
-                    quality: 0.95 
+                    quality: 0.9 
                 },
                 html2canvas: { 
-                    scale: 1.5, // Reduced for better performance
+                    scale: 0.8, // Reduced scale to ensure it fits
                     useCORS: false,
                     allowTaint: false,
                     backgroundColor: '#ffffff',
@@ -486,19 +499,11 @@
                     scrollX: 0,
                     scrollY: 0,
                     windowWidth: templateWidth,
-                    windowHeight: templateHeight,
-                    onclone: function(clonedDoc) {
-                        // Ensure the cloned document has the correct dimensions
-                        const clonedCertificate = clonedDoc.getElementById('certificate');
-                        if (clonedCertificate) {
-                            clonedCertificate.style.width = templateWidth + 'px';
-                            clonedCertificate.style.height = templateHeight + 'px';
-                        }
-                    }
+                    windowHeight: templateHeight
                 },
                 jsPDF: { 
                     unit: 'mm',
-                    format: [pageWidthMM, pageHeightMM], // Custom size matching aspect ratio
+                    format: [pageWidth, pageHeight],
                     orientation: 'landscape',
                     putOnlyUsedFonts: true,
                     compress: true
@@ -511,20 +516,20 @@
             setTimeout(() => {
                 html2pdf().from(certificate).set(options).save()
                     .then(() => {
-                        showSuccess("Certificate downloaded successfully! No white space on sides.");
+                        showSuccess("Certificate downloaded successfully! Fits on single page.");
                         showLoading(false);
                     })
                     .catch(error => {
                         console.error('PDF generation error:', error);
                         
-                        // Fallback: try with exact pixel dimensions
-                        console.log('Trying fallback method...');
+                        // Fallback: Standard A4 landscape with aggressive scaling
+                        console.log('Trying A4 landscape fallback...');
                         const fallbackOptions = {
-                            margin: 0, // No margins for fallback
-                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_fallback.pdf`,
-                            image: { type: 'jpeg', quality: 0.9 },
+                            margin: [8, 8, 8, 8],
+                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_a4.pdf`,
+                            image: { type: 'jpeg', quality: 0.85 },
                             html2canvas: { 
-                                scale: 1,
+                                scale: 0.6, // Very conservative scale
                                 useCORS: false,
                                 allowTaint: false,
                                 width: templateWidth,
@@ -532,15 +537,15 @@
                                 backgroundColor: '#ffffff'
                             },
                             jsPDF: { 
-                                unit: 'px',
-                                format: [templateWidth, templateHeight],
-                                orientation: templateWidth > templateHeight ? 'landscape' : 'portrait'
+                                unit: 'mm',
+                                format: 'a4',
+                                orientation: 'landscape'
                             }
                         };
                         
                         html2pdf().from(certificate).set(fallbackOptions).save()
                             .then(() => {
-                                showSuccess("Certificate downloaded with fallback method!");
+                                showSuccess("Certificate downloaded in A4 format!");
                                 showLoading(false);
                             })
                             .catch(fallbackError => {
