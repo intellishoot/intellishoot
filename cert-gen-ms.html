@@ -42,7 +42,10 @@
             background-color: #45a049;
         }
 
- actual template width */
+        /* Certificate with background image - Updated dimensions */
+        .certificate-container {
+            position: relative;
+            width: 1521px; /* Match actual template width */
             height: 1080px; /* Match actual template height */
             margin: 20px auto;
             border: 1px solid #ddd;
@@ -69,49 +72,49 @@
             z-index: 2;
         }
 
-        /* Positioned text fields based on the new clean image */
+        /* Positioned text fields - Updated for new dimensions */
         .shooter-name {
             position: absolute;
-            left: 453px;
-            top: 235px;
-            width: 600px;
-            height: 25px;
+            left: 575px; /* Adjusted for 1521px width */
+            top: 318px; /* Adjusted for 1080px height */
+            width: 760px;
+            height: 34px;
             font-family: Arial, sans-serif;
-            font-size: 20px;
+            font-size: 26px;
             font-weight: bold;
             color: #000;
-            line-height: 25px;
+            line-height: 34px;
             background: transparent;
             padding: 2px 8px;
         }
 
         .organization-name {
             position: absolute;
-            left: 341px;
-            top: 274px;
-            width: 600px;
-            height: 25px;
+            left: 432px; /* Adjusted for 1521px width */
+            top: 371px; /* Adjusted for 1080px height */
+            width: 760px;
+            height: 34px;
             font-family: Arial, sans-serif;
-            font-size: 20px;
+            font-size: 26px;
             font-weight: bold;
             color: #000;
-            line-height: 25px;
+            line-height: 34px;
             background: transparent;
             padding: 2px 8px;
         }
 
-        /* Results section with table */
+        /* Results section with table - Updated positions */
         .results-section {
             position: absolute;
-            left: 173px;
-            top: 465px;
-            width: 870px;
+            left: 219px; /* Adjusted for 1521px width */
+            top: 630px; /* Adjusted for 1080px height */
+            width: 1104px; /* Adjusted width */
             background: transparent;
         }
 
         .results-title {
             font-family: Arial, sans-serif;
-            font-size: 18px;
+            font-size: 24px;
             font-weight: bold;
             color: #000;
             margin-bottom: 10px;
@@ -127,19 +130,19 @@
         .results-table th {
             background: transparent;
             border: none;
-            padding: 8px;
+            padding: 10px;
             text-align: center;
             font-family: Arial, sans-serif;
-            font-size: 16px;
+            font-size: 20px;
             font-weight: bold;
             color: #000;
         }
 
         .results-table td {
             border: none;
-            padding: 6px 8px;
+            padding: 8px 10px;
             font-family: Arial, sans-serif;
-            font-size: 15px;
+            font-size: 19px;
             font-weight: normal;
             color: #000;
             background: transparent;
@@ -153,7 +156,7 @@
         .event-col {
             width: 55%;
             text-align: left;
-            padding-left: 12px;
+            padding-left: 15px;
         }
 
         .result-col {
@@ -441,7 +444,7 @@
             }
         }
 
-        // Download Certificate as PDF - HEIGHT FIX ONLY
+        // Download Certificate as PDF - SINGLE PAGE FIT VERSION
         function downloadCertificate() {
             if (!backgroundImageBase64) {
                 showError('Background image not loaded. Please wait and try again.');
@@ -456,33 +459,51 @@
                 bgImg.src = backgroundImageBase64;
             }
             
-            // Use original certificate dimensions (1200 x 800)
-            const certificateWidth = 1200;
-            const certificateHeight = 800;
+            // Template dimensions
+            const templateWidth = 1521;
+            const templateHeight = 1080;
+            const aspectRatio = templateWidth / templateHeight; // ~1.408
+            
+            // A4 landscape dimensions in mm (297 x 210)
+            const maxPageWidth = 297;
+            const maxPageHeight = 210;
+            
+            // Calculate the best fit while maintaining aspect ratio
+            let pageWidth, pageHeight;
+            
+            if (aspectRatio > (maxPageWidth / maxPageHeight)) {
+                // Template is wider relative to A4, fit to width
+                pageWidth = maxPageWidth - 10; // Leave some margin
+                pageHeight = pageWidth / aspectRatio;
+            } else {
+                // Template is taller relative to A4, fit to height
+                pageHeight = maxPageHeight - 10; // Leave some margin
+                pageWidth = pageHeight * aspectRatio;
+            }
             
             const options = {
-                margin: [5, 5, 5, 5], // Small margins for printing
+                margin: [5, 5, 5, 5], // Small consistent margins
                 filename: `marksmanship_summit_certificate_${shooterIdInput.value}.pdf`,
                 image: { 
                     type: 'jpeg', 
-                    quality: 0.95 
+                    quality: 0.9 
                 },
                 html2canvas: { 
-                    scale: 1.8, // Good quality scale
+                    scale: 0.8, // Reduced scale to ensure it fits
                     useCORS: false,
                     allowTaint: false,
                     backgroundColor: '#ffffff',
                     logging: false,
-                    width: certificateWidth,
-                    height: certificateHeight,
+                    width: templateWidth,
+                    height: templateHeight,
                     scrollX: 0,
                     scrollY: 0,
-                    windowWidth: certificateWidth,
-                    windowHeight: certificateHeight
+                    windowWidth: templateWidth,
+                    windowHeight: templateHeight
                 },
                 jsPDF: { 
                     unit: 'mm',
-                    format: 'a4', // Standard A4 size
+                    format: [pageWidth, pageHeight],
                     orientation: 'landscape',
                     putOnlyUsedFonts: true,
                     compress: true
@@ -499,34 +520,32 @@
                         showLoading(false);
                     })
                     .catch(error => {
-                        showError(`Error downloading certificate: ${error.message}`);
-                        showLoading(false);
                         console.error('PDF generation error:', error);
                         
-                        // Fallback: try with smaller scale to ensure single page
-                        console.log('Trying fallback with smaller scale...');
+                        // Fallback: Standard A4 landscape with aggressive scaling
+                        console.log('Trying A4 landscape fallback...');
                         const fallbackOptions = {
                             margin: [8, 8, 8, 8],
-                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_compact.pdf`,
-                            image: { type: 'jpeg', quality: 0.9 },
+                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_a4.pdf`,
+                            image: { type: 'jpeg', quality: 0.85 },
                             html2canvas: { 
-                                scale: 1.4, // Smaller scale to fit height
-                                useCORS: false, 
+                                scale: 0.6, // Very conservative scale
+                                useCORS: false,
                                 allowTaint: false,
-                                width: certificateWidth,
-                                height: certificateHeight,
+                                width: templateWidth,
+                                height: templateHeight,
                                 backgroundColor: '#ffffff'
                             },
                             jsPDF: { 
-                                unit: 'mm', 
+                                unit: 'mm',
                                 format: 'a4',
-                                orientation: 'landscape' 
+                                orientation: 'landscape'
                             }
                         };
                         
                         html2pdf().from(certificate).set(fallbackOptions).save()
                             .then(() => {
-                                showSuccess("Certificate downloaded with compact format!");
+                                showSuccess("Certificate downloaded in A4 format!");
                                 showLoading(false);
                             })
                             .catch(fallbackError => {
