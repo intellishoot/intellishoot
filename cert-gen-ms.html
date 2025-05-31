@@ -214,18 +214,13 @@
         
         <div id="certificateSection" style="display: none;">
             <div id="certificate" class="certificate-container">
-                <!-- Background image -->
                 <img src="certificate-template.png" class="certificate-bg" alt="Certificate Template">
                 
-                <!-- Text overlay -->
                 <div class="certificate-overlay">
-                    <!-- Shooter name field -->
                     <div class="shooter-name" id="shooterNameField"></div>
                     
-                    <!-- Organization/Academy name field -->
                     <div class="organization-name" id="organizationField"></div>
                     
-                    <!-- Results section with proper table -->
                     <div class="results-section">
                         <table class="results-table">
                             <thead>
@@ -236,8 +231,7 @@
                                 </tr>
                             </thead>
                             <tbody id="resultsTableBody">
-                                <!-- Results will be populated here -->
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -459,51 +453,52 @@
                 bgImg.src = backgroundImageBase64;
             }
             
-            // Template dimensions
-            const templateWidth = 1521;
-            const templateHeight = 1080;
-            const aspectRatio = templateWidth / templateHeight; // ~1.408
+            // Template dimensions in pixels
+            const templateWidthPx = 1521;
+            const templateHeightPx = 1080;
+            const aspectRatio = templateWidthPx / templateHeightPx; 
             
-            // A4 landscape dimensions in mm (297 x 210)
-            const maxPageWidth = 297;
-            const maxPageHeight = 210;
+            // A4 landscape dimensions in mm (approx 297 x 210 mm)
+            const a4WidthMm = 297;
+            const a4HeightMm = 210;
             
-            // Calculate the best fit while maintaining aspect ratio
-            let pageWidth, pageHeight;
+            let pageWidthMm, pageHeightMm;
             
-            if (aspectRatio > (maxPageWidth / maxPageHeight)) {
-                // Template is wider relative to A4, fit to width
-                pageWidth = maxPageWidth - 10; // Leave some margin
-                pageHeight = pageWidth / aspectRatio;
+            // Calculate the best fit for the PDF page while maintaining aspect ratio
+            // and ensuring it fits within A4 landscape dimensions.
+            if (aspectRatio > (a4WidthMm / a4HeightMm)) {
+                // Certificate is wider relative to A4, fit to A4 width
+                pageWidthMm = a4WidthMm - 10; // Leave 5mm margin on each side
+                pageHeightMm = pageWidthMm / aspectRatio;
             } else {
-                // Template is taller relative to A4, fit to height
-                pageHeight = maxPageHeight - 10; // Leave some margin
-                pageWidth = pageHeight * aspectRatio;
+                // Certificate is taller relative to A4, fit to A4 height
+                pageHeightMm = a4HeightMm - 10; // Leave 5mm margin on top/bottom
+                pageWidthMm = pageHeightMm * aspectRatio;
             }
-            
+
             const options = {
-                margin: [5, 5, 5, 5], // Small consistent margins
+                margin: [5, 5, 5, 5], // Small consistent margins (top, left, bottom, right)
                 filename: `marksmanship_summit_certificate_${shooterIdInput.value}.pdf`,
                 image: { 
                     type: 'jpeg', 
                     quality: 0.9 
                 },
                 html2canvas: { 
-                    scale: 0.8, // Reduced scale to ensure it fits
-                    useCORS: false,
-                    allowTaint: false,
+                    scale: 0.7, // Adjusted scale to ensure it fits well within the calculated page size
+                    useCORS: true, // Set to true if your image is served from a different origin
+                    allowTaint: true, // Allow tainting the canvas from cross-origin images
                     backgroundColor: '#ffffff',
                     logging: false,
-                    width: templateWidth,
-                    height: templateHeight,
-                    scrollX: 0,
-                    scrollY: 0,
-                    windowWidth: templateWidth,
-                    windowHeight: templateHeight
+                    width: templateWidthPx, // Explicitly set width for html2canvas capture
+                    height: templateHeightPx, // Explicitly set height for html2canvas capture
+                    scrollX: 0, // Ensure no horizontal scrolling is captured
+                    scrollY: 0, // Ensure no vertical scrolling is captured
+                    windowWidth: templateWidthPx, // Set window width for capture
+                    windowHeight: templateHeightPx // Set window height for capture
                 },
                 jsPDF: { 
                     unit: 'mm',
-                    format: [pageWidth, pageHeight],
+                    format: [pageWidthMm, pageHeightMm], // Custom format based on aspect ratio
                     orientation: 'landscape',
                     putOnlyUsedFonts: true,
                     compress: true
@@ -512,7 +507,7 @@
             
             showLoading(true);
             
-            // Wait for image to be properly set
+            // Wait for image to be properly set and rendered by the browser
             setTimeout(() => {
                 html2pdf().from(certificate).set(options).save()
                     .then(() => {
@@ -521,39 +516,10 @@
                     })
                     .catch(error => {
                         console.error('PDF generation error:', error);
-                        
-                        // Fallback: Standard A4 landscape with aggressive scaling
-                        console.log('Trying A4 landscape fallback...');
-                        const fallbackOptions = {
-                            margin: [8, 8, 8, 8],
-                            filename: `marksmanship_summit_certificate_${shooterIdInput.value}_a4.pdf`,
-                            image: { type: 'jpeg', quality: 0.85 },
-                            html2canvas: { 
-                                scale: 0.6, // Very conservative scale
-                                useCORS: false,
-                                allowTaint: false,
-                                width: templateWidth,
-                                height: templateHeight,
-                                backgroundColor: '#ffffff'
-                            },
-                            jsPDF: { 
-                                unit: 'mm',
-                                format: 'a4',
-                                orientation: 'landscape'
-                            }
-                        };
-                        
-                        html2pdf().from(certificate).set(fallbackOptions).save()
-                            .then(() => {
-                                showSuccess("Certificate downloaded in A4 format!");
-                                showLoading(false);
-                            })
-                            .catch(fallbackError => {
-                                showError(`PDF generation failed: ${fallbackError.message}`);
-                                showLoading(false);
-                            });
+                        showError(`PDF generation failed: ${error.message}. Please try again.`);
+                        showLoading(false);
                     });
-            }, 500);
+            }, 500); // A small delay to ensure rendering is complete
         }
 
         // Helper Functions
