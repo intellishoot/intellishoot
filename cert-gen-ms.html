@@ -454,8 +454,8 @@
             }
             
             // Template dimensions in pixels - UPDATED
-            const templateWidthPx = 1490;
-            const templateHeightPx = 1058;
+            const templateWidthPx = 1273;
+            const templateHeightPx = 904;
             const aspectRatio = templateWidthPx / templateHeightPx; 
             
             // A4 landscape dimensions in mm (approx 297 x 210 mm)
@@ -472,7 +472,7 @@
                 pageHeightMm = pageWidthMm / aspectRatio;
             } else {
                 // Certificate is taller relative to A4, fit to A4 height
-                pageHeightMm = a4HeightMm - 10; // Leave 5mm margin on top/bottom
+                pageHeightMm = a4HeightMm ; // Leave 5mm margin on top/bottom
                 pageWidthMm = pageHeightMm * aspectRatio;
             }
 
@@ -484,7 +484,7 @@
                     quality: 0.9 
                 },
                 html2canvas: { 
-                    scale: 0.6, // Adjusted scale to ensure it fits well within the calculated page size
+                    scale: 0.7, // Adjusted scale to ensure it fits well within the calculated page size
                     useCORS: true, // Set to true if your image is served from a different origin
                     allowTaint: true, // Allow tainting the canvas from cross-origin images
                     backgroundColor: '#ffffff',
