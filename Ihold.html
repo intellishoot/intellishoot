@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pistol Vertical Position Tracker</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text */
+        }
+        .container {
+            max-width: 1200px;
+        }
+        video, canvas {
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            background-color: #2d3748; /* gray-800 */
+        }
+        .metric-card {
+            background-color: #2d3748; /* gray-800 */
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1.5rem; /* p-6 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+        }
+        .metric-value {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #63b3ed; /* blue-400 */
+        }
+        .zone-status {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+        }
+        .in-zone {
+            color: #48bb78; /* green-500 */
+        }
+        .out-zone {
+            color: #fc8181; /* red-400 */
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: white;
+            font-size: 1.5rem;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #63b3ed;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="p-6">
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p id="loadingMessage">Loading OpenCV.js and setting up webcam...</p>
+        <p class="text-sm mt-2">(This might take a moment)</p>
+        <div id="troubleshootingTips" class="mt-4 text-sm text-gray-400 hidden">
+            <p class="font-bold mb-2">If it's stuck, try these steps:</p>
+            <ul class="list-disc list-inside text-left mx-auto" style="max-width: 300px;">
+                <li>Check your browser's webcam permissions (usually a camera icon in the address bar).</li>
+                <li>Ensure no other application is using the webcam.</li>
+                <li>Try reloading the page.</li>
+                <li>If running locally, ensure you are using a local server (e.g., `python -m http.server`) as webcam access often requires HTTPS or a secure context.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container mx-auto p-4 bg-gray-900 rounded-2xl shadow-2xl">
+        <h1 class="text-4xl font-bold text-center mb-8 text-blue-300">Pistol Vertical Position Tracker</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Video and Canvas Section -->
+            <div class="relative flex flex-col items-center">
+                <video id="videoInput" class="w-full h-auto rounded-xl" autoplay playsinline style="transform: scaleX(-1);"></video>
+                <canvas id="canvasOutput" class="absolute top-0 left-0 w-full h-full rounded-xl" style="transform: scaleX(-1);"></canvas>
+            </div>
+
+            <!-- Metrics Section -->
+            <div class="flex flex-col gap-6">
+                <div class="metric-card">
+                    <h2 class="text-xl font-semibold mb-2 text-blue-200">Pistol Vertical Position (Y)</h2>
+                    <p id="pistolY" class="metric-value">N/A</p>
+                    <p class="text-sm text-gray-400 mt-2">Pixel coordinate from top of frame.</p>
+                </div>
+
+                <div class="metric-card">
+                    <h2 class="text-xl font-semibold mb-2 text-blue-200">Zone Status</h2>
+                    <p id="zoneStatus" class="zone-status out-zone">OUT OF ZONE</p>
+                    <p class="text-sm text-gray-400 mt-2">Defined Main Zone: Y <span id="zoneMin"></span> to Y <span id="zoneMax"></span></p>
+                </div>
+
+                <div class="metric-card">
+                    <h2 class="text-xl font-semibold mb-2 text-blue-200">Current Stay in Zone</h2>
+                    <p id="currentInZone" class="metric-value">0.00s</p>
+                    <p class="text-sm text-gray-400 mt-2">Time since pistol entered the zone.</p>
+                </div>
+
+                <div class="metric-card">
+                    <h2 class="text-xl font-semibold mb-2 text-blue-200">Total Time in Zone</h2>
+                    <p id="totalInZone" class="metric-value">0.00s</p>
+                    <p class="text-sm text-gray-400 mt-2">Accumulated time pistol has spent in the zone.</p>
+                </div>
+
+                <div class="metric-card">
+                    <h2 class="text-xl font-semibold mb-2 text-blue-200">Time to Enter Zone</h2>
+                    <p id="timeToEnter" class="metric-value">N/A</p>
+                    <p class="text-sm text-gray-400 mt-2">Time from last exit to next entry. (Resets on each entry)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 p-6 bg-gray-800 rounded-xl shadow-md">
+            <h2 class="text-2xl font-semibold text-blue-300 mb-4">Instructions:</h2>
+            <ol class="list-decimal list-inside text-gray-300 space-y-2">
+                <li>**Print an ArUco Marker:** Go to <a href="https://chev.me/arucogen/" target="_blank" class="text-blue-400 hover:underline">this ArUco generator</a> or search for "ArUco marker generator". Select `DICT_4X4_50` and choose an ID (e.g., ID 0). Print it clearly.</li>
+                <li>**Attach Marker:** Securely attach the printed ArUco marker to the pistol, facing the webcam.</li>
+                <li>**Adjust Zone:** The "Main Zone" is currently defined by Y-coordinates. You might need to adjust `MAIN_ZONE_Y_MIN` and `MAIN_ZONE_Y_MAX` in the JavaScript code (around line 100) to fit your setup. The `Pistol Vertical Position (Y)` will help you determine these values.</li>
+                <li>**Lighting:** Ensure good, consistent lighting in your indoor range for optimal tracking.</li>
+                <li>**Camera Stability:** Keep your webcam stable on a tripod or mount.</li>
+            </ol>
+            <p class="text-sm text-gray-400 mt-4">*(Note: The video and canvas are horizontally flipped to appear as a mirror image, which is common for webcam feeds.)*</p>
+        </div>
+    </div>
+
+    <!-- OpenCV.js CDN -->
+    <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
+
+    <script type="text/javascript">
+        let video = document.getElementById('videoInput');
+        let canvas = document.getElementById('canvasOutput');
+        let ctx = canvas.getContext('2d');
+        let src, dst, detector, dictionary;
+
+        // UI elements
+        const pistolYElem = document.getElementById('pistolY');
+        const zoneStatusElem = document.getElementById('zoneStatus');
+        const currentInZoneElem = document.getElementById('currentInZone');
+        const totalInZoneElem = document.getElementById('totalInZone');
+        const timeToEnterElem = document.getElementById('timeToEnter');
+        const zoneMinElem = document.getElementById('zoneMin');
+        const zoneMaxElem = document.getElementById('zoneMax');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const loadingMessage = document.getElementById('loadingMessage');
+        const troubleshootingTips = document.getElementById('troubleshootingTips');
+
+        // --- Configuration ---
+        const TARGET_ARUCO_ID = 0; // The ID of the ArUco marker you will use
+        let MAIN_ZONE_Y_MIN = 200; // Adjust these values based on your webcam's resolution and setup
+        let MAIN_ZONE_Y_MAX = 400; // Adjust these values
+
+        // Variables for tracking time
+        let entryTime = null;
+        let exitTime = null;
+        let lastExitTime = null; // To calculate time to enter
+        let totalInZoneTime = 0;
+        let currentInZoneDuration = 0;
+        let isPistolInZone = false;
+        let isPistolDetected = false;
+        let webcamAccessTimeout;
+
+        // Function to update zone display
+        function updateZoneDisplay() {
+            zoneMinElem.textContent = MAIN_ZONE_Y_MIN;
+            zoneMaxElem.textContent = MAIN_ZONE_Y_MAX;
+        }
+
+        // OpenCV.js readiness callback - now called ONLY from Module.onRuntimeInitialized
+        function onOpenCvReady() {
+            console.log("OpenCV.js is ready.");
+            loadingMessage.textContent = "OpenCV.js loaded. Requesting webcam access...";
+            // Initialize ArUco dictionary and detector AFTER cv is fully initialized
+            dictionary = new cv.aruco.Dictionary(cv.aruco.DICT_4X4_50);
+            detector = new cv.aruco.DetectorParameters();
+
+            startCamera();
+        }
+
+        async function startCamera() {
+            // Set a timeout to show troubleshooting tips if webcam access takes too long
+            webcamAccessTimeout = setTimeout(() => {
+                loadingMessage.textContent = "Still waiting for webcam access...";
+                troubleshootingTips.classList.remove('hidden');
+            }, 5000); // Show tips after 5 seconds
+
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                clearTimeout(webcamAccessTimeout); // Clear timeout if successful
+                video.srcObject = stream;
+                video.onloadedmetadata = () => {
+                    video.play();
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    console.log(`Video dimensions: ${video.videoWidth}x${video.videoHeight}`);
+
+                    updateZoneDisplay();
+
+                    src = new cv.Mat(video.videoHeight, video.videoWidth, cv.CV_8UC4);
+                    dst = new cv.Mat(video.videoHeight, video.videoWidth, cv.CV_8UC1); // Grayscale for detection
+                    requestAnimationFrame(processVideo);
+                    loadingOverlay.style.display = 'none'; // Hide loading overlay
+                };
+            } catch (err) {
+                clearTimeout(webcamAccessTimeout); // Clear timeout on error
+                console.error("Error accessing webcam: ", err);
+                loadingOverlay.innerHTML = `
+                    <p class="text-red-400 text-xl mb-4">Error: Could not access webcam.</p>
+                    <p class="text-lg mb-2">Please ensure:</p>
+                    <ul class="list-disc list-inside text-left mx-auto" style="max-width: 400px;">
+                        <li>You have granted webcam permissions to this page.</li>
+                        <li>No other application is currently using your webcam.</li>
+                        <li>Your webcam is properly connected and functioning.</li>
+                        <li>If running this file directly (e.g., from your desktop), try serving it via a local web server (e.g., <code class="bg-gray-700 p-1 rounded">python -m http.server</code> in the directory where you saved the file), as webcam access often requires a secure context (HTTPS).</li>
+                    </ul>
+                    <p class="text-sm mt-4">Error details: ${err.name}: ${err.message}</p>
+                `;
+            }
+        }
+
+        function processVideo() {
+            try {
+                if (!video.videoWidth || !video.videoHeight) {
+                    requestAnimationFrame(processVideo);
+                    return;
+                }
+
+                // Draw video frame to canvas
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                // Convert canvas image to OpenCV Mat
+                let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                src.data.set(imageData.data);
+                cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY); // Convert to grayscale
+
+                let corners = new cv.MatVector();
+                let ids = new cv.Mat();
+
+                // Detect markers
+                cv.aruco.detectMarkers(dst, dictionary, corners, ids, detector);
+
+                let pistolCenterY = null;
+                isPistolDetected = false;
+
+                if (ids.rows > 0) {
+                    for (let i = 0; i < ids.rows; ++i) {
+                        const markerId = ids.data[i];
+                        if (markerId === TARGET_ARUCO_ID) {
+                            isPistolDetected = true;
+                            const corner = corners.get(i); // Get the corners for the detected marker
+                            // Calculate center of the marker
+                            const cx = (corner.data32F[0] + corner.data32F[2] + corner.data32F[4] + corner.data32F[6]) / 4;
+                            const cy = (corner.data32F[1] + corner.data32F[3] + corner.data32F[5] + corner.data32F[7]) / 4;
+                            pistolCenterY = cy;
+
+                            // Draw bounding box and center on canvas
+                            ctx.strokeStyle = '#00FF00'; // Green
+                            ctx.lineWidth = 2;
+                            ctx.beginPath();
+                            ctx.moveTo(corner.data32F[0], corner.data32F[1]);
+                            ctx.lineTo(corner.data32F[2], corner.data32F[3]);
+                            ctx.lineTo(corner.data32F[4], corner.data32F[5]);
+                            ctx.lineTo(corner.data32F[6], corner.data32F[7]);
+                            ctx.closePath();
+                            ctx.stroke();
+
+                            ctx.fillStyle = '#FF0000'; // Red
+                            ctx.beginPath();
+                            ctx.arc(cx, cy, 5, 0, 2 * Math.PI);
+                            ctx.fill();
+
+                            ctx.fillStyle = '#00FF00'; // Green
+                            ctx.font = '16px Inter';
+                            ctx.fillText(`ID: ${markerId}`, cx + 10, cy + 10);
+                            break; // Found our target marker, no need to check others
+                        }
+                    }
+                }
+
+                // --- Vertical Position Tracking and Zone Logic ---
+                const currentTime = performance.now() / 1000; // Time in seconds
+
+                if (isPistolDetected && pistolCenterY !== null) {
+                    pistolYElem.textContent = Math.round(pistolCenterY);
+
+                    // Draw main zone lines
+                    ctx.strokeStyle = '#00BFFF'; // Deep Sky Blue
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(0, MAIN_ZONE_Y_MIN);
+                    ctx.lineTo(canvas.width, MAIN_ZONE_Y_MIN);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(0, MAIN_ZONE_Y_MAX);
+                    ctx.lineTo(canvas.width, MAIN_ZONE_Y_MAX);
+                    ctx.stroke();
+
+                    ctx.fillStyle = '#00BFFF';
+                    ctx.font = '14px Inter';
+                    ctx.fillText('Main Zone', 10, MAIN_ZONE_Y_MIN - 5);
+
+
+                    if (pistolCenterY >= MAIN_ZONE_Y_MIN && pistolCenterY <= MAIN_ZONE_Y_MAX) {
+                        // Pistol is IN the main zone
+                        if (!isPistolInZone) { // Just entered the zone
+                            entryTime = currentTime;
+                            isPistolInZone = true;
+                            zoneStatusElem.textContent = "IN ZONE";
+                            zoneStatusElem.className = "zone-status in-zone";
+
+                            if (lastExitTime !== null) {
+                                const timeToEnter = entryTime - lastExitTime;
+                                timeToEnterElem.textContent = `${timeToEnter.toFixed(2)}s`;
+                                console.log(`Time to enter zone: ${timeToEnter.toFixed(2)}s`);
+                            } else {
+                                timeToEnterElem.textContent = "N/A (First entry)";
+                            }
+                            lastExitTime = null; // Reset last exit time on new entry
+                            console.log(`Pistol entered zone at Y: ${Math.round(pistolCenterY)}`);
+                        }
+                        currentInZoneDuration = currentTime - entryTime;
+                        currentInZoneElem.textContent = `${currentInZoneDuration.toFixed(2)}s`;
+                    } else {
+                        // Pistol is OUT of the main zone
+                        if (isPistolInZone) { // Just left the zone
+                            exitTime = currentTime;
+                            const duration = exitTime - entryTime;
+                            totalInZoneTime += duration;
+                            isPistolInZone = false;
+                            entryTime = null; // Reset entry time for next entry
+                            lastExitTime = exitTime; // Store exit time for 'time to enter' calculation
+                            console.log(`Pistol exited zone. Duration: ${duration.toFixed(2)}s.`);
+                        }
+                        zoneStatusElem.textContent = "OUT OF ZONE";
+                        zoneStatusElem.className = "zone-status out-zone";
+                        currentInZoneElem.textContent = "0.00s"; // Reset current duration when out of zone
+                    }
+                } else {
+                    // Pistol not detected
+                    pistolYElem.textContent = "N/A (Not Detected)";
+                    if (isPistolInZone) { // Pistol was in zone but is now not detected
+                        exitTime = currentTime;
+                        const duration = exitTime - entryTime;
+                        totalInZoneTime += duration;
+                        isPistolInZone = false;
+                        entryTime = null;
+                        lastExitTime = exitTime;
+                        console.log(`Pistol lost detection while in zone. Duration: ${duration.toFixed(2)}s.`);
+                    }
+                    zoneStatusElem.textContent = "NOT DETECTED";
+                    zoneStatusElem.className = "zone-status out-zone"; // Treat as out of zone if not detected
+                    currentInZoneElem.textContent = "0.00s";
+                    timeToEnterElem.textContent = "N/A";
+                }
+
+                totalInZoneElem.textContent = `${totalInZoneTime.toFixed(2)}s`;
+
+                // Release memory
+                corners.delete();
+                ids.delete();
+
+            } catch (err) {
+                console.error("Error in processVideo: ", err);
+            } finally {
+                requestAnimationFrame(processVideo);
+            }
+        }
+
+        // Ensure initial zone display is set
+        document.addEventListener('DOMContentLoaded', updateZoneDisplay);
+
+        // Global variable for OpenCV.js
+        var Module = {
+            onRuntimeInitialized: function() {
+                // This function is called when Op
