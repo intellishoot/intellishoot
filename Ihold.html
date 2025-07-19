@@ -72,20 +72,34 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .start-button {
+            background-color: #4299e1; /* blue-500 */
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .start-button:hover {
+            background-color: #3182ce; /* blue-600 */
+        }
     </style>
 </head>
 <body class="p-6">
     <div id="loadingOverlay" class="loading-overlay">
         <div class="spinner"></div>
-        <p id="loadingMessage">Loading OpenCV.js and setting up webcam...</p>
+        <p id="loadingMessage">Loading OpenCV.js...</p>
         <p class="text-sm mt-2">(This might take a moment)</p>
+        <button id="startButton" class="start-button mt-6 hidden">Start Webcam</button>
         <div id="troubleshootingTips" class="mt-4 text-sm text-gray-400 hidden">
-            <p class="font-bold mb-2">If it's stuck, try these steps:</p>
+            <p class="font-bold mb-2">If the "Start Webcam" button doesn't appear or work:</p>
             <ul class="list-disc list-inside text-left mx-auto" style="max-width: 300px;">
-                <li>Check your browser's webcam permissions (usually a camera icon in the address bar).</li>
-                <li>Ensure no other application is using the webcam.</li>
+                <li>Ensure you are serving the page via a local server (e.g., `python -m http.server`) or HTTPS.</li>
+                <li>Check your browser's console (F12) for errors.</li>
                 <li>Try reloading the page.</li>
-                <li>If running locally, ensure you are using a local server (e.g., `python -m http.server`) as webcam access often requires HTTPS or a secure context.</li>
             </ul>
         </div>
     </div>
@@ -166,6 +180,7 @@
         const zoneMaxElem = document.getElementById('zoneMax');
         const loadingOverlay = document.getElementById('loadingOverlay');
         const loadingMessage = document.getElementById('loadingMessage');
+        const startButton = document.getElementById('startButton');
         const troubleshootingTips = document.getElementById('troubleshootingTips');
 
         // --- Configuration ---
@@ -181,7 +196,6 @@
         let currentInZoneDuration = 0;
         let isPistolInZone = false;
         let isPistolDetected = false;
-        let webcamAccessTimeout;
 
         // Function to update zone display
         function updateZoneDisplay() {
@@ -192,40 +206,47 @@
         // OpenCV.js readiness callback - now called ONLY from Module.onRuntimeInitialized
         function onOpenCvReady() {
             console.log("OpenCV.js is ready.");
-            loadingMessage.textContent = "OpenCV.js loaded. Requesting webcam access...";
+            loadingMessage.textContent = "OpenCV.js loaded. Click 'Start Webcam' to begin.";
+            startButton.classList.remove('hidden'); // Show the start button
+            troubleshootingTips.classList.remove('hidden'); // Show troubleshooting tips
+            
             // Initialize ArUco dictionary and detector AFTER cv is fully initialized
             dictionary = new cv.aruco.Dictionary(cv.aruco.DICT_4X4_50);
             detector = new cv.aruco.DetectorParameters();
 
-            startCamera();
+            // Add event listener to the start button
+            startButton.addEventListener('click', startCamera);
         }
 
         async function startCamera() {
-            // Set a timeout to show troubleshooting tips if webcam access takes too long
-            webcamAccessTimeout = setTimeout(() => {
-                loadingMessage.textContent = "Still waiting for webcam access...";
-                troubleshootingTips.classList.remove('hidden');
-            }, 5000); // Show tips after 5 seconds
+            loadingMessage.textContent = "Requesting webcam access...";
+            startButton.disabled = true; // Disable button to prevent multiple clicks
 
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-                clearTimeout(webcamAccessTimeout); // Clear timeout if successful
                 video.srcObject = stream;
                 video.onloadedmetadata = () => {
-                    video.play();
-                    canvas.width = video.videoWidth;
-                    canvas.height = video.videoHeight;
-                    console.log(`Video dimensions: ${video.videoWidth}x${video.videoHeight}`);
+                    video.play().then(() => {
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+                        console.log(`Video dimensions: ${video.videoWidth}x${video.videoHeight}`);
 
-                    updateZoneDisplay();
+                        updateZoneDisplay();
 
-                    src = new cv.Mat(video.videoHeight, video.videoWidth, cv.CV_8UC4);
-                    dst = new cv.Mat(video.videoHeight, video.videoWidth, cv.CV_8UC1); // Grayscale for detection
-                    requestAnimationFrame(processVideo);
-                    loadingOverlay.style.display = 'none'; // Hide loading overlay
+                        src = new cv.Mat(video.videoHeight, video.videoWidth, cv.CV_8UC4);
+                        dst = new cv.Mat(video.videoHeight, video.videoWidth, cv.CV_8UC1); // Grayscale for detection
+                        requestAnimationFrame(processVideo);
+                        loadingOverlay.style.display = 'none'; // Hide loading overlay
+                    }).catch(playErr => {
+                        console.error("Error playing video stream: ", playErr);
+                        loadingOverlay.innerHTML = `
+                            <p class="text-red-400 text-xl mb-4">Error playing video stream.</p>
+                            <p class="text-lg mb-2">This might be due to browser autoplay policies. Please ensure you've clicked "Allow" for camera access.</p>
+                            <p class="text-sm mt-4">Error details: ${playErr.name}: ${playErr.message}</p>
+                        `;
+                    });
                 };
             } catch (err) {
-                clearTimeout(webcamAccessTimeout); // Clear timeout on error
                 console.error("Error accessing webcam: ", err);
                 loadingOverlay.innerHTML = `
                     <p class="text-red-400 text-xl mb-4">Error: Could not access webcam.</p>
@@ -368,31 +389,4 @@
                         isPistolInZone = false;
                         entryTime = null;
                         lastExitTime = exitTime;
-                        console.log(`Pistol lost detection while in zone. Duration: ${duration.toFixed(2)}s.`);
-                    }
-                    zoneStatusElem.textContent = "NOT DETECTED";
-                    zoneStatusElem.className = "zone-status out-zone"; // Treat as out of zone if not detected
-                    currentInZoneElem.textContent = "0.00s";
-                    timeToEnterElem.textContent = "N/A";
-                }
-
-                totalInZoneElem.textContent = `${totalInZoneTime.toFixed(2)}s`;
-
-                // Release memory
-                corners.delete();
-                ids.delete();
-
-            } catch (err) {
-                console.error("Error in processVideo: ", err);
-            } finally {
-                requestAnimationFrame(processVideo);
-            }
-        }
-
-        // Ensure initial zone display is set
-        document.addEventListener('DOMContentLoaded', updateZoneDisplay);
-
-        // Global variable for OpenCV.js
-        var Module = {
-            onRuntimeInitialized: function() {
-                // This function is called when Op
+                        console.log(`Pistol lost detection while in
