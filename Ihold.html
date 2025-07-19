@@ -162,7 +162,7 @@
     </div>
 
     <!-- OpenCV.js CDN -->
-    <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/opencv.js/4.5.5/opencv.min.js"></script>
 
     <script type="text/javascript">
         let video = document.getElementById('videoInput');
@@ -203,16 +203,35 @@
             zoneMaxElem.textContent = MAIN_ZONE_Y_MAX;
         }
 
-        // OpenCV.js readiness callback - now called ONLY from Module.onRuntimeInitialized
+        // Global variable for OpenCV.js
+        var Module = {
+            onRuntimeInitialized: function() {
+                // This function is called when OpenCV.js is fully loaded and initialized
+                if (typeof cv !== 'undefined') {
+                    // Initialize ArUco dictionary and detector here, directly after cv is ready
+                    if (cv.aruco) {
+                        dictionary = new cv.aruco.Dictionary(cv.aruco.DICT_4X4_50);
+                        detector = new cv.aruco.DetectorParameters();
+                        console.log("ArUco dictionary and detector initialized.");
+                        // Now it's safe to call the function that sets up the UI and event listeners
+                        onOpenCvReady();
+                    } else {
+                        console.error("cv.aruco module is not available. Ensure opencv.js includes aruco.");
+                        loadingOverlay.innerHTML = `<p class="text-red-400">Error: ArUco module not found in OpenCV.js. This might be a CDN issue or a specific build of the library.</p>`;
+                    }
+                } else {
+                    console.error("cv is not defined. OpenCV.js might not have loaded correctly.");
+                    loadingOverlay.innerHTML = `<p class="text-red-400">Error: OpenCV.js failed to load. Please check your internet connection.</p>`;
+                }
+            }
+        };
+
+        // This function now only sets up UI and event listeners, assuming cv.aruco is ready
         function onOpenCvReady() {
             console.log("OpenCV.js is ready.");
             loadingMessage.textContent = "OpenCV.js loaded. Click 'Start Webcam' to begin.";
             startButton.classList.remove('hidden'); // Show the start button
             troubleshootingTips.classList.remove('hidden'); // Show troubleshooting tips
-            
-            // Initialize ArUco dictionary and detector AFTER cv is fully initialized
-            dictionary = new cv.aruco.Dictionary(cv.aruco.DICT_4X4_50);
-            detector = new cv.aruco.DetectorParameters();
 
             // Add event listener to the start button
             startButton.addEventListener('click', startCamera);
@@ -281,6 +300,7 @@
                 let ids = new cv.Mat();
 
                 // Detect markers
+                // dictionary and detector are now guaranteed to be initialized here due to Module.onRuntimeInitialized logic
                 cv.aruco.detectMarkers(dst, dictionary, corners, ids, detector);
 
                 let pistolCenterY = null;
@@ -389,4 +409,30 @@
                         isPistolInZone = false;
                         entryTime = null;
                         lastExitTime = exitTime;
-                        console.log(`Pistol lost detection while in
+                        console.log(`Pistol lost detection while in zone. Duration: ${duration.toFixed(2)}s.`);
+                    }
+                    zoneStatusElem.textContent = "NOT DETECTED";
+                    zoneStatusElem.className = "zone-status out-zone"; // Treat as out of zone if not detected
+                    currentInZoneElem.textContent = "0.00s";
+                    timeToEnterElem.textContent = "N/A";
+                }
+
+                totalInZoneElem.textContent = `${totalInZoneTime.toFixed(2)}s`;
+
+                // Release memory
+                corners.delete();
+                ids.delete();
+
+            } catch (err) {
+                console.error("Error in processVideo: ", err);
+            } finally {
+                requestAnimationFrame(processVideo);
+            }
+        }
+
+        // Ensure initial zone display is set
+        document.addEventListener('DOMContentLoaded', updateZoneDisplay);
+
+    </script>
+</body>
+</html>
