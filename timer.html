@@ -341,27 +341,35 @@
         </div>
     </div>
 
-    <!-- Firebase SDKs -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <script>
+        // --- Global State Variables ---
+        let userId = localStorage.getItem('airPistolTrainer_userId') || crypto.randomUUID();
+        localStorage.setItem('airPistolTrainer_userId', userId); // Ensure it's saved for persistence
 
-        // --- Firebase Configuration and Initialization ---
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        let currentScreen = 'homeScreen';
+        let shooterProfile = null; // Stores the current user's profile
+        let timerProfiles = [];
+        let trainingPrograms = [];
+        let currentTimerProfileId = null; // Used for editing
+        let currentTrainingProgramId = null; // Used for editing
 
-        let app, db, auth, userId = null;
-        let isAuthReady = false; // Flag to indicate if auth state has been checked
+        // Training Session State
+        let currentProgram = null;
+        let currentRepIndex = 0;
+        let currentSegmentIndex = 0;
+        let remainingTime = 0;
+        let timerInterval = null;
+        let segmentTimeout = null;
+        let repDelayTimeout = null;
+        let programStartTime = null;
 
-        // Function to show a custom message box
+        // --- Utility Functions ---
         function showMessageBox(title, message) {
             document.getElementById('messageModalTitle').textContent = title;
             document.getElementById('messageModalBody').textContent = message;
             document.getElementById('messageModal').classList.remove('hidden');
         }
 
-        // Function to show a custom confirmation dialog
         function showConfirmBox(title, message) {
             return new Promise((resolve) => {
                 document.getElementById('confirmModalTitle').textContent = title;
@@ -390,73 +398,6 @@
             });
         }
 
-        // Initialize Firebase and set up authentication
-        async function initializeFirebase() {
-            try {
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                // Listen for authentication state changes
-                onAuthStateChanged(auth, async (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        document.getElementById('shooterIdDisplay').textContent = userId;
-                        await loadShooterProfile(); // Load shooter profile once user is known
-                        await createDefaultDataIfNeeded(); // Create defaults if they don't exist
-                    } else {
-                        // Sign in anonymously if no user is logged in
-                        try {
-                            const anonymousUser = await signInAnonymously(auth);
-                            userId = anonymousUser.user.uid;
-                            document.getElementById('shooterIdDisplay').textContent = userId;
-                            await loadShooterProfile(); // Load shooter profile for anonymous user
-                            await createDefaultDataIfNeeded(); // Create defaults for anonymous user
-                        } catch (error) {
-                            console.error("Error signing in anonymously:", error);
-                            showMessageBox("Authentication Error", "Failed to sign in. Please try again later.");
-                        }
-                    }
-                    isAuthReady = true; // Auth state has been checked
-                    // Now that auth is ready, load initial data or render home screen
-                    if (currentScreen === 'homeScreen') {
-                        renderHomeScreen(); // Re-render to ensure userId is displayed
-                    }
-                    loadTrainingProgramsForSelection(); // Load programs for the start training screen
-                });
-
-                // Use the custom token if provided by the environment
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    // Fallback to anonymous sign-in if no token is provided
-                    await signInAnonymously(auth);
-                }
-            } catch (error) {
-                console.error("Firebase initialization or authentication error:", error);
-                showMessageBox("Initialization Error", "Failed to initialize the application. Please check your network connection.");
-            }
-        }
-
-        // --- Global State Variables ---
-        let currentScreen = 'homeScreen';
-        let shooterProfile = null; // Stores the current user's profile
-        let timerProfiles = [];
-        let trainingPrograms = [];
-        let currentTimerProfileId = null; // Used for editing
-        let currentTrainingProgramId = null; // Used for editing
-
-        // Training Session State
-        let currentProgram = null;
-        let currentRepIndex = 0;
-        let currentSegmentIndex = 0;
-        let remainingTime = 0;
-        let timerInterval = null;
-        let segmentTimeout = null;
-        let repDelayTimeout = null;
-        let programStartTime = null;
-
-        // --- Utility Functions ---
         function showScreen(screenId) {
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.add('hidden');
@@ -489,17 +430,16 @@
             oscillator.stop(audioContext.currentTime + (long ? 1.0 : 0.15)); // Stop after duration
         }
 
-        // --- Firebase Data Operations ---
+        // --- Local Storage Data Operations ---
+
+        function generateUniqueId() {
+            return 'id-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        }
 
         // Shooter Profile
-        async function saveShooterProfile(profileData) {
-            if (!isAuthReady || !userId) {
-                showMessageBox("Error", "Authentication not ready. Please wait.");
-                return;
-            }
+        function saveShooterProfile(profileData) {
             try {
-                const docRef = doc(db, `artifacts/${appId}/users/${userId}/shooterProfile`, 'myProfile'); // Fixed doc ID
-                await setDoc(docRef, profileData);
+                localStorage.setItem('airPistolTrainer_shooterProfile', JSON.stringify(profileData));
                 shooterProfile = profileData; // Update local state
                 showMessageBox("Success", "Shooter Profile saved successfully!");
                 renderShooterProfileSection(); // Re-render display
@@ -509,13 +449,11 @@
             }
         }
 
-        async function loadShooterProfile() {
-            if (!isAuthReady || !userId) return;
+        function loadShooterProfile() {
             try {
-                const docRef = doc(db, `artifacts/${appId}/users/${userId}/shooterProfile`, 'myProfile');
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    shooterProfile = docSnap.data();
+                const storedProfile = localStorage.getItem('airPistolTrainer_shooterProfile');
+                if (storedProfile) {
+                    shooterProfile = JSON.parse(storedProfile);
                 } else {
                     shooterProfile = null; // No profile yet
                 }
@@ -527,23 +465,25 @@
         }
 
         // Timer Profiles
-        async function saveTimerProfile(profile) {
-            if (!isAuthReady || !userId) {
-                showMessageBox("Error", "Authentication not ready. Please wait.");
-                return;
-            }
+        function saveTimerProfile(profile) {
             try {
-                const collectionRef = collection(db, `artifacts/${appId}/public/data/timerProfiles`);
+                let profiles = JSON.parse(localStorage.getItem('airPistolTrainer_timerProfiles') || '[]');
                 if (profile.id) {
                     // Update existing
-                    const docRef = doc(collectionRef, profile.id);
-                    await setDoc(docRef, { ...profile, id: undefined }); // Remove id from doc data
-                    showMessageBox("Success", "Timer Profile updated successfully!");
+                    const index = profiles.findIndex(p => p.id === profile.id);
+                    if (index !== -1) {
+                        profiles[index] = profile;
+                        showMessageBox("Success", "Timer Profile updated successfully!");
+                    } else {
+                        profiles.push({ ...profile, id: generateUniqueId() }); // Add if not found (shouldn't happen for update)
+                        showMessageBox("Success", "Timer Profile added successfully!");
+                    }
                 } else {
                     // Add new
-                    await addDoc(collectionRef, profile);
+                    profiles.push({ ...profile, id: generateUniqueId() });
                     showMessageBox("Success", "Timer Profile added successfully!");
                 }
+                localStorage.setItem('airPistolTrainer_timerProfiles', JSON.stringify(profiles));
                 loadTimerProfiles(); // Refresh list
                 loadTrainingProgramsForSelection(); // Profiles might be used in programs
             } catch (e) {
@@ -553,27 +493,26 @@
         }
 
         function loadTimerProfiles() {
-            if (!isAuthReady || !userId) return; // Wait for auth to be ready
-            const collectionRef = collection(db, `artifacts/${appId}/public/data/timerProfiles`);
-            onSnapshot(collectionRef, (snapshot) => {
-                timerProfiles = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            try {
+                timerProfiles = JSON.parse(localStorage.getItem('airPistolTrainer_timerProfiles') || '[]');
                 renderTimerProfilesList();
                 loadTrainingProgramsForSelection(); // Ensure program dropdown is updated
-            }, (error) => {
-                console.error("Error loading timer profiles:", error);
-                showMessageBox("Error", "Failed to load timer profiles. " + error.message);
-            });
+            } catch (e) {
+                console.error("Error loading timer profiles:", e);
+                showMessageBox("Error", "Failed to load timer profiles. " + e.message);
+            }
         }
 
         async function deleteTimerProfile(id) {
-            if (!isAuthReady || !userId) return;
             const confirmed = await showConfirmBox("Confirm Delete", "Are you sure you want to delete this timer profile? This action cannot be undone.");
             if (!confirmed) return;
 
             try {
-                const docRef = doc(db, `artifacts/${appId}/public/data/timerProfiles`, id);
-                await deleteDoc(docRef);
+                let profiles = JSON.parse(localStorage.getItem('airPistolTrainer_timerProfiles') || '[]');
+                profiles = profiles.filter(p => p.id !== id);
+                localStorage.setItem('airPistolTrainer_timerProfiles', JSON.stringify(profiles));
                 showMessageBox("Success", "Timer Profile deleted successfully!");
+                loadTimerProfiles(); // Refresh list
             } catch (e) {
                 console.error("Error deleting timer profile: ", e);
                 showMessageBox("Error", "Failed to delete timer profile. " + e.message);
@@ -581,23 +520,25 @@
         }
 
         // Training Programs
-        async function saveTrainingProgram(program) {
-            if (!isAuthReady || !userId) {
-                showMessageBox("Error", "Authentication not ready. Please wait.");
-                return;
-            }
+        function saveTrainingProgram(program) {
             try {
-                const collectionRef = collection(db, `artifacts/${appId}/public/data/trainingPrograms`);
+                let programs = JSON.parse(localStorage.getItem('airPistolTrainer_trainingPrograms') || '[]');
                 if (program.id) {
                     // Update existing
-                    const docRef = doc(collectionRef, program.id);
-                    await setDoc(docRef, { ...program, id: undefined }); // Remove id from doc data
-                    showMessageBox("Success", "Training Program updated successfully!");
+                    const index = programs.findIndex(p => p.id === program.id);
+                    if (index !== -1) {
+                        programs[index] = program;
+                        showMessageBox("Success", "Training Program updated successfully!");
+                    } else {
+                        programs.push({ ...program, id: generateUniqueId() }); // Add if not found
+                        showMessageBox("Success", "Training Program added successfully!");
+                    }
                 } else {
                     // Add new
-                    await addDoc(collectionRef, program);
+                    programs.push({ ...program, id: generateUniqueId() });
                     showMessageBox("Success", "Training Program added successfully!");
                 }
+                localStorage.setItem('airPistolTrainer_trainingPrograms', JSON.stringify(programs));
                 loadTrainingPrograms(); // Refresh list
                 loadTrainingProgramsForSelection(); // Refresh selection dropdown
             } catch (e) {
@@ -607,27 +548,26 @@
         }
 
         function loadTrainingPrograms() {
-            if (!isAuthReady || !userId) return; // Wait for auth to be ready
-            const collectionRef = collection(db, `artifacts/${appId}/public/data/trainingPrograms`);
-            onSnapshot(collectionRef, (snapshot) => {
-                trainingPrograms = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            try {
+                trainingPrograms = JSON.parse(localStorage.getItem('airPistolTrainer_trainingPrograms') || '[]');
                 renderTrainingProgramsList();
                 loadTrainingProgramsForSelection(); // Ensure program dropdown is updated
-            }, (error) => {
-                console.error("Error loading training programs:", error);
-                showMessageBox("Error", "Failed to load training programs. " + error.message);
-            });
+            } catch (e) {
+                console.error("Error loading training programs:", e);
+                showMessageBox("Error", "Failed to load training programs. " + e.message);
+            }
         }
 
         async function deleteTrainingProgram(id) {
-            if (!isAuthReady || !userId) return;
             const confirmed = await showConfirmBox("Confirm Delete", "Are you sure you want to delete this training program? This action cannot be undone.");
             if (!confirmed) return;
 
             try {
-                const docRef = doc(db, `artifacts/${appId}/public/data/trainingPrograms`, id);
-                await deleteDoc(docRef);
+                let programs = JSON.parse(localStorage.getItem('airPistolTrainer_trainingPrograms') || '[]');
+                programs = programs.filter(p => p.id !== id);
+                localStorage.setItem('airPistolTrainer_trainingPrograms', JSON.stringify(programs));
                 showMessageBox("Success", "Training Program deleted successfully!");
+                loadTrainingPrograms(); // Refresh list
             } catch (e) {
                 console.error("Error deleting training program: ", e);
                 showMessageBox("Error", "Failed to delete training program. " + e.message);
@@ -635,14 +575,11 @@
         }
 
         // Training Logs
-        async function saveTrainingLog(log) {
-            if (!isAuthReady || !userId) {
-                console.error("Auth not ready, cannot save log.");
-                return;
-            }
+        function saveTrainingLog(log) {
             try {
-                const collectionRef = collection(db, `artifacts/${appId}/users/${userId}/trainingLogs`);
-                await addDoc(collectionRef, log);
+                let logs = JSON.parse(localStorage.getItem('airPistolTrainer_trainingLogs') || '[]');
+                logs.push({ ...log, id: generateUniqueId() }); // Add a unique ID for the log
+                localStorage.setItem('airPistolTrainer_trainingLogs', JSON.stringify(logs));
                 console.log("Training log saved.");
             } catch (e) {
                 console.error("Error saving training log: ", e);
@@ -651,29 +588,23 @@
         }
 
         function loadTrainingLogs() {
-            if (!isAuthReady || !userId) return; // Wait for auth to be ready
-            const collectionRef = collection(db, `artifacts/${appId}/users/${userId}/trainingLogs`);
-            // No need for real-time snapshot here, just fetch once
-            getDocs(collectionRef).then((snapshot) => {
-                const logs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            try {
+                const logs = JSON.parse(localStorage.getItem('airPistolTrainer_trainingLogs') || '[]');
                 renderTrainingLogsList(logs);
-            }).catch((error) => {
-                console.error("Error loading training logs:", error);
-                showMessageBox("Error", "Failed to load training logs. " + error.message);
-            });
+            } catch (e) {
+                console.error("Error loading training logs:", e);
+                showMessageBox("Error", "Failed to load training logs. " + e.message);
+            }
         }
 
         // --- Default Data Creation ---
         async function createDefaultDataIfNeeded() {
-            if (!isAuthReady || !userId) return;
-
             // Check for Default Air Pistol Timer
             const defaultTimerProfileName = "Default Air Pistol Timer";
-            const timerQuery = query(collection(db, `artifacts/${appId}/public/data/timerProfiles`), where("profileName", "==", defaultTimerProfileName));
-            const timerSnapshot = await getDocs(timerQuery);
-            let defaultTimerProfileId = null;
+            const existingTimer = timerProfiles.find(p => p.profileName === defaultTimerProfileName);
+            let defaultTimerProfileId = existingTimer ? existingTimer.id : null;
 
-            if (timerSnapshot.empty) {
+            if (!existingTimer) {
                 console.log("Creating default timer profile...");
                 const defaultTimer = {
                     profileName: defaultTimerProfileName,
@@ -686,20 +617,24 @@
                         { duration: 3, message: "Stop / Relax", buzzerSound: "long_beep" }
                     ]
                 };
-                const docRef = await addDoc(collection(db, `artifacts/${appId}/public/data/timerProfiles`), defaultTimer);
-                defaultTimerProfileId = docRef.id;
+                // Directly add to array and save, then get the ID
+                let profiles = JSON.parse(localStorage.getItem('airPistolTrainer_timerProfiles') || '[]');
+                const newId = generateUniqueId();
+                profiles.push({ ...defaultTimer, id: newId });
+                localStorage.setItem('airPistolTrainer_timerProfiles', JSON.stringify(profiles));
+                defaultTimerProfileId = newId;
                 console.log("Default timer profile created with ID:", defaultTimerProfileId);
+                // Reload data to reflect the new default
+                loadTimerProfiles();
             } else {
-                defaultTimerProfileId = timerSnapshot.docs[0].id;
                 console.log("Default timer profile already exists with ID:", defaultTimerProfileId);
             }
 
             // Check for Default 60 Rep Program
             const defaultProgramName = "Default 60 Rep Program";
-            const programQuery = query(collection(db, `artifacts/${appId}/public/data/trainingPrograms`), where("programName", "==", defaultProgramName));
-            const programSnapshot = await getDocs(programQuery);
+            const existingProgram = trainingPrograms.find(p => p.programName === defaultProgramName);
 
-            if (programSnapshot.empty && defaultTimerProfileId) {
+            if (!existingProgram && defaultTimerProfileId) {
                 console.log("Creating default training program...");
                 const reps = [];
                 for (let i = 0; i < 60; i++) {
@@ -712,17 +647,18 @@
                     programName: defaultProgramName,
                     reps: reps
                 };
-                await addDoc(collection(db, `artifacts/${appId}/public/data/trainingPrograms`), defaultProgram);
+                // Directly add to array and save
+                let programs = JSON.parse(localStorage.getItem('airPistolTrainer_trainingPrograms') || '[]');
+                programs.push({ ...defaultProgram, id: generateUniqueId() });
+                localStorage.setItem('airPistolTrainer_trainingPrograms', JSON.stringify(programs));
                 console.log("Default training program created.");
-            } else if (!programSnapshot.empty) {
+                // Reload data to reflect the new default
+                loadTrainingPrograms();
+            } else if (existingProgram) {
                 console.log("Default training program already exists.");
             } else if (!defaultTimerProfileId) {
                 console.warn("Could not create default training program: Default timer profile ID not found.");
             }
-
-            // Reload data to ensure new defaults are picked up
-            loadTimerProfiles();
-            loadTrainingPrograms();
         }
 
 
@@ -730,9 +666,7 @@
 
         function renderHomeScreen() {
             showScreen('homeScreen');
-            if (userId) {
-                document.getElementById('shooterIdDisplay').textContent = userId;
-            }
+            document.getElementById('shooterIdDisplay').textContent = userId;
         }
 
         function renderManageProfilesScreen() {
@@ -1065,7 +999,7 @@
             }
 
             const profileData = { username, email, gender, event };
-            await saveShooterProfile(profileData);
+            saveShooterProfile(profileData);
             document.getElementById('shooterProfileFormModal').classList.add('hidden');
         });
 
@@ -1102,7 +1036,7 @@
             if (currentTimerProfileId) {
                 newProfile.id = currentTimerProfileId;
             }
-            await saveTimerProfile(newProfile);
+            saveTimerProfile(newProfile);
             document.getElementById('timerProfileFormModal').classList.add('hidden');
             currentTimerProfileId = null;
         });
@@ -1149,7 +1083,7 @@
             if (currentTrainingProgramId) {
                 newProgram.id = currentTrainingProgramId;
             }
-            await saveTrainingProgram(newProgram);
+            saveTrainingProgram(newProgram);
             document.getElementById('trainingProgramFormModal').classList.add('hidden');
             currentTrainingProgramId = null;
         });
@@ -1421,8 +1355,18 @@
         document.getElementById('backToHomeFromLogsBtn').addEventListener('click', renderHomeScreen);
 
         // --- Initial Load ---
-        window.onload = initializeFirebase; // Initialize Firebase when the window loads
-        renderHomeScreen(); // Show home screen initially
+        window.onload = async function() {
+            // Load all data from local storage first
+            loadShooterProfile();
+            loadTimerProfiles();
+            loadTrainingPrograms();
+
+            // Then create defaults if needed based on the loaded data
+            await createDefaultDataIfNeeded();
+
+            // Finally, render the home screen
+            renderHomeScreen();
+        };
     </script>
 </body>
 </html>
