@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Pistol Wall Holding Trainer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #2d3748; /* Slightly lighter dark background for container */
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 900px; /* Max width for larger screens */
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .btn {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50;
+        }
+        .btn-red {
+            @apply bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-50;
+        }
+        .input-field {
+            @apply w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-200 ease-in-out;
+        }
+        .label {
+            @apply block text-gray-300 text-sm font-semibold mb-2;
+        }
+        .card {
+            @apply bg-gray-700 p-6 rounded-xl shadow-md mb-4;
+        }
+        .modal {
+            @apply fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4;
+        }
+        .modal-content {
+            @apply bg-gray-800 p-8 rounded-xl shadow-xl max-w-lg w-full text-center;
+        }
+        .tab-button {
+            @apply px-6 py-3 rounded-t-lg font-semibold text-lg transition duration-300 ease-in-out;
+        }
+        .tab-button.active {
+            @apply bg-blue-600 text-white;
+        }
+        .tab-button:not(.active) {
+            @apply bg-gray-700 text-gray-300 hover:bg-gray-600;
+        }
+        .list-item {
+            @apply flex justify-between items-center p-4 bg-gray-800 rounded-lg mb-2 shadow-sm;
+        }
+        .list-item-text {
+            @apply text-lg font-medium text-gray-200;
+        }
+        .list-item-actions button {
+            @apply ml-2 px-4 py-2 rounded-lg text-sm font-semibold transition duration-200 ease-in-out;
+        }
+        .list-item-actions .edit-btn {
+            @apply bg-yellow-600 hover:bg-yellow-700 text-white;
+        }
+        .list-item-actions .delete-btn {
+            @apply bg-red-600 hover:bg-red-700 text-white;
+        }
+        .list-item-actions .select-btn {
+            @apply bg-green-600 hover:bg-green-700 text-white;
+        }
+        .log-item {
+            @apply p-4 bg-gray-800 rounded-lg mb-2 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center;
+        }
+        .log-item-details {
+            @apply flex-grow;
+        }
+        .log-item-status {
+            @apply mt-2 sm:mt-0 px-3 py-1 rounded-full text-sm font-semibold;
+        }
+        .log-item-status.completed {
+            @apply bg-green-500 text-white;
+        }
+        .log-item-status.incomplete {
+            @apply bg-red-500 text-white;
+        }
+        .timer-display {
+            @apply text-8xl font-extrabold text-blue-400 mb-6;
+        }
+        .message-display {
+            @apply text-4xl font-semibold text-gray-100 mb-8 text-center;
+        }
+        .progress-bar-container {
+            @apply w-full bg-gray-700 rounded-full h-4 mb-4;
+        }
+        .progress-bar {
+            @apply bg-blue-500 h-4 rounded-full transition-all duration-100 ease-linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Message Box Modal -->
+        <div id="messageModal" class="modal hidden">
+            <div class="modal-content">
+                <h3 id="messageModalTitle" class="text-2xl font-bold mb-4 text-blue-400"></h3>
+                <p id="messageModalBody" class="text-gray-300 mb-6"></p>
+                <button id="messageModalCloseBtn" class="btn">OK</button>
+            </div>
+        </div>
+
+        <!-- Confirm Modal -->
+        <div id="confirmModal" class="modal hidden">
+            <div class="modal-content">
+                <h3 id="confirmModalTitle" class="text-2xl font-bold mb-4 text-red-400"></h3>
+                <p id="confirmModalBody" class="text-gray-300 mb-6"></p>
+                <div class="flex justify-center gap-4">
+                    <button id="confirmModalYesBtn" class="btn bg-green-600 hover:bg-green-700">Yes</button>
+                    <button id="confirmModalNoBtn" class="btn bg-gray-600 hover:bg-gray-700">No</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="homeScreen" class="screen">
+            <h1 class="text-4xl font-bold text-center mb-8 text-blue-400">Air Pistol Wall Holding Trainer</h1>
+            <p class="text-center text-lg mb-4 text-gray-300">Welcome, Shooter! Your ID: <span id="shooterIdDisplay" class="font-bold text-blue-300">Loading...</span></p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <button id="manageProfilesBtn" class="btn">
+                    <i class="fas fa-cogs mr-2"></i> Manage Profiles
+                </button>
+                <button id="startTrainingBtn" class="btn">
+                    <i class="fas fa-play mr-2"></i> Start Training
+                </button>
+                <button id="viewLogsBtn" class="btn">
+                    <i class="fas fa-history mr-2"></i> View Logs
+                </button>
+            </div>
+        </div>
+
+        <!-- Manage Profiles Screen -->
+        <div id="manageProfilesScreen" class="screen hidden">
+            <h2 class="text-3xl font-bold text-center mb-6 text-blue-400">Manage Profiles</h2>
+            <div class="flex justify-center mb-6">
+                <button id="tabShooterProfile" class="tab-button">Shooter Profile</button>
+                <button id="tabTimerProfiles" class="tab-button active">Timer Profiles</button>
+                <button id="tabTrainingPrograms" class="tab-button">Training Programs</button>
+            </div>
+
+            <!-- Shooter Profile Section -->
+            <div id="shooterProfileSection" class="tab-content hidden">
+                <div id="shooterProfileDisplay" class="card text-left">
+                    <p class="text-lg font-semibold text-blue-300 mb-2">Your Shooter Profile:</p>
+                    <p><span class="font-bold">Username:</span> <span id="profileUsername">N/A</span></p>
+                    <p><span class="font-bold">Email:</span> <span id="profileEmail">N/A</span></p>
+                    <p><span class="font-bold">Gender:</span> <span id="profileGender">N/A</span></p>
+                    <p><span class="font-bold">Event:</span> <span id="profileEvent">N/A</span></p>
+                    <button id="editShooterProfileBtn" class="btn mt-6 w-full">
+                        <i class="fas fa-edit mr-2"></i> Edit Profile
+                    </button>
+                </div>
+                <p id="noShooterProfileMessage" class="text-gray-400 text-center hidden">No shooter profile found. Click "Edit Profile" to create one.</p>
+            </div>
+
+            <!-- Timer Profiles Section -->
+            <div id="timerProfilesSection" class="tab-content">
+                <button id="addTimerProfileBtn" class="btn mb-6 w-full">
+                    <i class="fas fa-plus mr-2"></i> Add New Timer Profile
+                </button>
+                <div id="timerProfilesList" class="space-y-4">
+                    <!-- Timer profiles will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Training Programs Section -->
+            <div id="trainingProgramsSection" class="tab-content hidden">
+                <button id="addTrainingProgramBtn" class="btn mb-6 w-full">
+                    <i class="fas fa-plus mr-2"></i> Add New Training Program
+                </button>
+                <div id="trainingProgramsList" class="space-y-4">
+                    <!-- Training programs will be loaded here -->
+                </div>
+            </div>
+
+            <button id="backToHomeFromManageBtn" class="btn-red mt-8 w-full">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Home
+            </button>
+        </div>
+
+        <!-- Shooter Profile Form Modal -->
+        <div id="shooterProfileFormModal" class="modal hidden">
+            <div class="modal-content text-left">
+                <h3 id="shooterProfileFormTitle" class="text-2xl font-bold mb-4 text-blue-400">Edit Shooter Profile</h3>
+                <form id="shooterProfileForm" class="space-y-4">
+                    <div>
+                        <label for="shooterUsername" class="label">Username:</label>
+                        <input type="text" id="shooterUsername" class="input-field" required>
+                    </div>
+                    <div>
+                        <label for="shooterEmail" class="label">Email:</label>
+                        <input type="email" id="shooterEmail" class="input-field">
+                    </div>
+                    <div>
+                        <label for="shooterGender" class="label">Gender:</label>
+                        <select id="shooterGender" class="input-field">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="shooterEvent" class="label">Event:</label>
+                        <input type="text" id="shooterEvent" class="input-field">
+                    </div>
+                    <div class="flex justify-end gap-4 mt-8">
+                        <button type="submit" class="btn">Save Profile</button>
+                        <button type="button" id="cancelShooterProfileFormBtn" class="btn-red">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Timer Profile Form Modal -->
+        <div id="timerProfileFormModal" class="modal hidden">
+            <div class="modal-content text-left">
+                <h3 id="timerProfileFormTitle" class="text-2xl font-bold mb-4 text-blue-400">Add Timer Profile</h3>
+                <form id="timerProfileForm" class="space-y-4">
+                    <div>
+                        <label for="profileName" class="label">Profile Name:</label>
+                        <input type="text" id="profileName" class="input-field" required>
+                    </div>
+                    <div>
+                        <label for="eventName" class="label">Event Name:</label>
+                        <input type="text" id="eventName" class="input-field" required>
+                    </div>
+                    <div>
+                        <label for="preparatoryTime" class="label">Preparatory Time (seconds):</label>
+                        <input type="number" id="preparatoryTime" class="input-field" min="0" value="5" required>
+                    </div>
+
+                    <h4 class="text-xl font-bold mt-6 mb-4 text-blue-300">Segments:</h4>
+                    <div id="segmentsContainer" class="space-y-4">
+                        <!-- Segments will be added here -->
+                    </div>
+                    <button type="button" id="addSegmentBtn" class="btn bg-green-600 hover:bg-green-700 w-full mt-4">
+                        <i class="fas fa-plus mr-2"></i> Add Segment
+                    </button>
+
+                    <div class="flex justify-end gap-4 mt-8">
+                        <button type="submit" class="btn">Save Profile</button>
+                        <button type="button" id="cancelTimerProfileFormBtn" class="btn-red">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Training Program Form Modal -->
+        <div id="trainingProgramFormModal" class="modal hidden">
+            <div class="modal-content text-left">
+                <h3 id="trainingProgramFormTitle" class="text-2xl font-bold mb-4 text-blue-400">Add Training Program</h3>
+                <form id="trainingProgramForm" class="space-y-4">
+                    <div>
+                        <label for="programName" class="label">Program Name:</label>
+                        <input type="text" id="programName" class="input-field" required>
+                    </div>
+
+                    <h4 class="text-xl font-bold mt-6 mb-4 text-blue-300">Repetitions:</h4>
+                    <div id="repsContainer" class="space-y-4">
+                        <!-- Reps will be added here -->
+                    </div>
+                    <button type="button" id="addRepBtn" class="btn bg-green-600 hover:bg-green-700 w-full mt-4">
+                        <i class="fas fa-plus mr-2"></i> Add Repetition
+                    </button>
+
+                    <div class="flex justify-end gap-4 mt-8">
+                        <button type="submit" class="btn">Save Program</button>
+                        <button type="button" id="cancelTrainingProgramFormBtn" class="btn-red">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Start Training Screen -->
+        <div id="startTrainingScreen" class="screen hidden">
+            <h2 class="text-3xl font-bold text-center mb-6 text-blue-400">Start Training</h2>
+            <div class="card">
+                <label for="selectProgram" class="label">Select Training Program:</label>
+                <select id="selectProgram" class="input-field mb-4">
+                    <option value="">-- Select a Program --</option>
+                    <!-- Programs will be loaded here -->
+                </select>
+                <div id="selectedProgramDetails" class="text-gray-300 text-sm mt-4 space-y-2">
+                    <!-- Details of selected program -->
+                </div>
+            </div>
+            <div class="flex justify-center gap-4 mt-8">
+                <button id="startProgramBtn" class="btn w-full md:w-auto"><i class="fas fa-play mr-2"></i> Start Program</button>
+                <button id="backToHomeFromStartTrainingBtn" class="btn-red w-full md:w-auto"><i class="fas fa-arrow-left mr-2"></i> Back to Home</button>
+            </div>
+        </div>
+
+        <!-- Training Session Screen -->
+        <div id="trainingSessionScreen" class="screen hidden text-center">
+            <h2 class="text-3xl font-bold mb-6 text-blue-400" id="currentProgramName"></h2>
+            <div class="text-gray-300 text-xl mb-4">
+                Rep <span id="currentRepNumber">1</span> / <span id="totalReps">1</span>
+            </div>
+            <div class="message-display" id="currentMessage">Get Ready!</div>
+            <div class="timer-display" id="timerDisplay">00:00</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+            </div>
+            <button id="stopTrainingBtn" class="btn-red mt-8">
+                <i class="fas fa-stop mr-2"></i> Stop Training
+            </button>
+        </div>
+
+        <!-- Logs Screen -->
+        <div id="logsScreen" class="screen hidden">
+            <h2 class="text-3xl font-bold text-center mb-6 text-blue-400">Training Logs</h2>
+            <div id="trainingLogsList" class="space-y-4">
+                <!-- Training logs will be loaded here -->
+            </div>
+            <button id="backToHomeFromLogsBtn" class="btn-red mt-8 w-full">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Home
+            </button>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- Firebase Configuration and Initialization ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+
+        let app, db, auth, userId = null;
+        let isAuthReady = false; // Flag to indicate if auth state has been checked
+
+        // Function to show a custom message box
+        function showMessageBox(title, message) {
+            document.getElementById('messageModalTitle').textContent = title;
+            document.getElementById('messageModalBody').textContent = message;
+            document.getElementById('messageModal').classList.remove('hidden');
+        }
+
+        // Function to show a custom confirmation dialog
+        function showConfirmBox(title, message) {
+            return new Promise((resolve) => {
+                document.getElementById('confirmModalTitle').textContent = title;
+                document.getElementById('confirmModalBody').textContent = message;
+                document.getElementById('confirmModal').classList.remove('hidden');
+
+                const yesBtn = document.getElementById('confirmModalYesBtn');
+                const noBtn = document.getElementById('confirmModalNoBtn');
+
+                const handleYes = () => {
+                    document.getElementById('confirmModal').classList.add('hidden');
+                    yesBtn.removeEventListener('click', handleYes);
+                    noBtn.removeEventListener('click', handleNo);
+                    resolve(true);
+                };
+
+                const handleNo = () => {
+                    document.getElementById('confirmModal').classList.add('hidden');
+                    yesBtn.removeEventListener('click', handleYes);
+                    noBtn.removeEventListener('click', handleNo);
+                    resolve(false);
+                };
+
+                yesBtn.addEventListener('click', handleYes);
+                noBtn.addEventListener('click', handleNo);
+            });
+        }
+
+        // Initialize Firebase and set up authentication
+        async function initializeFirebase() {
+            try {
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Listen for authentication state changes
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        document.getElementById('shooterIdDisplay').textContent = userId;
+                        await loadShooterProfile(); // Load shooter profile once user is known
+                        await createDefaultDataIfNeeded(); // Create defaults if they don't exist
+                    } else {
+                        // Sign in anonymously if no user is logged in
+                        try {
+                            const anonymousUser = await signInAnonymously(auth);
+                            userId = anonymousUser.user.uid;
+                            document.getElementById('shooterIdDisplay').textContent = userId;
+                            await loadShooterProfile(); // Load shooter profile for anonymous user
+                            await createDefaultDataIfNeeded(); // Create defaults for anonymous user
+                        } catch (error) {
+                            console.error("Error signing in anonymously:", error);
+                            showMessageBox("Authentication Error", "Failed to sign in. Please try again later.");
+                        }
+                    }
+                    isAuthReady = true; // Auth state has been checked
+                    // Now that auth is ready, load initial data or render home screen
+                    if (currentScreen === 'homeScreen') {
+                        renderHomeScreen(); // Re-render to ensure userId is displayed
+                    }
+                    loadTrainingProgramsForSelection(); // Load programs for the start training screen
+                });
+
+                // Use the custom token if provided by the environment
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    // Fallback to anonymous sign-in if no token is provided
+                    await signInAnonymously(auth);
+                }
+            } catch (error) {
+                console.error("Firebase initialization or authentication error:", error);
+                showMessageBox("Initialization Error", "Failed to initialize the application. Please check your network connection.");
+            }
+        }
+
+        // --- Global State Variables ---
+        let currentScreen = 'homeScreen';
+        let shooterProfile = null; // Stores the current user's profile
+        let timerProfiles = [];
+        let trainingPrograms = [];
+        let currentTimerProfileId = null; // Used for editing
+        let currentTrainingProgramId = null; // Used for editing
+
+        // Training Session State
+        let currentProgram = null;
+        let currentRepIndex = 0;
+        let currentSegmentIndex = 0;
+        let remainingTime = 0;
+        let timerInterval = null;
+        let segmentTimeout = null;
+        let repDelayTimeout = null;
+        let programStartTime = null;
+
+        // --- Utility Functions ---
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.add('hidden');
+            });
+            document.getElementById(screenId).classList.remove('hidden');
+            currentScreen = screenId;
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function playBeep(long = false) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.type = 'sine'; // Sine wave for a clear beep
+            oscillator.frequency.setValueAtTime(long ? 660 : 440, audioContext.currentTime); // Frequency in Hz
+
+            gainNode.gain.setValueAtTime(1, audioContext.currentTime); // Start at full volume
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + (long ? 1.0 : 0.15)); // Fade out
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + (long ? 1.0 : 0.15)); // Stop after duration
+        }
+
+        // --- Firebase Data Operations ---
+
+        // Shooter Profile
+        async function saveShooterProfile(profileData) {
+            if (!isAuthReady || !userId) {
+                showMessageBox("Error", "Authentication not ready. Please wait.");
+                return;
+            }
+            try {
+                const docRef = doc(db, `artifacts/${appId}/users/${userId}/shooterProfile`, 'myProfile'); // Fixed doc ID
+                await setDoc(docRef, profileData);
+                shooterProfile = profileData; // Update local state
+                showMessageBox("Success", "Shooter Profile saved successfully!");
+                renderShooterProfileSection(); // Re-render display
+            } catch (e) {
+                console.error("Error saving shooter profile: ", e);
+                showMessageBox("Error", "Failed to save shooter profile. " + e.message);
+            }
+        }
+
+        async function loadShooterProfile() {
+            if (!isAuthReady || !userId) return;
+            try {
+                const docRef = doc(db, `artifacts/${appId}/users/${userId}/shooterProfile`, 'myProfile');
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    shooterProfile = docSnap.data();
+                } else {
+                    shooterProfile = null; // No profile yet
+                }
+                renderShooterProfileSection(); // Render display regardless
+            } catch (e) {
+                console.error("Error loading shooter profile:", e);
+                showMessageBox("Error", "Failed to load shooter profile. " + e.message);
+            }
+        }
+
+        // Timer Profiles
+        async function saveTimerProfile(profile) {
+            if (!isAuthReady || !userId) {
+                showMessageBox("Error", "Authentication not ready. Please wait.");
+                return;
+            }
+            try {
+                const collectionRef = collection(db, `artifacts/${appId}/public/data/timerProfiles`);
+                if (profile.id) {
+                    // Update existing
+                    const docRef = doc(collectionRef, profile.id);
+                    await setDoc(docRef, { ...profile, id: undefined }); // Remove id from doc data
+                    showMessageBox("Success", "Timer Profile updated successfully!");
+                } else {
+                    // Add new
+                    await addDoc(collectionRef, profile);
+                    showMessageBox("Success", "Timer Profile added successfully!");
+                }
+                loadTimerProfiles(); // Refresh list
+                loadTrainingProgramsForSelection(); // Profiles might be used in programs
+            } catch (e) {
+                console.error("Error saving timer profile: ", e);
+                showMessageBox("Error", "Failed to save timer profile. " + e.message);
+            }
+        }
+
+        function loadTimerProfiles() {
+            if (!isAuthReady || !userId) return; // Wait for auth to be ready
+            const collectionRef = collection(db, `artifacts/${appId}/public/data/timerProfiles`);
+            onSnapshot(collectionRef, (snapshot) => {
+                timerProfiles = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderTimerProfilesList();
+                loadTrainingProgramsForSelection(); // Ensure program dropdown is updated
+            }, (error) => {
+                console.error("Error loading timer profiles:", error);
+                showMessageBox("Error", "Failed to load timer profiles. " + error.message);
+            });
+        }
+
+        async function deleteTimerProfile(id) {
+            if (!isAuthReady || !userId) return;
+            const confirmed = await showConfirmBox("Confirm Delete", "Are you sure you want to delete this timer profile? This action cannot be undone.");
+            if (!confirmed) return;
+
+            try {
+                const docRef = doc(db, `artifacts/${appId}/public/data/timerProfiles`, id);
+                await deleteDoc(docRef);
+                showMessageBox("Success", "Timer Profile deleted successfully!");
+            } catch (e) {
+                console.error("Error deleting timer profile: ", e);
+                showMessageBox("Error", "Failed to delete timer profile. " + e.message);
+            }
+        }
+
+        // Training Programs
+        async function saveTrainingProgram(program) {
+            if (!isAuthReady || !userId) {
+                showMessageBox("Error", "Authentication not ready. Please wait.");
+                return;
+            }
+            try {
+                const collectionRef = collection(db, `artifacts/${appId}/public/data/trainingPrograms`);
+                if (program.id) {
+                    // Update existing
+                    const docRef = doc(collectionRef, program.id);
+                    await setDoc(docRef, { ...program, id: undefined }); // Remove id from doc data
+                    showMessageBox("Success", "Training Program updated successfully!");
+                } else {
+                    // Add new
+                    await addDoc(collectionRef, program);
+                    showMessageBox("Success", "Training Program added successfully!");
+                }
+                loadTrainingPrograms(); // Refresh list
+                loadTrainingProgramsForSelection(); // Refresh selection dropdown
+            } catch (e) {
+                console.error("Error saving training program: ", e);
+                showMessageBox("Error", "Failed to save training program. " + e.message);
+            }
+        }
+
+        function loadTrainingPrograms() {
+            if (!isAuthReady || !userId) return; // Wait for auth to be ready
+            const collectionRef = collection(db, `artifacts/${appId}/public/data/trainingPrograms`);
+            onSnapshot(collectionRef, (snapshot) => {
+                trainingPrograms = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderTrainingProgramsList();
+                loadTrainingProgramsForSelection(); // Ensure program dropdown is updated
+            }, (error) => {
+                console.error("Error loading training programs:", error);
+                showMessageBox("Error", "Failed to load training programs. " + error.message);
+            });
+        }
+
+        async function deleteTrainingProgram(id) {
+            if (!isAuthReady || !userId) return;
+            const confirmed = await showConfirmBox("Confirm Delete", "Are you sure you want to delete this training program? This action cannot be undone.");
+            if (!confirmed) return;
+
+            try {
+                const docRef = doc(db, `artifacts/${appId}/public/data/trainingPrograms`, id);
+                await deleteDoc(docRef);
+                showMessageBox("Success", "Training Program deleted successfully!");
+            } catch (e) {
+                console.error("Error deleting training program: ", e);
+                showMessageBox("Error", "Failed to delete training program. " + e.message);
+            }
+        }
+
+        // Training Logs
+        async function saveTrainingLog(log) {
+            if (!isAuthReady || !userId) {
+                console.error("Auth not ready, cannot save log.");
+                return;
+            }
+            try {
+                const collectionRef = collection(db, `artifacts/${appId}/users/${userId}/trainingLogs`);
+                await addDoc(collectionRef, log);
+                console.log("Training log saved.");
+            } catch (e) {
+                console.error("Error saving training log: ", e);
+                showMessageBox("Error", "Failed to save training log. " + e.message);
+            }
+        }
+
+        function loadTrainingLogs() {
+            if (!isAuthReady || !userId) return; // Wait for auth to be ready
+            const collectionRef = collection(db, `artifacts/${appId}/users/${userId}/trainingLogs`);
+            // No need for real-time snapshot here, just fetch once
+            getDocs(collectionRef).then((snapshot) => {
+                const logs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderTrainingLogsList(logs);
+            }).catch((error) => {
+                console.error("Error loading training logs:", error);
+                showMessageBox("Error", "Failed to load training logs. " + error.message);
+            });
+        }
+
+        // --- Default Data Creation ---
+        async function createDefaultDataIfNeeded() {
+            if (!isAuthReady || !userId) return;
+
+            // Check for Default Air Pistol Timer
+            const defaultTimerProfileName = "Default Air Pistol Timer";
+            const timerQuery = query(collection(db, `artifacts/${appId}/public/data/timerProfiles`), where("profileName", "==", defaultTimerProfileName));
+            const timerSnapshot = await getDocs(timerQuery);
+            let defaultTimerProfileId = null;
+
+            if (timerSnapshot.empty) {
+                console.log("Creating default timer profile...");
+                const defaultTimer = {
+                    profileName: defaultTimerProfileName,
+                    eventName: "Air Pistol 10 M",
+                    preparatoryTime: 5,
+                    segments: [
+                        { duration: 3, message: "Lifting Weapon", buzzerSound: "beep" },
+                        { duration: 2, message: "Come to Aiming Area", buzzerSound: "beep" },
+                        { duration: 7, message: "Hold in Aiming Area", buzzerSound: "beep" },
+                        { duration: 3, message: "Stop / Relax", buzzerSound: "long_beep" }
+                    ]
+                };
+                const docRef = await addDoc(collection(db, `artifacts/${appId}/public/data/timerProfiles`), defaultTimer);
+                defaultTimerProfileId = docRef.id;
+                console.log("Default timer profile created with ID:", defaultTimerProfileId);
+            } else {
+                defaultTimerProfileId = timerSnapshot.docs[0].id;
+                console.log("Default timer profile already exists with ID:", defaultTimerProfileId);
+            }
+
+            // Check for Default 60 Rep Program
+            const defaultProgramName = "Default 60 Rep Program";
+            const programQuery = query(collection(db, `artifacts/${appId}/public/data/trainingPrograms`), where("programName", "==", defaultProgramName));
+            const programSnapshot = await getDocs(programQuery);
+
+            if (programSnapshot.empty && defaultTimerProfileId) {
+                console.log("Creating default training program...");
+                const reps = [];
+                for (let i = 0; i < 60; i++) {
+                    reps.push({
+                        timerProfileId: defaultTimerProfileId,
+                        delayAfterRep: 7 // Default 7 sec break
+                    });
+                }
+                const defaultProgram = {
+                    programName: defaultProgramName,
+                    reps: reps
+                };
+                await addDoc(collection(db, `artifacts/${appId}/public/data/trainingPrograms`), defaultProgram);
+                console.log("Default training program created.");
+            } else if (!programSnapshot.empty) {
+                console.log("Default training program already exists.");
+            } else if (!defaultTimerProfileId) {
+                console.warn("Could not create default training program: Default timer profile ID not found.");
+            }
+
+            // Reload data to ensure new defaults are picked up
+            loadTimerProfiles();
+            loadTrainingPrograms();
+        }
+
+
+        // --- UI Rendering Functions ---
+
+        function renderHomeScreen() {
+            showScreen('homeScreen');
+            if (userId) {
+                document.getElementById('shooterIdDisplay').textContent = userId;
+            }
+        }
+
+        function renderManageProfilesScreen() {
+            showScreen('manageProfilesScreen');
+            // Ensure the correct tab is active and content is shown
+            const activeTab = document.querySelector('.tab-button.active');
+            if (activeTab.id === 'tabShooterProfile') {
+                document.getElementById('shooterProfileSection').classList.remove('hidden');
+                document.getElementById('timerProfilesSection').classList.add('hidden');
+                document.getElementById('trainingProgramsSection').classList.add('hidden');
+                loadShooterProfile(); // Ensure profile is loaded when tab is active
+            } else if (activeTab.id === 'tabTimerProfiles') {
+                document.getElementById('shooterProfileSection').classList.add('hidden');
+                document.getElementById('timerProfilesSection').classList.remove('hidden');
+                document.getElementById('trainingProgramsSection').classList.add('hidden');
+                loadTimerProfiles();
+            } else { // tabTrainingPrograms
+                document.getElementById('shooterProfileSection').classList.add('hidden');
+                document.getElementById('timerProfilesSection').classList.add('hidden');
+                document.getElementById('trainingProgramsSection').classList.remove('hidden');
+                loadTrainingPrograms();
+            }
+        }
+
+        function renderShooterProfileSection() {
+            const displayDiv = document.getElementById('shooterProfileDisplay');
+            const noProfileMessage = document.getElementById('noShooterProfileMessage');
+
+            if (shooterProfile) {
+                document.getElementById('profileUsername').textContent = shooterProfile.username || 'N/A';
+                document.getElementById('profileEmail').textContent = shooterProfile.email || 'N/A';
+                document.getElementById('profileGender').textContent = shooterProfile.gender || 'N/A';
+                document.getElementById('profileEvent').textContent = shooterProfile.event || 'N/A';
+                displayDiv.classList.remove('hidden');
+                noProfileMessage.classList.add('hidden');
+            } else {
+                displayDiv.classList.add('hidden');
+                noProfileMessage.classList.remove('hidden');
+            }
+        }
+
+        function renderShooterProfileForm(profile = {}) {
+            document.getElementById('shooterUsername').value = profile.username || '';
+            document.getElementById('shooterEmail').value = profile.email || '';
+            document.getElementById('shooterGender').value = profile.gender || '';
+            document.getElementById('shooterEvent').value = profile.event || '';
+            document.getElementById('shooterProfileFormModal').classList.remove('hidden');
+        }
+
+
+        function renderTimerProfilesList() {
+            const listContainer = document.getElementById('timerProfilesList');
+            listContainer.innerHTML = ''; // Clear previous list
+
+            if (timerProfiles.length === 0) {
+                listContainer.innerHTML = '<p class="text-gray-400 text-center">No timer profiles added yet. Click "Add New Timer Profile" to create one.</p>';
+                return;
+            }
+
+            timerProfiles.forEach(profile => {
+                const item = document.createElement('div');
+                item.className = 'list-item';
+                item.innerHTML = `
+                    <span class="list-item-text">${profile.profileName} (${profile.eventName})</span>
+                    <div class="list-item-actions">
+                        <button class="edit-btn" data-id="${profile.id}"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="delete-btn" data-id="${profile.id}"><i class="fas fa-trash"></i> Delete</button>
+                    </div>
+                `;
+                listContainer.appendChild(item);
+            });
+
+            // Add event listeners for edit and delete buttons
+            listContainer.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = e.currentTarget.dataset.id;
+                    editTimerProfile(id);
+                });
+            });
+            listContainer.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = e.currentTarget.dataset.id;
+                    deleteTimerProfile(id);
+                });
+            });
+        }
+
+        function renderTrainingProgramsList() {
+            const listContainer = document.getElementById('trainingProgramsList');
+            listContainer.innerHTML = ''; // Clear previous list
+
+            if (trainingPrograms.length === 0) {
+                listContainer.innerHTML = '<p class="text-gray-400 text-center">No training programs added yet. Click "Add New Training Program" to create one.</p>';
+                return;
+            }
+
+            trainingPrograms.forEach(program => {
+                const item = document.createElement('div');
+                item.className = 'list-item';
+                item.innerHTML = `
+                    <span class="list-item-text">${program.programName}</span>
+                    <div class="list-item-actions">
+                        <button class="edit-btn" data-id="${program.id}"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="delete-btn" data-id="${program.id}"><i class="fas fa-trash"></i> Delete</button>
+                    </div>
+                `;
+                listContainer.appendChild(item);
+            });
+
+            // Add event listeners for edit and delete buttons
+            listContainer.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = e.currentTarget.dataset.id;
+                    editTrainingProgram(id);
+                });
+            });
+            listContainer.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = e.currentTarget.dataset.id;
+                    deleteTrainingProgram(id);
+                });
+            });
+        }
+
+        function renderTimerProfileForm(profile = {}) {
+            currentTimerProfileId = profile.id || null;
+            document.getElementById('timerProfileFormTitle').textContent = profile.id ? 'Edit Timer Profile' : 'Add Timer Profile';
+            document.getElementById('profileName').value = profile.profileName || '';
+            document.getElementById('eventName').value = profile.eventName || '';
+            document.getElementById('preparatoryTime').value = profile.preparatoryTime || 5;
+
+            const segmentsContainer = document.getElementById('segmentsContainer');
+            segmentsContainer.innerHTML = ''; // Clear existing segments
+
+            const segments = profile.segments && Array.isArray(profile.segments) ? profile.segments : [{ duration: 10, message: 'Hold Steady', buzzerSound: 'beep' }];
+
+            segments.forEach((segment, index) => {
+                addSegmentField(segment.duration, segment.message, segment.buzzerSound, index);
+            });
+
+            document.getElementById('timerProfileFormModal').classList.remove('hidden');
+        }
+
+        function addSegmentField(duration = 10, message = 'Hold Steady', buzzerSound = 'beep', index = null) {
+            const segmentsContainer = document.getElementById('segmentsContainer');
+            const segmentDiv = document.createElement('div');
+            segmentDiv.className = 'card flex flex-col sm:flex-row items-center gap-4';
+            segmentDiv.innerHTML = `
+                <div class="flex-grow w-full sm:w-auto">
+                    <label class="label">Duration (seconds):</label>
+                    <input type="number" class="input-field segment-duration" value="${duration}" min="1" required>
+                </div>
+                <div class="flex-grow w-full sm:w-auto">
+                    <label class="label">Message:</label>
+                    <input type="text" class="input-field segment-message" value="${message}" required>
+                </div>
+                <div class="flex-grow w-full sm:w-auto">
+                    <label class="label">Buzzer Sound:</label>
+                    <select class="input-field segment-buzzer">
+                        <option value="beep" ${buzzerSound === 'beep' ? 'selected' : ''}>Short Beep</option>
+                        <option value="long_beep" ${buzzerSound === 'long_beep' ? 'selected' : ''}>Long Beep</option>
+                    </select>
+                </div>
+                <button type="button" class="btn-red remove-segment-btn mt-4 sm:mt-0"><i class="fas fa-times"></i></button>
+            `;
+            segmentsContainer.appendChild(segmentDiv);
+
+            segmentDiv.querySelector('.remove-segment-btn').addEventListener('click', () => {
+                segmentDiv.remove();
+            });
+        }
+
+        function renderTrainingProgramForm(program = {}) {
+            currentTrainingProgramId = program.id || null;
+            document.getElementById('trainingProgramFormTitle').textContent = program.id ? 'Edit Training Program' : 'Add Training Program';
+            document.getElementById('programName').value = program.programName || '';
+
+            const repsContainer = document.getElementById('repsContainer');
+            repsContainer.innerHTML = ''; // Clear existing reps
+
+            const reps = program.reps && Array.isArray(program.reps) ? program.reps : [{ timerProfileId: '', delayAfterRep: 7 }]; // Default delay 7s
+
+            reps.forEach((rep, index) => {
+                addRepField(rep.timerProfileId, rep.delayAfterRep, index);
+            });
+
+            document.getElementById('trainingProgramFormModal').classList.remove('hidden');
+        }
+
+        function addRepField(timerProfileId = '', delayAfterRep = 7, index = null) {
+            const repsContainer = document.getElementById('repsContainer');
+            const repDiv = document.createElement('div');
+            repDiv.className = 'card flex flex-col sm:flex-row items-center gap-4';
+            repDiv.innerHTML = `
+                <div class="flex-grow w-full sm:w-auto">
+                    <label class="label">Timer Profile:</label>
+                    <select class="input-field rep-timer-profile-id" required>
+                        <option value="">-- Select Timer Profile --</option>
+                        ${timerProfiles.map(p => `<option value="${p.id}" ${p.id === timerProfileId ? 'selected' : ''}>${p.profileName}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="flex-grow w-full sm:w-auto">
+                    <label class="label">Delay After Rep (seconds):</label>
+                    <input type="number" class="input-field rep-delay-after-rep" value="${delayAfterRep}" min="0" required>
+                </div>
+                <button type="button" class="btn-red remove-rep-btn mt-4 sm:mt-0"><i class="fas fa-times"></i></button>
+            `;
+            repsContainer.appendChild(repDiv);
+
+            repDiv.querySelector('.remove-rep-btn').addEventListener('click', () => {
+                repDiv.remove();
+            });
+        }
+
+        function loadTrainingProgramsForSelection() {
+            const selectProgramDropdown = document.getElementById('selectProgram');
+            selectProgramDropdown.innerHTML = '<option value="">-- Select a Program --</option>'; // Clear and add default
+
+            trainingPrograms.forEach(program => {
+                const option = document.createElement('option');
+                option.value = program.id;
+                option.textContent = program.programName;
+                selectProgramDropdown.appendChild(option);
+            });
+        }
+
+        function renderStartTrainingScreen() {
+            showScreen('startTrainingScreen');
+            loadTrainingProgramsForSelection();
+            document.getElementById('selectedProgramDetails').innerHTML = ''; // Clear details
+            document.getElementById('selectProgram').value = ''; // Reset selection
+        }
+
+        function renderTrainingLogsList(logs) {
+            const listContainer = document.getElementById('trainingLogsList');
+            listContainer.innerHTML = ''; // Clear previous list
+
+            if (logs.length === 0) {
+                listContainer.innerHTML = '<p class="text-gray-400 text-center">No training logs recorded yet.</p>';
+                return;
+            }
+
+            // Sort logs by start time, newest first
+            logs.sort((a, b) => b.startTime - a.startTime);
+
+            logs.forEach(log => {
+                const startTime = new Date(log.startTime).toLocaleString();
+                const endTime = log.endTime ? new Date(log.endTime).toLocaleString() : 'N/A';
+                const duration = log.duration ? formatTime(log.duration) : 'N/A';
+                const statusClass = log.completed ? 'completed' : 'incomplete';
+                const statusText = log.completed ? 'Completed' : 'Interrupted';
+
+                const item = document.createElement('div');
+                item.className = 'log-item';
+                item.innerHTML = `
+                    <div class="log-item-details">
+                        <p class="text-lg font-semibold text-blue-300">${log.programName}</p>
+                        <p class="text-sm text-gray-400">Started: ${startTime}</p>
+                        <p class="text-sm text-gray-400">Ended: ${endTime}</p>
+                        <p class="text-sm text-gray-400">Duration: ${duration}</p>
+                    </div>
+                    <span class="log-item-status ${statusClass}">${statusText}</span>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        // --- Event Listeners ---
+
+        // Message Box Close
+        document.getElementById('messageModalCloseBtn').addEventListener('click', () => {
+            document.getElementById('messageModal').classList.add('hidden');
+        });
+
+        // Home Screen Buttons
+        document.getElementById('manageProfilesBtn').addEventListener('click', renderManageProfilesScreen);
+        document.getElementById('startTrainingBtn').addEventListener('click', renderStartTrainingScreen);
+        document.getElementById('viewLogsBtn').addEventListener('click', () => {
+            showScreen('logsScreen');
+            loadTrainingLogs();
+        });
+
+        // Manage Profiles Back Button
+        document.getElementById('backToHomeFromManageBtn').addEventListener('click', renderHomeScreen);
+
+        // Manage Profiles Tabs
+        document.getElementById('tabShooterProfile').addEventListener('click', () => {
+            document.getElementById('tabShooterProfile').classList.add('active');
+            document.getElementById('tabTimerProfiles').classList.remove('active');
+            document.getElementById('tabTrainingPrograms').classList.remove('active');
+            document.getElementById('shooterProfileSection').classList.remove('hidden');
+            document.getElementById('timerProfilesSection').classList.add('hidden');
+            document.getElementById('trainingProgramsSection').classList.add('hidden');
+            loadShooterProfile();
+        });
+        document.getElementById('tabTimerProfiles').addEventListener('click', () => {
+            document.getElementById('tabShooterProfile').classList.remove('active');
+            document.getElementById('tabTimerProfiles').classList.add('active');
+            document.getElementById('tabTrainingPrograms').classList.remove('active');
+            document.getElementById('shooterProfileSection').classList.add('hidden');
+            document.getElementById('timerProfilesSection').classList.remove('hidden');
+            document.getElementById('trainingProgramsSection').classList.add('hidden');
+            loadTimerProfiles();
+        });
+        document.getElementById('tabTrainingPrograms').addEventListener('click', () => {
+            document.getElementById('tabShooterProfile').classList.remove('active');
+            document.getElementById('tabTimerProfiles').classList.remove('active');
+            document.getElementById('tabTrainingPrograms').classList.add('active');
+            document.getElementById('shooterProfileSection').classList.add('hidden');
+            document.getElementById('timerProfilesSection').classList.add('hidden');
+            document.getElementById('trainingProgramsSection').classList.remove('hidden');
+            loadTrainingPrograms();
+        });
+
+        // Shooter Profile Form
+        document.getElementById('editShooterProfileBtn').addEventListener('click', () => renderShooterProfileForm(shooterProfile || {}));
+        document.getElementById('cancelShooterProfileFormBtn').addEventListener('click', () => {
+            document.getElementById('shooterProfileFormModal').classList.add('hidden');
+        });
+        document.getElementById('shooterProfileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('shooterUsername').value.trim();
+            const email = document.getElementById('shooterEmail').value.trim();
+            const gender = document.getElementById('shooterGender').value;
+            const event = document.getElementById('shooterEvent').value.trim();
+
+            if (!username) {
+                showMessageBox("Input Error", "Username is required.");
+                return;
+            }
+
+            const profileData = { username, email, gender, event };
+            await saveShooterProfile(profileData);
+            document.getElementById('shooterProfileFormModal').classList.add('hidden');
+        });
+
+
+        // Timer Profile Form
+        document.getElementById('addTimerProfileBtn').addEventListener('click', () => renderTimerProfileForm());
+        document.getElementById('cancelTimerProfileFormBtn').addEventListener('click', () => {
+            document.getElementById('timerProfileFormModal').classList.add('hidden');
+            currentTimerProfileId = null;
+        });
+        document.getElementById('addSegmentBtn').addEventListener('click', () => addSegmentField());
+        document.getElementById('timerProfileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const profileName = document.getElementById('profileName').value.trim();
+            const eventName = document.getElementById('eventName').value.trim();
+            const preparatoryTime = parseInt(document.getElementById('preparatoryTime').value);
+
+            const segments = [];
+            document.querySelectorAll('#segmentsContainer > div').forEach(segmentDiv => {
+                const duration = parseInt(segmentDiv.querySelector('.segment-duration').value);
+                const message = segmentDiv.querySelector('.segment-message').value.trim();
+                const buzzerSound = segmentDiv.querySelector('.segment-buzzer').value;
+                if (!isNaN(duration) && duration >= 0 && message) {
+                    segments.push({ duration, message, buzzerSound });
+                }
+            });
+
+            if (!profileName || !eventName || isNaN(preparatoryTime) || preparatoryTime < 0 || segments.length === 0) {
+                showMessageBox("Input Error", "Please fill all required fields and add at least one segment with valid data.");
+                return;
+            }
+
+            const newProfile = { profileName, eventName, preparatoryTime, segments };
+            if (currentTimerProfileId) {
+                newProfile.id = currentTimerProfileId;
+            }
+            await saveTimerProfile(newProfile);
+            document.getElementById('timerProfileFormModal').classList.add('hidden');
+            currentTimerProfileId = null;
+        });
+
+        function editTimerProfile(id) {
+            const profile = timerProfiles.find(p => p.id === id);
+            if (profile) {
+                renderTimerProfileForm(profile);
+            } else {
+                showMessageBox("Error", "Timer profile not found.");
+            }
+        }
+
+        // Training Program Form
+        document.getElementById('addTrainingProgramBtn').addEventListener('click', () => renderTrainingProgramForm());
+        document.getElementById('cancelTrainingProgramFormBtn').addEventListener('click', () => {
+            document.getElementById('trainingProgramFormModal').classList.add('hidden');
+            currentTrainingProgramId = null;
+        });
+        document.getElementById('addRepBtn').addEventListener('click', () => addRepField());
+        document.getElementById('trainingProgramForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const programName = document.getElementById('programName').value.trim();
+
+            const reps = [];
+            document.querySelectorAll('#repsContainer > div').forEach(repDiv => {
+                const timerProfileId = repDiv.querySelector('.rep-timer-profile-id').value;
+                const delayAfterRep = parseInt(repDiv.querySelector('.rep-delay-after-rep').value);
+                if (timerProfileId && !isNaN(delayAfterRep) && delayAfterRep >= 0) {
+                    reps.push({ timerProfileId, delayAfterRep });
+                }
+            });
+
+            if (!programName || reps.length === 0) {
+                showMessageBox("Input Error", "Please fill the program name and add at least one repetition with a selected timer profile.");
+                return;
+            }
+            if (reps.some(rep => !rep.timerProfileId)) {
+                showMessageBox("Input Error", "Please select a timer profile for all repetitions.");
+                return;
+            }
+
+            const newProgram = { programName, reps };
+            if (currentTrainingProgramId) {
+                newProgram.id = currentTrainingProgramId;
+            }
+            await saveTrainingProgram(newProgram);
+            document.getElementById('trainingProgramFormModal').classList.add('hidden');
+            currentTrainingProgramId = null;
+        });
+
+        function editTrainingProgram(id) {
+            const program = trainingPrograms.find(p => p.id === id);
+            if (program) {
+                renderTrainingProgramForm(program);
+            } else {
+                showMessageBox("Error", "Training program not found.");
+            }
+        }
+
+        // Start Training Screen
+        document.getElementById('selectProgram').addEventListener('change', (e) => {
+            const programId = e.target.value;
+            const detailsDiv = document.getElementById('selectedProgramDetails');
+            detailsDiv.innerHTML = '';
+            if (programId) {
+                const program = trainingPrograms.find(p => p.id === programId);
+                if (program) {
+                    detailsDiv.innerHTML = `
+                        <p><span class="font-bold">Program:</span> ${program.programName}</p>
+                        <p><span class="font-bold">Total Reps:</span> ${program.reps.length}</p>
+                        <p class="font-bold mt-2">Rep Details:</p>
+                        <ul class="list-disc list-inside ml-4">
+                            ${program.reps.map((rep, index) => {
+                                const timerProfile = timerProfiles.find(p => p.id === rep.timerProfileId);
+                                const profileName = timerProfile ? timerProfile.profileName : 'Unknown Profile';
+                                return `<li>Rep ${index + 1}: ${profileName} (Delay after: ${rep.delayAfterRep}s)</li>`;
+                            }).join('')}
+                        </ul>
+                    `;
+                }
+            }
+        });
+
+        document.getElementById('startProgramBtn').addEventListener('click', () => {
+            const programId = document.getElementById('selectProgram').value;
+            if (!programId) {
+                showMessageBox("Selection Error", "Please select a training program to start.");
+                return;
+            }
+            startTraining(programId);
+        });
+
+        document.getElementById('backToHomeFromStartTrainingBtn').addEventListener('click', renderHomeScreen);
+
+        // Training Session Logic
+        function startTraining(programId) {
+            currentProgram = trainingPrograms.find(p => p.id === programId);
+            if (!currentProgram || currentProgram.reps.length === 0) {
+                showMessageBox("Error", "Selected program is invalid or has no repetitions.");
+                return;
+            }
+
+            // Check if all timer profiles in the program exist
+            for (const rep of currentProgram.reps) {
+                if (!timerProfiles.find(p => p.id === rep.timerProfileId)) {
+                    showMessageBox("Error", `Timer profile for one of the repetitions (${rep.timerProfileId}) not found. Please check your program configuration.`);
+                    return;
+                }
+            }
+
+            showScreen('trainingSessionScreen');
+            document.getElementById('currentProgramName').textContent = currentProgram.programName;
+            document.getElementById('totalReps').textContent = currentProgram.reps.length;
+
+            currentRepIndex = 0;
+            programStartTime = Date.now();
+            runCurrentRep();
+        }
+
+        function runCurrentRep() {
+            clearTimeoutsAndIntervals(); // Clear any previous timers
+
+            if (currentRepIndex >= currentProgram.reps.length) {
+                // Program finished
+                finishProgram(true); // true for completed
+                return;
+            }
+
+            const rep = currentProgram.reps[currentRepIndex];
+            const timerProfile = timerProfiles.find(p => p.id === rep.timerProfileId);
+
+            if (!timerProfile) {
+                showMessageBox("Error", `Timer profile for Rep ${currentRepIndex + 1} not found. Skipping rep.`);
+                currentRepIndex++;
+                runCurrentRep(); // Try next rep
+                return;
+            }
+
+            document.getElementById('currentRepNumber').textContent = currentRepIndex + 1;
+            currentSegmentIndex = -1; // -1 for preparatory phase
+            remainingTime = timerProfile.preparatoryTime;
+
+            updateTimerDisplay();
+            document.getElementById('currentMessage').textContent = `Rep ${currentRepIndex + 1}: Get Ready (Preparatory)`;
+            playBeep(); // Preparatory beep
+
+            // Start preparatory timer
+            timerInterval = setInterval(() => {
+                remainingTime--;
+                updateTimerDisplay();
+                if (remainingTime <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    startNextSegment();
+                }
+            }, 1000);
+        }
+
+        function startNextSegment() {
+            clearTimeoutsAndIntervals(); // Clear previous segment timeout
+
+            const rep = currentProgram.reps[currentRepIndex];
+            const timerProfile = timerProfiles.find(p => p.id === rep.timerProfileId);
+
+            currentSegmentIndex++;
+
+            if (currentSegmentIndex < timerProfile.segments.length) {
+                const segment = timerProfile.segments[currentSegmentIndex];
+                remainingTime = segment.duration;
+                updateTimerDisplay();
+                document.getElementById('currentMessage').textContent = `Rep ${currentRepIndex + 1}: ${segment.message}`;
+                if (segment.buzzerSound === 'long_beep') {
+                    playBeep(true);
+                } else {
+                    playBeep();
+                }
+
+                // Start segment timer
+                timerInterval = setInterval(() => {
+                    remainingTime--;
+                    updateTimerDisplay();
+                    if (remainingTime <= 0) {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                        startNextSegment(); // Move to next segment or end rep
+                    }
+                }, 1000);
+            } else {
+                // All segments in current rep finished
+                handleRepCompletion();
+            }
+        }
+
+        function handleRepCompletion() {
+            clearTimeoutsAndIntervals(); // Clear any remaining timers
+
+            const rep = currentProgram.reps[currentRepIndex];
+            document.getElementById('currentMessage').textContent = `Rep ${currentRepIndex + 1} Completed!`;
+            playBeep(true); // Long beep for rep completion
+
+            if (currentRepIndex < currentProgram.reps.length - 1) {
+                // Determine delay based on rep number
+                let delay = rep.delayAfterRep; // Default delay
+                if ((currentRepIndex + 1) % 10 === 0) { // If it's the 10th, 20th, etc. rep
+                    delay = 300; // 5 minutes rest
+                    document.getElementById('currentMessage').textContent += ` (5 Min Rest)`;
+                }
+
+                remainingTime = delay;
+                document.getElementById('currentMessage').textContent += ` Next rep in ${formatTime(remainingTime)}...`;
+                updateTimerDisplay();
+
+                repDelayTimeout = setTimeout(() => {
+                    currentRepIndex++;
+                    runCurrentRep();
+                }, delay * 1000);
+
+                // Update timer during delay
+                timerInterval = setInterval(() => {
+                    remainingTime--;
+                    updateTimerDisplay();
+                    if (remainingTime <= 0) {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                    }
+                }, 1000);
+
+            } else {
+                // No more reps, finish program
+                currentRepIndex++; // Increment for logging purposes (last rep completed)
+                finishProgram(true);
+            }
+        }
+
+        function updateTimerDisplay() {
+            document.getElementById('timerDisplay').textContent = formatTime(remainingTime);
+
+            // Update progress bar
+            const rep = currentProgram.reps[currentRepIndex];
+            const timerProfile = timerProfiles.find(p => p.id === rep.timerProfileId);
+            let totalSegmentDuration = 0;
+            if (timerProfile) {
+                totalSegmentDuration = timerProfile.preparatoryTime + timerProfile.segments.reduce((sum, seg) => sum + seg.duration, 0);
+            }
+
+            let currentProgress = 0;
+            if (currentSegmentIndex === -1) { // Preparatory phase
+                currentProgress = timerProfile.preparatoryTime - remainingTime;
+            } else if (currentSegmentIndex < timerProfile.segments.length) {
+                // Sum of previous segments + current segment progress
+                let elapsedInPreviousSegments = timerProfile.preparatoryTime;
+                for (let i = 0; i < currentSegmentIndex; i++) {
+                    elapsedInPreviousSegments += timerProfile.segments[i].duration;
+                }
+                currentProgress = elapsedInPreviousSegments + (timerProfile.segments[currentSegmentIndex].duration - remainingTime);
+            } else { // After all segments, during inter-rep delay or program end
+                currentProgress = totalSegmentDuration; // Max out progress for the rep
+            }
+
+            const progressBar = document.getElementById('progressBar');
+            if (totalSegmentDuration > 0) {
+                const percentage = (currentProgress / totalSegmentDuration) * 100;
+                progressBar.style.width = `${Math.min(100, percentage)}%`;
+            } else {
+                progressBar.style.width = '0%';
+            }
+        }
+
+        function clearTimeoutsAndIntervals() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            if (segmentTimeout) {
+                clearTimeout(segmentTimeout);
+                segmentTimeout = null;
+            }
+            if (repDelayTimeout) {
+                clearTimeout(repDelayTimeout);
+                repDelayTimeout = null;
+            }
+        }
+
+        function finishProgram(completed) {
+            clearTimeoutsAndIntervals();
+            const programEndTime = Date.now();
+            const duration = Math.floor((programEndTime - programStartTime) / 1000); // Duration in seconds
+
+            const log = {
+                shooterId: userId,
+                programId: currentProgram.id,
+                programName: currentProgram.programName,
+                startTime: programStartTime,
+                endTime: programEndTime,
+                duration: duration,
+                completed: completed,
+            };
+            saveTrainingLog(log);
+
+            if (completed) {
+                showMessageBox("Program Finished!", "Congratulations! You have completed the training program.");
+            } else {
+                showMessageBox("Program Interrupted", "The training program was stopped.");
+            }
+            renderHomeScreen();
+        }
+
+        document.getElementById('stopTrainingBtn').addEventListener('click', async () => {
+            const confirmed = await showConfirmBox("Stop Program", "Are you sure you want to stop the current training program?");
+            if (confirmed) {
+                finishProgram(false); // false for interrupted
+            }
+        });
+
+        document.getElementById('backToHomeFromLogsBtn').addEventListener('click', renderHomeScreen);
+
+        // --- Initial Load ---
+        window.onload = initializeFirebase; // Initialize Firebase when the window loads
+        renderHomeScreen(); // Show home screen initially
+    </script>
+</body>
+</html>
