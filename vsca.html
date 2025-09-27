@@ -519,6 +519,11 @@
                 loadEventsFile(),
                 loadResultsFile()
             ]).then(() => {
+                // After both files are loaded, display all results without filter
+                filteredData = [...allData];
+                sortData();
+                renderTable();
+                updateResultsCount();
                 console.log('All files loaded successfully');
             }).catch(error => {
                 console.error('Error loading files:', error);
@@ -625,10 +630,7 @@
                 }
             });
 
-            filteredData = [...allData];
-            sortData();
-            renderTable();
-            updateResultsCount();
+            // Don't automatically set filteredData here - let the main load handler do it
         }
 
         function sortData() {
