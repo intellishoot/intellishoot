@@ -733,6 +733,7 @@
             ]).then(() => {
                 // After both files are loaded, display all results without filter
                 filteredData = [...allData];
+                hideFilterTitle();
                 sortData();
                 renderTable();
                 updateResultsCount();
