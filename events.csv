@@ -1,5 +1,37 @@
 ﻿Event ID,Event Name
-ARN01,10m Air Rifle Men
-ARN02,10m Air Rifle Women  
-ARN03,10m Air Pistol Men
-ARN04,10m Air Pistol Women
+V01,10M Air Rifle Men NR
+V02,10M Air Rifle Men Junior NR
+V03,10M Air Rifle Men Youth NR
+V04,10M Air Rifle Men Sub Youth NR
+V05,10M Air Rifle Men Under 14 NR
+V06,10M Air Rifle Women NR
+V07,10M Air Rifle Women Junior NR
+V08,10M Air Rifle Women Youth NR
+V09,10M Air Rifle Women Sub Youth NR
+V10,10M Air Rifle Women Under 14 NR
+V11,10M Air Pistol Men NR
+V12,10M Air Pistol Men Junior NR
+V13,10M Air Pistol Men Youth NR
+V14,10M Air Pistol Men Sub Youth NR
+V15,10M Air Pistol Men Under 14 NR
+V16,10M Air Pistol Women NR
+V17,10M Air Pistol Women Junior NR
+V18,10M Air Pistol Women Youth NR
+V19,10M Air Pistol Women Sub Youth NR
+V20,10M Air Pistol Women Under 14 NR
+V21,10M Open Sight Rifle Men 800
+V22,10M Open Sight Rifle Men Junior 800
+V23,10M Open Sight Rifle Men Youth 800
+V24,10M Open Sight Rifle Men Sub Youth 800
+V25,10M Open Sight Rifle Men Under 14 800
+V26,10M Open Sight Rifle Women 800
+V27,10M Open Sight Rifle Women Junior 800
+V28,10M Open Sight Rifle Women Youth 800
+V29,10M Open Sight Rifle Women Sub Youth 800
+V30,10M Open Sight Rifle Women Under 14 800
+V31,10M Open Sight Rifle Men Masters (Above 45) 800
+V32,10M Open Sight Rifle Women Masters (Above 45) 800
+V33,10M Peep Sight Rifle Men Masters (Above 45)
+V34,10M Peep Sight Rifle Women Masters (Above 45)
+V35,10M Air Pistol Men Masters (Above 45)
+V36,10M Air Pistol Women Masters (Above 45)
