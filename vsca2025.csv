@@ -12,7 +12,7 @@ AKSHAY RAMGANESH,Arjun Sports Shooting Academy,V12,312,,2,79,77,75,81,,,,4219
 Shishir R naika,Hawkeye shooting academy ,"V14,V15",325,,1,83,84,77,81,,,,4183
 Shreya Chakravorty ,Asthra Shooting Academy ,V16,343,,3,86,87,83,87,,,,4205
 Rishika patil NS,VSCA,"V19,V20",273,,0,66,73,66,68,,,,4184
-Dhwani surana ,SDAT CHENNAI ,V20,262,,2,58,75,70,59,,,,4040
+Dhwani surana ,SDAT,V20,262,,2,58,75,70,59,,,,4040
 K Poorvi Hariprasad,BEST SHOT SHOOTING ACADEMY,V20,280,,2,75,75,73,57,,,,4204
 MAHESH L M,VSCA,V35,327,,2,77,81,81,88,,,,4231
 Aadya Nithin Bantwal ,BEST SHOT SHOOTING ACADEMY,V10,334,,7,87,81,78,88,,,,4203
@@ -43,12 +43,12 @@ Gopal Chandak,Agasthya Sports Academy ,V11,326,,11,81,79,78,88,,,,4051
 Abhishek Panigrahi ,Gun For Glory ,V11,359,,3,88,88,92,91,,,,4053
 Sudharshan Srinivasan ,Gun For Glory ,V12,295,,1,68,76,77,74,,,,4062
 Gaurav Juneja ,Agasthya Sports Academy ,"V11,V35",338,,2,84,80,88,86,,,,4095
-Vishwadeep Vikrant,Eminenet Hub,V15,348,,2,89,81,93,85,,,,4058
+Vishwadeep Vikrant,Eminent shooting hub,V15,348,,2,89,81,93,85,,,,4058
 B mahesh,PRTC (ARMY) ,V11,352,,2,85,89,86,92,,,,4125
 Gajraj Singh Pal,PRTC (ARMY) ,V11,346,,5,90,86,85,85,,,,4126
 Narendar,PRTC (ARMY) ,V11,363,,7,94,92,88,89,,,,4127
 Amogha Abhilash,Hawkeye shooting academy ,"V06,V07,V08,V09",384,,20,97,95,94,98,,,,4225
-SAMPA SEM,KSRA,V16,332,,2,81,83,84,84,,,,4737
+SAMPA SEN,KSRA,V16,332,,2,81,83,84,84,,,,4737
 Krishan,PRTC (ARMY) ,V01,366,,11,91,92,88,95,,,,4128
 Brithi Prasad Sungal ,VSCA,"V09,V10",209,,0,48,52,52,57,,,,4167
 Ameer Salman M,Asthra Shooting Academy ,V11,368,,5,92,91,93,92,,,,4009
@@ -92,8 +92,8 @@ VAISHNAVI N PRADEEP,BRSA,"V19,V20",357,,4,91,83,91,92,,,,4140
 Saniya Jasmin B H,VSCA,V18,337,,3,89,81,83,84,,,,4740
 Asma Urooj,Eklavya Sports Shooting Academy,"V18,V19,V20",322,,3,82,80,77,83,,,,4177
 AVNI SATHYENDRA,MSSA,"V10,V09",353,,8,93,84,88,88,,,,4739
-Sashreek Mitra,Hawkeye shooting academy ,"V11,V12,V13,V14,V15",354,,3,89,82,91,92,,,,4186
-Chandan R,MSSA mysore,V21,243,,,82,85,76,,,,,4502
+Sashreek Mitra,Hawkeye shooting academy ,"V11,V12,V13,V14,V15",364,,3,89,92,91,92,,,,4186
+Chandan R,MSSA,V21,243,,,82,85,76,,,,,4502
 KARTHIK V,ERODE RIFLE ACADEMY,"V21,V22,V23,V24,V25",281,,,94,95,92,,,,,4503
 M.DHANESH,ERODE RIFLE ACADEMY,"V24,V25",249,,,82,82,85,,,,,4505
 Chinthan k v,VSCA,"V22,V23",268,,,86,89,93,,,,,4506
@@ -120,7 +120,7 @@ THANUSHREE,TROOP 192 NCC,V28,222,,,81,70,71,,,,,4548
 Namrutha G,TROOP 192 NCC,V28,227,,,78,77,72,,,,,4549
 Swati Manoj pawaskar ,Troop 192 NCC,V28,234,,,76,80,78,,,,,4550
 Naveen Kumar G P,KSRA,V31,266,,,85,92,89,,,,,4553
-DHASANTH T S,ERODE RIFLE ACCADEMY ,"V24,V25",274,,,88,96,90,,,,,4566
+DHASANTH T S,ERODE RIFLE ACADEMY,"V24,V25",274,,,88,96,90,,,,,4566
 Harish K,SDAT,"V24,V25",243,,,82,82,79,,,,,4565
 Vanitha,VSCA,"V26,V27,V28",267,,,92,87,88,,,,,4567
 Harshiya Afreen BH,VSCA,V30,263,,,90,88,85,,,,,4568
@@ -129,7 +129,7 @@ kunjiyanda preethi appaiah,MSSA,"V26,V32",240,,,86,83,71,,,,,4571
 Abhay Nidhi Kamayanda,MSSA,"V21,V22,V23",278,,,93,94,91,,,,,4572
 Dhanusha,MSSA,"V26,V27",271,,,88,91,92,,,,,4574
 chiranjeevi ,MSSA,"V22,V25",271,,,91,85,95,,,,,4575
-Sabareesh ,Erode rifle academy ,V25,250,,,84,82,84,,,,,4613
+Sabareesh ,ERODE RIFLE ACADEMY,V25,250,,,84,82,84,,,,,4613
 Manjunath J ,Trigger X shooting academy ,V21,242,,,76,84,82,,,,,4615
 Sarweshwaran ,Trigger X shooting academy ,"V21,V22,V23",244,,,73,85,86,,,,,4616
 Anil Kumar HS,Roriez Sports shooting academy,V21,271,,,89,92,90,,,,,4587
@@ -140,7 +140,38 @@ Deeksha,Trigger X shooting academy ,"V26,V27,V28,V29,V30",191,,,57,73,61,,,,,459
 SIYONA Lill ,Trigger X shooting academy ,"V26,V28,V29",256,,,87,83,86,,,,,4592
 Angel sharlet ,Trigger X shooting academy ,"V26,V28,V29",230,,,78,79,73,,,,,4593
 Girijesh  R,Trigger X shooting academy ,"V21,V22,V23,V24",262,,,88,91,83,,,,,4594
-VISHAL S I,TRIGGER X SHOOTING SPORTS ACADEMY ,"V21,V23",264,,,89,88,87,,,,,4596
+VISHAL S I,Trigger X shooting academy ,"V21,V23",264,,,89,88,87,,,,,4596
 Vishrutha,VSCA,"V27,V28,V29",262,,,86,88,88,,,,,4518
-
-
+Rajesh K,Roriez Sports Shooting Academy,"V21 , V22 , V23 ",230,,,73,71,86,,,,,4608
+Aarshey V,Roriez Sports Shooting Academy,"V22 , V23 ",273,,,88,93,92,,,,,4609
+Yatheesh BB,Roriez Sports Shooting Academy,"V23 , V25 ",70,,,9,26,35,,,,,4611
+HARISH R E ,Trigger X shooting academy ,V21 ,257,,,82,86,89,,,,,4617
+Gagan Chandra,VSCA,V25,78,,,22,20,36,,,,,4513
+JASWANTH,Trigger X shooting academy ,"V21,V23",261,,,84,90,87,,,,,4595
+VARCHUS S,BRSA,"V01,V02,V03,V04,V05",395,,31,98,99,100,98,,,,4146
+Kiaan Das,Eklavya Sports Shooting Academy,"V03,V04,V05",391,,23,98,96,100,97,,,,4179
+Mohamed Hassan A,Asthra Shooting Academy,V11,355,,6,88,86,91,90,,,,4181
+Guhaan Kumar J,Hawkeye shooting academy ,"V11,V12,V13,V14",369,,6,92,91,93,93,,,,4178
+Nanak virdi,Eklavya Sports Shooting Academy,"V13,V14",318,,1,80,78,80,80,,,,4171
+Noel James,Eklavya Sports Shooting Academy,"V13,V14",364,,7,89,89,92,94,,,,4172
+Vyaum Lahoti,Eklavya Sports Shooting Academy,"V13,V14",331,,2,84,82,83,82,,,,4176
+KARTHIK V,ERODE RIFLE ACADEMY,V14,272,,0,75,65,69,63,,,,4182
+AGASTYA PREETHAM CHANDRA ,BRSA,V15,256,,1,65,68,50,73,,,,4145
+Kunshi G,VSCA,V17,311,,0,71,83,79,78,,,,4085
+Guhyaa Karthik,Eklavya Sports Shooting Academy,"V18,V19",306,,1,80,75,83,68,,,,4174
+Kiara Das,Eklavya Sports Shooting Academy,"V18,V19,V20",374,,7,91,94,95,94,,,,4175
+Navya Sharma,Eklavya Sports Shooting Academy ,V20,313,,2,75,82,78,78,,,,4240
+Varun Sai Gopinath,VSCA,V15,300,,2,70,79,73,78,,,,4064
+Aamir Imam,Eklavya Sports Shooting Academy,"V04,V05",380,,13,97,94,95,94,,,,4190
+Abhradeep Karmakar,Asthra Shooting Academy,V15,353,,3,83,91,88,91,,,,4200
+Dhanvik Vijaykumar,Hawkeye shooting academy ,"V01,V02,V03,V04",388,,24,92,99,97,100,,,,4239
+Likith N Kalmane ,VSCA,"V04,V05",349,,6,83,88,88,90,,,,4215
+Manasvini Narayanan,Hawkeye shooting academy ,"V06,V07,V08",387,,24,97,94,98,98,,,,4234
+Farha Tahseena Ajmal sait ,Hawkeye shooting academy ,"V16,V17,V18",334,,2,81,85,88,80,,,,4193
+Samyuktha C,Hawkeye shooting academy ,"V16,V17,V18,V19",343,,1,83,88,86,86,,,,4236
+Mahaniya venkatesha,Hawkeye shooting academy ,"V18,V19",328,,2,84,87,77,80,,,,4207
+Shekar K S,Eminent shooting hub,"V01,V02,V03,V04",366,,9,92,94,90,90,,,,4195
+Harsha D P,art of shooting,"V02,V03,V04,V05",383,,10,94,95,95,99,,,,4237
+Nakul k,VSCA,V04,382,,19,96,92,97,97,,,,4229
+Deeksha c,VSCA,V10,298,,3,74,76,74,74,,,,4223
+Samarth B Gampu ,VSCA,"V04,V05",354,,2,88,91,86,89,,,,4056
