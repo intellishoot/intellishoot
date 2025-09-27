@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooting Competition Results</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f1f3f4 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(52, 73, 94, 0.08);
+            border: 1px solid rgba(52, 152, 219, 0.1);
+        }
+
+        .competition-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 20px 25px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(52, 73, 94, 0.06);
+            border-left: 4px solid #3498db;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+        }
+
+        .filter-btn:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1f618d 100%);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .filter-btn:active {
+            transform: translateY(0);
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.2);
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .results-count {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #34495e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #27ae60;
+        }
+
+        .table-container {
+            background: #ffffff;
+            border-radius: 10px;
+            /* CHANGE START: ADDED OVERFLOW-X TO ENSURE HORIZONTAL SCROLLING FOR WIDE TABLES */
+            overflow: auto; 
+            /* CHANGE END */
+            box-shadow: 0 4px 25px rgba(52, 73, 94, 0.08);
+            border: 1px solid rgba(189, 195, 199, 0.3);
+            max-height: 70vh;
+        }
+        
+        /* Ensure vertical scrollbar styling targets the right element */
+        .table-container::-webkit-scrollbar {
+            width: 6px;
+            height: 6px; /* Added height for horizontal scrollbar */
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: #ecf0f1;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: #bdc3c7;
+            border-radius: 3px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #95a5a6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #2c3e50;
+            /* CHANGE START: Set a minimum width for mobile to ensure content isn't crushed */
+            min-width: 900px; 
+            /* CHANGE END */
+        }
+
+        th {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            padding: 16px 14px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            border-bottom: 2px solid #2c3e50;
+        }
+
+        th:first-child {
+            border-top-left-radius: 0;
+        }
+
+        th:last-child {
+            border-top-right-radius: 0;
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        tr:hover {
+            background-color: rgba(52, 152, 219, 0.04);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44, 62, 80, 0.6);
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-content {
+            background: #ffffff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh;
+            box-shadow: 0 10px 40px rgba(44, 62, 80, 0.2);
+            color: #2c3e50;
+            border: 1px solid rgba(189, 195, 199, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close {
+            color: #95a5a6;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .close:hover {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 45px 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3498db;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
+            pointer-events: none;
+        }
+
+        .filter-options {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            background: #fafbfc;
+            max-height: 400px;
+        }
+
+        .filter-options::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .filter-options::-webkit-scrollbar-track {
+            background: #f1f2f6;
+            border-radius: 4px;
+        }
+
+        .filter-options::-webkit-scrollbar-thumb {
+            background: #bdc3c7;
+            border-radius: 4px;
+        }
+
+        .filter-options::-webkit-scrollbar-thumb:hover {
+            background: #95a5a6;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: #ffffff;
+            border-bottom: 1px solid #ecf0f1;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            min-height: 50px;
+        }
+
+        .filter-option:last-child {
+            border-bottom: none;
+        }
+
+        .filter-option:hover {
+            background: linear-gradient(90deg, #e3f2fd 0%, #f8f9fa 100%);
+            border-left: 4px solid #3498db;
+            padding-left: 12px;
+        }
+
+        .filter-option.selected {
+            background: linear-gradient(90deg, #e8f5e8 0%, #f0f8f0 100%);
+            border-left: 4px solid #27ae60;
+            padding-left: 12px;
+        }
+
+        .filter-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #27ae60;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .filter-option label {
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 500;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .filter-option .event-id {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            background: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1f618d 100%);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 50px;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #3498db;
+            font-size: 1.1rem;
+        }
+
+        .error {
+            text-align: center;
+            padding: 50px;
+            color: #e74c3c;
+            font-size: 1.1rem;
+        }
+
+        .serial-col {
+            width: 70px;
+            text-align: center;
+            font-weight: 600;
+            color: #e74c3c;
+        }
+
+        .score-col {
+            font-weight: 700;
+            color: #e74c3c;
+            text-align: center;
+        }
+
+        .name-col {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .academy-col {
+            color: #34495e;
+        }
+
+        .event-col {
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .competition-title {
+                font-size: 1.6rem;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+                font-size: 0.8rem;
+                /* IMPORTANT for mobile: set minimum width for table columns to prevent crushing */
+                min-width: 60px; 
+            }
+            
+            /* Remove min-width on table itself on small screens for better vertical scrolling */
+            table {
+                min-width: unset; 
+            }
+            
+            .controls {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .control-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+            }
+            
+            .filter-btn, .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .modal-content {
+                margin: 5% auto;
+                padding: 20px;
+                width: 95%;
+            }
+            
+            .filter-options {
+                max-height: 60vh;
+            }
+            
+            .filter-option {
+                padding: 15px;
+                min-height: 50px;
+            }
+            
+            .filter-option label {
+                font-size: 0.95rem;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 12px;
+            }
+        }
+
+        /* Enterprise subtle animations */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header fade-in">
+            <h1 class="competition-title" id="competitionTitle">VSCA Shooting Championship 2025</h1>
+            <p class="subtitle">Official Competition Results</p>
+        </div>
+
+        <div class="controls fade-in">
+            <div class="control-buttons">
+                <button class="filter-btn" id="filterBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
+                    Filter Events
+                </button>
+                <button class="download-btn" id="downloadBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download PDF
+                </button>
+            </div>
+            <div class="results-count" id="resultsCount">
+                <div class="status-indicator"></div>
+                Loading data...
+            </div>
+        </div>
+
+        <div class="table-container fade-in">
+            <table id="resultsTable">
+                <thead>
+                    <tr>
+                        <th class="serial-col">S.No</th>
+                        <th>Shooter Name</th>
+                        <th>Academy</th>
+                        <th>Event ID</th>
+                        <th class="score-col">Score</th>
+                        <th>Decimal Score</th>
+                        <th>10x</th>
+                        <th>S1</th>
+                        <th>S2</th>
+                        <th>S3</th>
+                        <th>S4</th>
+                        <th>S5</th>
+                        <th>S6</th>
+                        <th>Penalty</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="15" class="loading">Loading competition results...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="filterModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
+                    Filter by Events
+                </h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search events..." autocomplete="off">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </div>
+            <div class="filter-options" id="filterOptions">
+                </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="clearFilter">Clear All</button>
+                <button class="btn btn-primary" id="applyFilter">Apply Filter</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allData = [];
+        let filteredData = [];
+        let availableEvents = new Set();
+        let eventMapping = new Map(); // Maps event ID to event name
+        let debugMode = true; // Enable detailed logging
+
+        // DOM elements
+        const filterBtn = document.getElementById('filterBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const filterModal = document.getElementById('filterModal');
+        const closeModal = document.getElementById('closeModal');
+        const filterOptions = document.getElementById('filterOptions');
+        const searchInput = document.getElementById('searchInput');
+        const applyFilter = document.getElementById('applyFilter');
+        const clearFilter = document.getElementById('clearFilter');
+        const tableBody = document.getElementById('tableBody');
+        const resultsCount = document.getElementById('resultsCount');
+
+        // Event listeners
+        filterBtn.addEventListener('click', showFilterModal);
+        downloadBtn.addEventListener('click', downloadPDF);
+        closeModal.addEventListener('click', hideFilterModal);
+        applyFilter.addEventListener('click', applyEventFilter);
+        clearFilter.addEventListener('click', clearAllFilters);
+        searchInput.addEventListener('input', filterEventsList);
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === filterModal) {
+                hideFilterModal();
+            }
+        });
+
+        // Load CSV files automatically on page load
+        window.addEventListener('load', () => {
+            showLoadingState();
+            Promise.all([
+                loadEventsFile(),
+                loadResultsFile()
+            ]).then(() => {
+                // After both files are loaded, display all results without filter
+                filteredData = [...allData];
+                sortData();
+                renderTable();
+                updateResultsCount();
+                console.log('All files loaded successfully');
+            }).catch(error => {
+                console.error('Error loading files:', error);
+                showError('Failed to load CSV files. Check console for details.');
+            });
+        });
+
+        function showLoadingState() {
+            tableBody.innerHTML = '<tr><td colspan="15" class="loading">Loading competition results...</td></tr>';
+            resultsCount.innerHTML = `
+                <div class="status-indicator" style="background: #3498db;"></div>
+                Loading data...
+            `;
+        }
+
+        function loadEventsFile() {
+            if (debugMode) console.log('🔍 Loading events.csv...');
+            
+            return fetch('events.csv')
+                .then(response => {
+                    if (debugMode) console.log('📥 Events file response:', response.status, response.statusText);
+                    
+                    if (!response.ok) {
+                        if (response.status === 404) {
+                            console.warn('⚠️ events.csv not found - will use event IDs as names');
+                            return ''; // Return empty string to skip events processing
+                        }
+                        throw new Error('Events CSV file not found');
+                    }
+                    return response.text();
+                })
+                .then(csvText => {
+                    if (!csvText.trim()) {
+                        console.warn('⚠️ Events file is empty or not found - continuing without event names');
+                        return Promise.resolve();
+                    }
+                    
+                    if (debugMode) console.log('📄 Events CSV content preview:', csvText.substring(0, 200));
+                    
+                    return new Promise((resolve, reject) => {
+                        Papa.parse(csvText, {
+                            header: true,
+                            skipEmptyLines: true,
+                            complete: function(results) {
+                                if (debugMode) console.log('📊 Events parsing results:', results);
+                                processEventsData(results.data);
+                                resolve();
+                            },
+                            error: function(error) {
+                                console.error('❌ Events parsing error:', error);
+                                reject(new Error('Error parsing events CSV: ' + error.message));
+                            }
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.warn('⚠️ Events file issue:', error.message, '- continuing without event names');
+                    // Don't throw error, just continue without events file
+                    return Promise.resolve();
+                });
+        }
+
+        function processEventsData(eventsData) {
+            if (debugMode) console.log('🎯 Processing events data:', eventsData);
+            
+            eventMapping.clear();
+            let processedCount = 0;
+            
+            eventsData.forEach((row, index) => {
+                if (debugMode && index < 3) console.log(`📝 Event row ${index}:`, row);
+                
+                // Clean headers by trimming whitespace
+                const cleanRow = {};
+                for (const [key, value] of Object.entries(row)) {
+                    const cleanKey = key.trim();
+                    cleanRow[cleanKey] = value;
+                }
+                
+                // Try multiple possible column names for flexibility
+                const eventId = cleanRow['Event ID'] || cleanRow['event_id'] || cleanRow['id'] || cleanRow['EventID'] || cleanRow['Event_ID'];
+                const eventName = cleanRow['Event Name'] || cleanRow['event_name'] || cleanRow['name'] || cleanRow['EventName'] || cleanRow['Event_Name'];
+                
+                if (eventId && eventName) {
+                    eventMapping.set(eventId.toString().trim(), eventName.toString().trim());
+                    processedCount++;
+                    if (debugMode && processedCount <= 5) {
+                        console.log(`✅ Mapped: "${eventId}" → "${eventName}"`);
+                    }
+                }
+            });
+            
+            console.log(`🎯 Events mapping completed: ${processedCount} events loaded`);
+            if (debugMode) console.log('📋 Event mapping:', Array.from(eventMapping.entries()));
+        }
+
+        function loadResultsFile() {
+            if (debugMode) console.log('🔍 Loading vsca2025.csv...');
+            
+            return fetch('vsca2025.csv')
+                .then(response => {
+                    if (debugMode) console.log('📥 Results file response:', response.status, response.statusText);
+                    
+                    if (!response.ok) {
+                        throw new Error('Results CSV file not found');
+                    }
+                    return response.text();
+                })
+                .then(csvText => {
+                    if (debugMode) {
+                        console.log('📄 Results CSV content preview:', csvText.substring(0, 300));
+                        console.log('📏 File size:', csvText.length, 'characters');
+                    }
+                    
+                    return new Promise((resolve, reject) => {
+                        Papa.parse(csvText, {
+                            header: true,
+                            skipEmptyLines: true,
+                            dynamicTyping: true,
+                            complete: function(results) {
+                                if (debugMode) {
+                                    console.log('📊 Results parsing results:', results);
+                                    console.log('📊 Parsed rows count:', results.data.length);
+                                    console.log('📊 First few rows:', results.data.slice(0, 3));
+                                }
+                                processData(results.data);
+                                resolve();
+                            },
+                            error: function(error) {
+                                console.error('❌ Results parsing error:', error);
+                                reject(new Error('Error parsing results CSV: ' + error.message));
+                            }
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('❌ Results file error:', error);
+                    showError('Failed to load vsca2025.csv. Please ensure the file is in the same directory.');
+                    throw error;
+                });
+        }
+
+        function processData(data) {
+            if (debugMode) console.log('🏹 Processing shooter data...');
+            if (debugMode) console.log('📊 Raw data length:', data.length);
+            
+            // Clean headers by trimming whitespace
+            allData = data.map((row, index) => {
+                const cleanRow = {};
+                for (const [key, value] of Object.entries(row)) {
+                    const cleanKey = key.trim();
+                    cleanRow[cleanKey] = value;
+                }
+                
+                if (debugMode && index < 3) {
+                    console.log(`📝 Row ${index} original:`, row);
+                    console.log(`📝 Row ${index} cleaned:`, cleanRow);
+                }
+                
+                return cleanRow;
+            }).filter((row, index) => {
+                const shooterName = row['Shooter Name'];
+                const hasName = shooterName && shooterName.toString().trim();
+                
+                if (debugMode && index < 5) {
+                    console.log(`🎯 Row ${index} shooter name: "${shooterName}" - Valid: ${hasName ? 'YES' : 'NO'}`);
+                }
+                
+                return hasName;
+            });
+
+            console.log(`✅ Filtered data: ${allData.length} valid rows`);
+            
+            // Validate required columns
+            if (allData.length > 0) {
+                const firstRow = allData[0];
+                const requiredColumns = ['Shooter Name', 'Academy', 'Event ID', 'Score'];
+                const availableColumns = Object.keys(firstRow);
+                
+                console.log('📋 Available columns:', availableColumns);
+                console.log('📋 Required columns:', requiredColumns);
+                
+                const missingColumns = requiredColumns.filter(col => !availableColumns.includes(col));
+                if (missingColumns.length > 0) {
+                    console.warn('⚠️ Missing required columns:', missingColumns);
+                    console.log('💡 Suggestion: Check your CSV headers match exactly:', requiredColumns);
+                }
+                
+                // Show sample data for debugging
+                if (debugMode) {
+                    console.log('📊 Sample shooter data:');
+                    allData.slice(0, 3).forEach((row, i) => {
+                        console.log(`  Row ${i}:`, {
+                            name: row['Shooter Name'],
+                            academy: row['Academy'],
+                            eventId: row['Event ID'],
+                            score: row['Score']
+                        });
+                    });
+                }
+            }
+
+            // Extract all unique events
+            availableEvents.clear();
+            allData.forEach((row, index) => {
+                const eventIds = row['Event ID'];
+                if (eventIds) {
+                    const events = eventIds.toString().split(',').map(e => e.trim()).filter(e => e);
+                    events.forEach(event => {
+                        if (event) availableEvents.add(event);
+                    });
+                    
+                    if (debugMode && index < 3) {
+                        console.log(`🎯 Row ${index} events: "${eventIds}" → [${events.join(', ')}]`);
+                    }
+                }
+            });
+
+            console.log(`🎯 Available events: ${availableEvents.size} unique events`);
+            if (debugMode) console.log('🎯 Event list:', Array.from(availableEvents));
+            
+            // Validation summary
+            console.log('📊 DATA VALIDATION SUMMARY:');
+            console.log(`   Total rows processed: ${data.length}`);
+            console.log(`   Valid shooter records: ${allData.length}`);
+            console.log(`   Unique events found: ${availableEvents.size}`);
+            console.log(`   Event mappings loaded: ${eventMapping.size}`);
+            
+            if (allData.length === 0) {
+                showError('No valid shooter data found. Please check your CSV format and column names.');
+                return;
+            }
+        }
+
+        function sortData() {
+            filteredData.sort((a, b) => {
+                const scoreA = parseFloat(a['Score']) || 0;
+                const scoreB = parseFloat(b['Score']) || 0;
+                return scoreB - scoreA; // Highest to lowest
+            });
+        }
+
+        function renderTable() {
+            if (debugMode) console.log('🖼️ Rendering table with', filteredData.length, 'rows');
+            
+            if (filteredData.length === 0) {
+                const message = allData.length === 0 ? 
+                    'No valid data found. Check console for details.' : 
+                    'No results found for selected filters';
+                    
+                tableBody.innerHTML = `<tr><td colspan="15" class="no-data">${message}</td></tr>`;
+                return;
+            }
+
+            const rows = filteredData.map((row, index) => {
+                if (debugMode && index < 2) {
+                    console.log(`🏆 Rendering row ${index}:`, {
+                        name: row['Shooter Name'],
+                        score: row['Score'],
+                        academy: row['Academy']
+                    });
+                }
+                
+                return `
+                    <tr>
+                        <td class="serial-col">${index + 1}</td>
+                        <td class="name-col">${row['Shooter Name'] || ''}</td>
+                        <td class="academy-col">${row['Academy'] || ''}</td>
+                        <td class="event-col">${row['Event ID'] || ''}</td>
+                        <td class="score-col">${row['Score'] || ''}</td>
+                        <td>${row['Decimal Score'] || ''}</td>
+                        <td>${row['10x'] || ''}</td>
+                        <td>${row['S1'] || ''}</td>
+                        <td>${row['S2'] || ''}</td>
+                        <td>${row['S3'] || ''}</td>
+                        <td>${row['S4'] || ''}</td>
+                        <td>${row['S5'] || ''}</td>
+                        <td>${row['S6'] || ''}</td>
+                        <td>${row['Penalty'] || ''}</td>
+                        <td>${row['Remarks'] || ''}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            tableBody.innerHTML = rows;
+            console.log('✅ Table rendered successfully');
+        }
+
+        function showFilterModal() {
+            if (availableEvents.size === 0) {
+                alert('No event data available');
+                return;
+            }
+
+            if (debugMode) console.log('🔧 Opening filter modal with events:', Array.from(availableEvents));
+
+            populateEventsList();
+            filterModal.style.display = 'block';
+            searchInput.focus();
+        }
+
+        function populateEventsList(searchTerm = '') {
+            const events = Array.from(availableEvents)
+                .map(eventId => ({
+                    id: eventId,
+                    name: eventMapping.get(eventId) || eventId,
+                    displayText: eventMapping.has(eventId) ? `${eventMapping.get(eventId)}` : eventId
+                }))
+                .filter(event => {
+                    if (!searchTerm) return true;
+                    const search = searchTerm.toLowerCase();
+                    return event.displayText.toLowerCase().includes(search) || 
+                           event.id.toLowerCase().includes(search);
+                })
+                .sort((a, b) => a.displayText.localeCompare(b.displayText));
+
+            if (events.length === 0) {
+                filterOptions.innerHTML = '<div class="no-results">No events found matching your search</div>';
+                return;
+            }
+
+            const options = events.map(event => {
+                const isChecked = document.getElementById(`event-${event.id}`)?.checked || false;
+                return `
+                    <div class="filter-option ${isChecked ? 'selected' : ''}" onclick="toggleEventSelection('${event.id}')">
+                        <input type="checkbox" id="event-${event.id}" value="${event.id}" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation()">
+                        <label for="event-${event.id}" onclick="event.stopPropagation(); toggleEventSelection('${event.id}')">${event.displayText}</label>
+                        <span class="event-id">${event.id}</span>
+                    </div>
+                `;
+            }).join('');
+
+            filterOptions.innerHTML = options;
+        }
+
+        function filterEventsList() {
+            const searchTerm = searchInput.value;
+            populateEventsList(searchTerm);
+        }
+
+        function toggleEventSelection(eventId) {
+            const checkbox = document.getElementById(`event-${eventId}`);
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked;
+                updateFilterOptionStyle(eventId, checkbox.checked);
+                if (debugMode) console.log(`✅ Toggled ${eventId}: ${checkbox.checked}`);
+            }
+        }
+
+        function updateFilterOptionStyle(eventId, isChecked) {
+            const filterOption = document.getElementById(`event-${eventId}`).closest('.filter-option');
+            if (filterOption) {
+                if (isChecked) {
+                    filterOption.classList.add('selected');
+                } else {
+                    filterOption.classList.remove('selected');
+                }
+            }
+        }
+
+        function hideFilterModal() {
+            filterModal.style.display = 'none';
+        }
+
+        function applyEventFilter() {
+            const selectedEvents = [];
+            const checkboxes = filterOptions.querySelectorAll('input[type="checkbox"]:checked');
+            
+            checkboxes.forEach(checkbox => {
+                selectedEvents.push(checkbox.value);
+            });
+
+            if (debugMode) console.log('🔍 Applying filter for events:', selectedEvents);
+
+            if (selectedEvents.length === 0) {
+                // No events selected, show all data
+                filteredData = [...allData];
+                if (debugMode) console.log('📊 No filters selected, showing all data');
+            } else {
+                // Filter data based on selected events
+                filteredData = allData.filter((row, index) => {
+                    const rowEvents = row['Event ID'];
+                    if (!rowEvents) {
+                        if (debugMode && index < 3) console.log(`❌ Row ${index} has no Event ID`);
+                        return false;
+                    }
+                    
+                    // Split comma-separated event IDs and trim whitespace
+                    const events = rowEvents.toString().split(',').map(e => e.trim()).filter(e => e);
+                    
+                    // Check if any of the row's events match any of the selected events
+                    const hasMatchingEvent = events.some(event => selectedEvents.includes(event));
+                    
+                    if (debugMode && index < 3) {
+                        console.log(`🎯 Row ${index}: "${rowEvents}" → [${events.join(', ')}] → Match: ${hasMatchingEvent}`);
+                    }
+                    
+                    return hasMatchingEvent;
+                });
+                
+                if (debugMode) {
+                    console.log(`📊 Filter applied: ${filteredData.length} rows match selected events`);
+                }
+            }
+
+            sortData();
+            renderTable();
+            updateResultsCount();
+            hideFilterModal();
+        }
+
+        function clearAllFilters() {
+            const checkboxes = filterOptions.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                updateFilterOptionStyle(checkbox.value, false);
+            });
+        }
+
+        function downloadPDF() {
+            try {
+                if (debugMode) console.log('📄 Starting PDF generation...');
+                
+                if (filteredData.length === 0) {
+                    alert('No data to download. Please load results first.');
+                    return;
+                }
+
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+
+                // Add title
+                doc.setFontSize(16);
+                doc.setFont(undefined, 'bold');
+                doc.text('VSCA Shooting Championship 2025 - Results', 15, 20);
+                
+                // Add timestamp and filter info
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'normal');
+                const now = new Date();
+                doc.text(`Generated on: ${now.toLocaleString()}`, 15, 28);
+                doc.text(`Total shooters: ${filteredData.length}`, 15, 34);
+
+                // Prepare table data
+                const headers = [
+                    'S.No', 'Shooter Name', 'Academy', 'Event ID', 'Score', 
+                    'Decimal Score', '10x', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', 
+                    'Penalty', 'Remarks'
+                ];
+
+                const tableData = filteredData.map((row, index) => [
+                    index + 1,
+                    row['Shooter Name'] || '',
+                    row['Academy'] || '',
+                    row['Event ID'] || '',
+                    row['Score'] || '',
+                    row['Decimal Score'] || '',
+                    row['10x'] || '',
+                    row['S1'] || '',
+                    row['S2'] || '',
+                    row['S3'] || '',
+                    row['S4'] || '',
+                    row['S5'] || '',
+                    row['S6'] || '',
+                    row['Penalty'] || '',
+                    row['Remarks'] || ''
+                ]);
+
+                // Generate table
+                doc.autoTable({
+                    head: [headers],
+                    body: tableData,
+                    startY: 40,
+                    styles: {
+                        fontSize: 7,
+                        cellPadding: 1.5,
+                    },
+                    headStyles: {
+                        fillColor: [52, 73, 94],
+                        textColor: [255, 255, 255],
+                        fontSize: 8,
+                        fontStyle: 'bold'
+                    },
+                    alternateRowStyles: {
+                        fillColor: [248, 249, 250]
+                    },
+                    columnStyles: {
+                        0: { halign: 'center', cellWidth: 12 }, // S.No
+                        1: { cellWidth: 35 }, // Shooter Name
+                        2: { cellWidth: 25 }, // Academy
+                        3: { cellWidth: 20 }, // Event ID
+                        4: { halign: 'center', cellWidth: 15 }, // Score
+                        5: { halign: 'center', cellWidth: 18 }, // Decimal Score
+                        6: { halign: 'center', cellWidth: 10 }, // 10x
+                        7: { halign: 'center', cellWidth: 10 }, // S1
+                        8: { halign: 'center', cellWidth: 10 }, // S2
+                        9: { halign: 'center', cellWidth: 10 }, // S3
+                        10: { halign: 'center', cellWidth: 10 }, // S4
+                        11: { halign: 'center', cellWidth: 10 }, // S5
+                        12: { halign: 'center', cellWidth: 10 }, // S6
+                        13: { halign: 'center', cellWidth: 15 }, // Penalty
+                        14: { cellWidth: 25 } // Remarks
+                    },
+                    margin: { left: 15, right: 15 }
+                });
+
+                // Save the PDF
+                const filename = `VSCA_Results_${now.getFullYear()}_${(now.getMonth() + 1).toString().padStart(2, '0')}_${now.getDate().toString().padStart(2, '0')}.pdf`;
+                doc.save(filename);
+                
+                if (debugMode) console.log('✅ PDF generated successfully:', filename);
+                
+            } catch (error) {
+                console.error('❌ PDF generation failed:', error);
+                alert('Failed to generate PDF. Please try again.');
+            }
+        }
+
+        function updateResultsCount() {
+            const count = filteredData.length;
+            const total = allData.length;
+            resultsCount.innerHTML = `
+                <div class="status-indicator"></div>
+                ${count} of ${total} shooters displayed
+            `;
+        }
+
+        function showError(message) {
+            console.error('❌ Error:', message);
+            tableBody.innerHTML = `<tr><td colspan="15" class="error">${message}<br><small>Check browser console (F12) for detailed logs</small></td></tr>`;
+            resultsCount.innerHTML = `
+                <div class="status-indicator" style="background: #e74c3c;"></div>
+                Error loading data
+            `;
+        }
+
+        // Helper function to get event display name
+        function getEventDisplayName(eventId) {
+            const eventName = eventMapping.get(eventId);
+            return eventName ? `${eventName} (${eventId})` : eventId;
+        }
+
+        // Debug helper - can be called from browser console
+        window.debugCSVData = function() {
+            console.log('=== CSV DEBUG INFO ===');
+            console.log('All data:', allData);
+            console.log('Filtered data:', filteredData);
+            console.log('Available events:', Array.from(availableEvents));
+            console.log('Event mapping:', Array.from(eventMapping.entries()));
+            console.log('Sample row keys:', allData.length > 0 ? Object.keys(allData[0]) : 'No data');
+        };
+    </script>
+</body>
+</html>
