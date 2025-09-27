@@ -51,87 +51,31 @@
             font-size: 1.1rem;
         }
 
-        .multi-select-container {
-            position: relative;
-            min-width: 300px;
-        }
-
-        .multi-select-dropdown {
-            background: white;
-            border: 2px solid #ddd;
+        .lane-select-btn {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 12px 25px;
             border-radius: 8px;
-            padding: 12px;
             cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .multi-select-dropdown:hover {
-            border-color: #4CAF50;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
-        }
-
-        .multi-select-dropdown.open {
-            border-color: #4CAF50;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        .selected-lanes {
-            color: #666;
-            flex: 1;
-        }
-
-        .dropdown-arrow {
-            transition: transform 0.3s ease;
-            color: #666;
             font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+            font-size: 1rem;
         }
 
-        .dropdown-arrow.open {
-            transform: rotate(180deg);
+        .lane-select-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
         }
 
-        .options-container {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
+        .selected-count {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: #2c3e50;
+            font-weight: bold;
             border: 2px solid #4CAF50;
-            border-top: none;
-            border-radius: 0 0 8px 8px;
-            max-height: 300px;
-            overflow-y: auto;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .option-item {
-            padding: 10px 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: background-color 0.2s ease;
-        }
-
-        .option-item:hover {
-            background-color: #f0f8ff;
-        }
-
-        .option-item.selected {
-            background-color: #e8f5e8;
-            color: #2e7d32;
-        }
-
-        .option-checkbox {
-            width: 18px;
-            height: 18px;
-            accent-color: #4CAF50;
         }
 
         .clear-filter-btn {
@@ -232,10 +176,189 @@
             transform: scale(1.02);
         }
 
-        .modal {
+        /* Selection Modal Styles */
+        .selection-modal {
             display: none;
             position: fixed;
             z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .selection-modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .selection-modal-header {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .selection-modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .selection-close {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .selection-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .selection-modal-body {
+            padding: 20px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .selection-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .select-all-btn, .select-none-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .select-all-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .select-none-btn {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .select-all-btn:hover, .select-none-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .lane-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .lane-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
+
+        .lane-option:hover {
+            border-color: #4CAF50;
+            background: #f0f8ff;
+        }
+
+        .lane-option.selected {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+        }
+
+        .lane-option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            accent-color: #4CAF50;
+        }
+
+        .lane-option-info {
+            flex: 1;
+        }
+
+        .lane-option-number {
+            font-weight: bold;
+            color: #4CAF50;
+            font-size: 1.1rem;
+        }
+
+        .lane-option-details {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        .selection-modal-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9f9f9;
+        }
+
+        .apply-selection-btn {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .apply-selection-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Image Modal Styles */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
             left: 0;
             top: 0;
             width: 100%;
@@ -249,7 +372,7 @@
             to { opacity: 1; }
         }
 
-        .modal-content {
+        .image-modal-content {
             position: relative;
             margin: 2% auto;
             max-width: 95%;
@@ -267,7 +390,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .close {
+        .image-close {
             color: #fff;
             position: absolute;
             top: 20px;
@@ -275,7 +398,7 @@
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 2001;
+            z-index: 3001;
             background: rgba(0, 0, 0, 0.5);
             width: 50px;
             height: 50px;
@@ -286,7 +409,7 @@
             transition: all 0.3s ease;
         }
 
-        .close:hover {
+        .image-close:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.1);
         }
@@ -332,17 +455,18 @@
                 align-items: stretch;
             }
             
-            .multi-select-container {
-                min-width: auto;
-            }
-            
             .lanes-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 15px;
             }
             
-            .modal-content {
-                margin: 5% auto;
+            .selection-modal-content {
+                width: 95%;
+                margin: 2% auto;
+            }
+            
+            .lane-options {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -351,15 +475,10 @@
     <div class="header">
         <h1>VSCA Competition Live View</h1>
         <div class="filter-container">
-            <label class="filter-label">Select Lanes:</label>
-            <div class="multi-select-container">
-                <div class="multi-select-dropdown" id="laneSelect">
-                    <span class="selected-lanes" id="selectedLanesText">Select lanes to display...</span>
-                    <span class="dropdown-arrow" id="dropdownArrow">▼</span>
-                </div>
-                <div class="options-container" id="optionsContainer" style="display: none;"></div>
-            </div>
-            <button class="clear-filter-btn" id="clearFilter">Clear Filter</button>
+            <label class="filter-label">Lane Selection:</label>
+            <button class="lane-select-btn" id="openLaneSelector">Select Lanes</button>
+            <div class="selected-count" id="selectedCount">0 lanes selected</div>
+            <button class="clear-filter-btn" id="clearFilter">Clear All</button>
         </div>
     </div>
 
@@ -369,11 +488,34 @@
         </div>
     </div>
 
-    <!-- Modal for full-screen image view -->
-    <div id="imageModal" class="modal">
-        <span class="close" id="closeModal">&times;</span>
+    <!-- Lane Selection Modal -->
+    <div id="selectionModal" class="selection-modal">
+        <div class="selection-modal-content">
+            <div class="selection-modal-header">
+                <h2>Select Lanes to Display</h2>
+                <span class="selection-close" id="closeSelection">&times;</span>
+            </div>
+            <div class="selection-modal-body">
+                <div class="selection-controls">
+                    <button class="select-all-btn" id="selectAllBtn">Select All</button>
+                    <button class="select-none-btn" id="selectNoneBtn">Select None</button>
+                </div>
+                <div id="laneOptions" class="lane-options">
+                    <!-- Lane options will be populated here -->
+                </div>
+            </div>
+            <div class="selection-modal-footer">
+                <div id="selectionSummary">0 lanes selected</div>
+                <button class="apply-selection-btn" id="applySelection">Apply Selection</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <span class="image-close" id="closeImageModal">&times;</span>
         <div class="modal-title" id="modalTitle"></div>
-        <div class="modal-content">
+        <div class="image-modal-content">
             <img class="modal-image" id="modalImage" src="" alt="">
         </div>
     </div>
@@ -381,10 +523,9 @@
     <script>
         class ShootingCompetition {
             constructor() {
-                this.lanes = [];
+                this.availableLanes = [];
                 this.selectedLanes = [];
-                this.allLanes = [];
-                this.isDropdownOpen = false;
+                this.csvData = new Map();
                 
                 this.initializeElements();
                 this.setupEventListeners();
@@ -392,187 +533,235 @@
             }
 
             initializeElements() {
-                this.laneSelect = document.getElementById('laneSelect');
-                this.selectedLanesText = document.getElementById('selectedLanesText');
-                this.dropdownArrow = document.getElementById('dropdownArrow');
-                this.optionsContainer = document.getElementById('optionsContainer');
+                this.openLaneSelector = document.getElementById('openLaneSelector');
+                this.selectedCount = document.getElementById('selectedCount');
                 this.clearFilter = document.getElementById('clearFilter');
                 this.lanesGrid = document.getElementById('lanesGrid');
-                this.modal = document.getElementById('imageModal');
+                
+                // Selection modal elements
+                this.selectionModal = document.getElementById('selectionModal');
+                this.closeSelection = document.getElementById('closeSelection');
+                this.laneOptions = document.getElementById('laneOptions');
+                this.selectAllBtn = document.getElementById('selectAllBtn');
+                this.selectNoneBtn = document.getElementById('selectNoneBtn');
+                this.applySelection = document.getElementById('applySelection');
+                this.selectionSummary = document.getElementById('selectionSummary');
+                
+                // Image modal elements
+                this.imageModal = document.getElementById('imageModal');
                 this.modalImage = document.getElementById('modalImage');
                 this.modalTitle = document.getElementById('modalTitle');
-                this.closeModal = document.getElementById('closeModal');
+                this.closeImageModal = document.getElementById('closeImageModal');
             }
 
             setupEventListeners() {
-                this.laneSelect.addEventListener('click', () => this.toggleDropdown());
+                this.openLaneSelector.addEventListener('click', () => this.openSelectionModal());
                 this.clearFilter.addEventListener('click', () => this.clearSelection());
-                this.closeModal.addEventListener('click', () => this.closeModalView());
-                this.modal.addEventListener('click', (e) => {
-                    if (e.target === this.modal) this.closeModalView();
+                this.closeSelection.addEventListener('click', () => this.closeSelectionModal());
+                this.selectAllBtn.addEventListener('click', () => this.selectAllLanes());
+                this.selectNoneBtn.addEventListener('click', () => this.selectNoLanes());
+                this.applySelection.addEventListener('click', () => this.applyLaneSelection());
+                
+                this.closeImageModal.addEventListener('click', () => this.closeImageModalView());
+                this.imageModal.addEventListener('click', (e) => {
+                    if (e.target === this.imageModal) this.closeImageModalView();
+                });
+                
+                this.selectionModal.addEventListener('click', (e) => {
+                    if (e.target === this.selectionModal) this.closeSelectionModal();
                 });
                 
                 document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') this.closeModalView();
-                });
-
-                document.addEventListener('click', (e) => {
-                    if (!this.laneSelect.contains(e.target) && !this.optionsContainer.contains(e.target)) {
-                        this.closeDropdown();
+                    if (e.key === 'Escape') {
+                        this.closeImageModalView();
+                        this.closeSelectionModal();
                     }
                 });
             }
 
             async loadData() {
                 try {
-                    // Sample data - replace with actual CSV loading
-                    const sampleData = this.generateSampleData();
-                    this.lanes = sampleData;
-                    this.allLanes = [...sampleData];
+                    // Load CSV data first
+                    await this.loadCSVData();
                     
-                    this.setupFilterOptions();
+                    // Check for available image files
+                    await this.checkAvailableImages();
+                    
+                    if (this.availableLanes.length === 0) {
+                        this.showError('No lanes found. Please check that lanemap.csv exists and contains valid data, and that corresponding image files (L1.png, L2.png, etc.) are present.');
+                        return;
+                    }
+                    
+                    this.setupLaneOptions();
                     this.selectAllLanes();
                     this.renderLanes();
                 } catch (error) {
-                    this.showError('Error loading competition data. Please check if lanemap.csv exists.');
+                    console.error('Error loading data:', error);
+                    this.showError('Error loading competition data. Please check that lanemap.csv exists and is accessible.');
                 }
             }
 
-            generateSampleData() {
-                // This generates sample data - replace with actual CSV parsing
-                const sampleData = [];
-                for (let i = 1; i <= 20; i++) {
-                    const laneNumber = `L${i}`;
-                    sampleData.push({
-                        laneNumber: laneNumber,
-                        laneName: `Lane ${i}`,
-                        shooterName: `Shooter ${i}`,
-                        imageFile: `${laneNumber}.png`
-                    });
-                }
-                return sampleData;
-            }
-
-            // Uncomment and modify this method to load actual CSV data
-            /*
             async loadCSVData() {
                 try {
                     const response = await fetch('lanemap.csv');
-                    const csvText = await response.text();
-                    
-                    const lines = csvText.split('\n');
-                    const lanes = [];
-                    
-                    for (let i = 1; i < lines.length; i++) {
-                        const line = lines[i].trim();
-                        if (line) {
-                            const [laneNumber, laneName, shooterName] = line.split(',');
-                            lanes.push({
-                                laneNumber: laneNumber?.trim(),
-                                laneName: laneName?.trim(),
-                                shooterName: shooterName?.trim(),
-                                imageFile: `${laneNumber?.trim()}.png`
-                            });
-                        }
+                    if (!response.ok) {
+                        throw new Error('CSV file not found');
                     }
                     
-                    return lanes;
+                    const csvText = await response.text();
+                    const lines = csvText.split('\n').filter(line => line.trim());
+                    
+                    // Skip header if present
+                    const startIndex = lines[0].toLowerCase().includes('lane') ? 1 : 0;
+                    
+                    for (let i = startIndex; i < lines.length; i++) {
+                        const line = lines[i].trim();
+                        if (line) {
+                            const parts = line.split(',').map(part => part.trim().replace(/"/g, ''));
+                            if (parts.length >= 3) {
+                                const [laneNumber, laneName, shooterName] = parts;
+                                this.csvData.set(laneNumber, {
+                                    laneNumber,
+                                    laneName,
+                                    shooterName
+                                });
+                            }
+                        }
+                    }
                 } catch (error) {
-                    throw new Error('Failed to load CSV file');
+                    console.error('Error loading CSV:', error);
+                    throw error;
                 }
             }
-            */
 
-            setupFilterOptions() {
-                this.optionsContainer.innerHTML = '';
+            async checkAvailableImages() {
+                const imageCheckPromises = Array.from(this.csvData.keys()).map(async (laneNumber) => {
+                    const imageFile = `${laneNumber}.png`;
+                    try {
+                        const response = await fetch(imageFile, { method: 'HEAD' });
+                        if (response.ok) {
+                            const laneData = this.csvData.get(laneNumber);
+                            return {
+                                ...laneData,
+                                imageFile: imageFile
+                            };
+                        }
+                    } catch (error) {
+                        // Image doesn't exist, skip this lane
+                    }
+                    return null;
+                });
+
+                const results = await Promise.all(imageCheckPromises);
+                this.availableLanes = results.filter(lane => lane !== null);
                 
-                this.allLanes.forEach(lane => {
+                // Sort lanes by lane number
+                this.availableLanes.sort((a, b) => {
+                    const aNum = parseInt(a.laneNumber.replace(/\D/g, '')) || 0;
+                    const bNum = parseInt(b.laneNumber.replace(/\D/g, '')) || 0;
+                    return aNum - bNum;
+                });
+            }
+
+            setupLaneOptions() {
+                this.laneOptions.innerHTML = '';
+                
+                this.availableLanes.forEach(lane => {
                     const optionDiv = document.createElement('div');
-                    optionDiv.className = 'option-item';
+                    optionDiv.className = 'lane-option';
                     optionDiv.innerHTML = `
-                        <input type="checkbox" class="option-checkbox" id="lane-${lane.laneNumber}" value="${lane.laneNumber}">
-                        <label for="lane-${lane.laneNumber}">${lane.laneNumber} - ${lane.laneName} (${lane.shooterName})</label>
+                        <input type="checkbox" id="lane-${lane.laneNumber}" value="${lane.laneNumber}">
+                        <div class="lane-option-info">
+                            <div class="lane-option-number">${lane.laneNumber}</div>
+                            <div class="lane-option-details">${lane.laneName} - ${lane.shooterName}</div>
+                        </div>
                     `;
                     
                     const checkbox = optionDiv.querySelector('input');
-                    checkbox.addEventListener('change', (e) => this.handleLaneSelection(e, lane));
+                    checkbox.addEventListener('change', () => this.updateSelectionSummary());
                     
-                    this.optionsContainer.appendChild(optionDiv);
+                    optionDiv.addEventListener('click', (e) => {
+                        if (e.target.type !== 'checkbox') {
+                            checkbox.checked = !checkbox.checked;
+                            this.updateSelectionSummary();
+                        }
+                    });
+                    
+                    this.laneOptions.appendChild(optionDiv);
                 });
             }
 
-            toggleDropdown() {
-                this.isDropdownOpen = !this.isDropdownOpen;
-                
-                if (this.isDropdownOpen) {
-                    this.optionsContainer.style.display = 'block';
-                    this.laneSelect.classList.add('open');
-                    this.dropdownArrow.classList.add('open');
-                } else {
-                    this.closeDropdown();
-                }
+            openSelectionModal() {
+                this.selectionModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                this.updateSelectionSummary();
             }
 
-            closeDropdown() {
-                this.isDropdownOpen = false;
-                this.optionsContainer.style.display = 'none';
-                this.laneSelect.classList.remove('open');
-                this.dropdownArrow.classList.remove('open');
-            }
-
-            handleLaneSelection(event, lane) {
-                const isChecked = event.target.checked;
-                
-                if (isChecked) {
-                    if (!this.selectedLanes.some(l => l.laneNumber === lane.laneNumber)) {
-                        this.selectedLanes.push(lane);
-                    }
-                } else {
-                    this.selectedLanes = this.selectedLanes.filter(l => l.laneNumber !== lane.laneNumber);
-                }
-                
-                this.updateSelectedText();
-                this.renderLanes();
-                this.updateOptionStyles();
-            }
-
-            updateOptionStyles() {
-                const optionItems = this.optionsContainer.querySelectorAll('.option-item');
-                optionItems.forEach(item => {
-                    const checkbox = item.querySelector('input');
-                    if (checkbox.checked) {
-                        item.classList.add('selected');
-                    } else {
-                        item.classList.remove('selected');
-                    }
-                });
+            closeSelectionModal() {
+                this.selectionModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
 
             selectAllLanes() {
-                this.selectedLanes = [...this.allLanes];
-                const checkboxes = this.optionsContainer.querySelectorAll('input[type="checkbox"]');
+                const checkboxes = this.laneOptions.querySelectorAll('input[type="checkbox"]');
                 checkboxes.forEach(cb => cb.checked = true);
-                this.updateSelectedText();
-                this.updateOptionStyles();
+                this.updateSelectionSummary();
+            }
+
+            selectNoLanes() {
+                const checkboxes = this.laneOptions.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(cb => cb.checked = false);
+                this.updateSelectionSummary();
+            }
+
+            updateSelectionSummary() {
+                const checkboxes = this.laneOptions.querySelectorAll('input[type="checkbox"]');
+                const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+                this.selectionSummary.textContent = `${selectedCount} lanes selected`;
+                
+                // Update lane option styles
+                checkboxes.forEach(checkbox => {
+                    const laneOption = checkbox.closest('.lane-option');
+                    if (checkbox.checked) {
+                        laneOption.classList.add('selected');
+                    } else {
+                        laneOption.classList.remove('selected');
+                    }
+                });
+            }
+
+            applyLaneSelection() {
+                const checkboxes = this.laneOptions.querySelectorAll('input[type="checkbox"]');
+                this.selectedLanes = [];
+                
+                // Maintain selection order
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        const laneNumber = checkbox.value;
+                        const lane = this.availableLanes.find(l => l.laneNumber === laneNumber);
+                        if (lane) {
+                            this.selectedLanes.push(lane);
+                        }
+                    }
+                });
+                
+                this.updateSelectedCount();
+                this.renderLanes();
+                this.closeSelectionModal();
             }
 
             clearSelection() {
                 this.selectedLanes = [];
-                const checkboxes = this.optionsContainer.querySelectorAll('input[type="checkbox"]');
+                const checkboxes = this.laneOptions.querySelectorAll('input[type="checkbox"]');
                 checkboxes.forEach(cb => cb.checked = false);
-                this.updateSelectedText();
+                this.updateSelectedCount();
+                this.updateSelectionSummary();
                 this.renderLanes();
-                this.updateOptionStyles();
             }
 
-            updateSelectedText() {
-                if (this.selectedLanes.length === 0) {
-                    this.selectedLanesText.textContent = 'No lanes selected';
-                } else if (this.selectedLanes.length === 1) {
-                    this.selectedLanesText.textContent = `${this.selectedLanes[0].laneNumber} selected`;
-                } else {
-                    this.selectedLanesText.textContent = `${this.selectedLanes.length} lanes selected`;
-                }
+            updateSelectedCount() {
+                const count = this.selectedLanes.length;
+                this.selectedCount.textContent = `${count} lane${count !== 1 ? 's' : ''} selected`;
             }
 
             renderLanes() {
@@ -592,24 +781,23 @@
                             <div class="lane-name">${lane.laneName}</div>
                             <div class="shooter-name">${lane.shooterName}</div>
                         </div>
-                        <img class="lane-image" src="${lane.imageFile}" alt="${lane.laneNumber}" 
-                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDIwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjZjVmNWY1Ii8+CjxwYXRoIGQ9Ik0xMDAgNzVMMTI1IDUwSDc1TDEwMCA3NVoiIGZpbGw9IiNjY2MiLz4KPHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDIwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjZjVmNWY1IiBzdHJva2U9IiNkZGQiLz4KPHRleHQgeD0iMTAwIiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjY2Ij5JbWFnZSBOb3QgRm91bmQ8L3RleHQ+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM5OTkiPiR7bGFuZS5sYW5lTnVtYmVyfTwvdGV4dD4KPC9zdmc+Cg=='; this.alt='Image not found';">
+                        <img class="lane-image" src="${lane.imageFile}" alt="${lane.laneNumber}" loading="lazy">
                     `;
                     
-                    lanePanel.addEventListener('click', () => this.openModal(lane));
+                    lanePanel.addEventListener('click', () => this.openImageModal(lane));
                     this.lanesGrid.appendChild(lanePanel);
                 });
             }
 
-            openModal(lane) {
+            openImageModal(lane) {
                 this.modalImage.src = lane.imageFile;
                 this.modalTitle.textContent = `${lane.laneNumber} - ${lane.laneName} (${lane.shooterName})`;
-                this.modal.style.display = 'block';
+                this.imageModal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
             }
 
-            closeModalView() {
-                this.modal.style.display = 'none';
+            closeImageModalView() {
+                this.imageModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
 
