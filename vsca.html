@@ -489,6 +489,7 @@
         let filteredData = [];
         let availableEvents = new Set();
         let eventMapping = new Map(); // Maps event ID to event name
+        let debugMode = true; // Enable detailed logging
 
         // DOM elements
         const filterBtn = document.getElementById('filterBtn');
@@ -515,6 +516,7 @@
 
         // Load CSV files automatically on page load
         window.addEventListener('load', () => {
+            showLoadingState();
             Promise.all([
                 loadEventsFile(),
                 loadResultsFile()
@@ -527,41 +529,74 @@
                 console.log('All files loaded successfully');
             }).catch(error => {
                 console.error('Error loading files:', error);
+                showError('Failed to load CSV files. Check console for details.');
             });
         });
 
+        function showLoadingState() {
+            tableBody.innerHTML = '<tr><td colspan="15" class="loading">Loading competition results...</td></tr>';
+            resultsCount.innerHTML = `
+                <div class="status-indicator" style="background: #3498db;"></div>
+                Loading data...
+            `;
+        }
+
         function loadEventsFile() {
+            if (debugMode) console.log('🔍 Loading events.csv...');
+            
             return fetch('events.csv')
                 .then(response => {
+                    if (debugMode) console.log('📥 Events file response:', response.status, response.statusText);
+                    
                     if (!response.ok) {
+                        if (response.status === 404) {
+                            console.warn('⚠️ events.csv not found - will use event IDs as names');
+                            return ''; // Return empty string to skip events processing
+                        }
                         throw new Error('Events CSV file not found');
                     }
                     return response.text();
                 })
                 .then(csvText => {
+                    if (!csvText.trim()) {
+                        console.warn('⚠️ Events file is empty or not found - continuing without event names');
+                        return Promise.resolve();
+                    }
+                    
+                    if (debugMode) console.log('📄 Events CSV content preview:', csvText.substring(0, 200));
+                    
                     return new Promise((resolve, reject) => {
                         Papa.parse(csvText, {
                             header: true,
                             skipEmptyLines: true,
                             complete: function(results) {
+                                if (debugMode) console.log('📊 Events parsing results:', results);
                                 processEventsData(results.data);
                                 resolve();
                             },
                             error: function(error) {
+                                console.error('❌ Events parsing error:', error);
                                 reject(new Error('Error parsing events CSV: ' + error.message));
                             }
                         });
                     });
                 })
                 .catch(error => {
-                    showError('Failed to load events.csv. Please ensure the file is in the same directory.');
-                    throw error;
+                    console.warn('⚠️ Events file issue:', error.message, '- continuing without event names');
+                    // Don't throw error, just continue without events file
+                    return Promise.resolve();
                 });
         }
 
         function processEventsData(eventsData) {
+            if (debugMode) console.log('🎯 Processing events data:', eventsData);
+            
             eventMapping.clear();
-            eventsData.forEach(row => {
+            let processedCount = 0;
+            
+            eventsData.forEach((row, index) => {
+                if (debugMode && index < 3) console.log(`📝 Event row ${index}:`, row);
+                
                 // Clean headers by trimming whitespace
                 const cleanRow = {};
                 for (const [key, value] of Object.entries(row)) {
@@ -569,68 +604,159 @@
                     cleanRow[cleanKey] = value;
                 }
                 
-                // Map event ID to event name
-                const eventId = cleanRow['Event ID'] || cleanRow['event_id'] || cleanRow['id'];
-                const eventName = cleanRow['Event Name'] || cleanRow['event_name'] || cleanRow['name'];
+                // Try multiple possible column names for flexibility
+                const eventId = cleanRow['Event ID'] || cleanRow['event_id'] || cleanRow['id'] || cleanRow['EventID'] || cleanRow['Event_ID'];
+                const eventName = cleanRow['Event Name'] || cleanRow['event_name'] || cleanRow['name'] || cleanRow['EventName'] || cleanRow['Event_Name'];
                 
                 if (eventId && eventName) {
                     eventMapping.set(eventId.toString().trim(), eventName.toString().trim());
+                    processedCount++;
+                    if (debugMode && processedCount <= 5) {
+                        console.log(`✅ Mapped: "${eventId}" → "${eventName}"`);
+                    }
                 }
             });
+            
+            console.log(`🎯 Events mapping completed: ${processedCount} events loaded`);
+            if (debugMode) console.log('📋 Event mapping:', Array.from(eventMapping.entries()));
         }
 
         function loadResultsFile() {
+            if (debugMode) console.log('🔍 Loading vsca2025.csv...');
+            
             return fetch('vsca2025.csv')
                 .then(response => {
+                    if (debugMode) console.log('📥 Results file response:', response.status, response.statusText);
+                    
                     if (!response.ok) {
                         throw new Error('Results CSV file not found');
                     }
                     return response.text();
                 })
                 .then(csvText => {
+                    if (debugMode) {
+                        console.log('📄 Results CSV content preview:', csvText.substring(0, 300));
+                        console.log('📏 File size:', csvText.length, 'characters');
+                    }
+                    
                     return new Promise((resolve, reject) => {
                         Papa.parse(csvText, {
                             header: true,
                             skipEmptyLines: true,
                             dynamicTyping: true,
                             complete: function(results) {
+                                if (debugMode) {
+                                    console.log('📊 Results parsing results:', results);
+                                    console.log('📊 Parsed rows count:', results.data.length);
+                                    console.log('📊 First few rows:', results.data.slice(0, 3));
+                                }
                                 processData(results.data);
                                 resolve();
                             },
                             error: function(error) {
+                                console.error('❌ Results parsing error:', error);
                                 reject(new Error('Error parsing results CSV: ' + error.message));
                             }
                         });
                     });
                 })
                 .catch(error => {
+                    console.error('❌ Results file error:', error);
                     showError('Failed to load vsca2025.csv. Please ensure the file is in the same directory.');
                     throw error;
                 });
         }
 
         function processData(data) {
+            if (debugMode) console.log('🏹 Processing shooter data...');
+            if (debugMode) console.log('📊 Raw data length:', data.length);
+            
             // Clean headers by trimming whitespace
-            allData = data.map(row => {
+            allData = data.map((row, index) => {
                 const cleanRow = {};
                 for (const [key, value] of Object.entries(row)) {
                     const cleanKey = key.trim();
                     cleanRow[cleanKey] = value;
                 }
+                
+                if (debugMode && index < 3) {
+                    console.log(`📝 Row ${index} original:`, row);
+                    console.log(`📝 Row ${index} cleaned:`, cleanRow);
+                }
+                
                 return cleanRow;
-            }).filter(row => row['Shooter Name'] && row['Shooter Name'].toString().trim());
+            }).filter((row, index) => {
+                const shooterName = row['Shooter Name'];
+                const hasName = shooterName && shooterName.toString().trim();
+                
+                if (debugMode && index < 5) {
+                    console.log(`🎯 Row ${index} shooter name: "${shooterName}" - Valid: ${hasName ? 'YES' : 'NO'}`);
+                }
+                
+                return hasName;
+            });
+
+            console.log(`✅ Filtered data: ${allData.length} valid rows`);
+            
+            // Validate required columns
+            if (allData.length > 0) {
+                const firstRow = allData[0];
+                const requiredColumns = ['Shooter Name', 'Academy', 'Event ID', 'Score'];
+                const availableColumns = Object.keys(firstRow);
+                
+                console.log('📋 Available columns:', availableColumns);
+                console.log('📋 Required columns:', requiredColumns);
+                
+                const missingColumns = requiredColumns.filter(col => !availableColumns.includes(col));
+                if (missingColumns.length > 0) {
+                    console.warn('⚠️ Missing required columns:', missingColumns);
+                    console.log('💡 Suggestion: Check your CSV headers match exactly:', requiredColumns);
+                }
+                
+                // Show sample data for debugging
+                if (debugMode) {
+                    console.log('📊 Sample shooter data:');
+                    allData.slice(0, 3).forEach((row, i) => {
+                        console.log(`  Row ${i}:`, {
+                            name: row['Shooter Name'],
+                            academy: row['Academy'],
+                            eventId: row['Event ID'],
+                            score: row['Score']
+                        });
+                    });
+                }
+            }
 
             // Extract all unique events
             availableEvents.clear();
-            allData.forEach(row => {
+            allData.forEach((row, index) => {
                 const eventIds = row['Event ID'];
                 if (eventIds) {
                     const events = eventIds.toString().split(',').map(e => e.trim());
-                    events.forEach(event => availableEvents.add(event));
+                    events.forEach(event => {
+                        if (event) availableEvents.add(event);
+                    });
+                    
+                    if (debugMode && index < 3) {
+                        console.log(`🎯 Row ${index} events: "${eventIds}" → [${events.join(', ')}]`);
+                    }
                 }
             });
 
-            // Don't automatically set filteredData here - let the main load handler do it
+            console.log(`🎯 Available events: ${availableEvents.size} unique events`);
+            if (debugMode) console.log('🎯 Event list:', Array.from(availableEvents));
+            
+            // Validation summary
+            console.log('📊 DATA VALIDATION SUMMARY:');
+            console.log(`   Total rows processed: ${data.length}`);
+            console.log(`   Valid shooter records: ${allData.length}`);
+            console.log(`   Unique events found: ${availableEvents.size}`);
+            console.log(`   Event mappings loaded: ${eventMapping.size}`);
+            
+            if (allData.length === 0) {
+                showError('No valid shooter data found. Please check your CSV format and column names.');
+                return;
+            }
         }
 
         function sortData() {
@@ -642,12 +768,26 @@
         }
 
         function renderTable() {
+            if (debugMode) console.log('🖼️ Rendering table with', filteredData.length, 'rows');
+            
             if (filteredData.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="15" class="no-data">No results found for selected filters</td></tr>';
+                const message = allData.length === 0 ? 
+                    'No valid data found. Check console for details.' : 
+                    'No results found for selected filters';
+                    
+                tableBody.innerHTML = `<tr><td colspan="15" class="no-data">${message}</td></tr>`;
                 return;
             }
 
             const rows = filteredData.map((row, index) => {
+                if (debugMode && index < 2) {
+                    console.log(`🏆 Rendering row ${index}:`, {
+                        name: row['Shooter Name'],
+                        score: row['Score'],
+                        academy: row['Academy']
+                    });
+                }
+                
                 return `
                     <tr>
                         <td class="serial-col">${index + 1}</td>
@@ -670,6 +810,7 @@
             }).join('');
 
             tableBody.innerHTML = rows;
+            console.log('✅ Table rendered successfully');
         }
 
         function showFilterModal() {
