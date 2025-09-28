@@ -870,4 +870,440 @@
                 
                 const missingColumns = requiredColumns.filter(col => !availableColumns.includes(col));
                 if (missingColumns.length > 0) {
-                    console.warn('⚠️ Missing required columns:', missingColumns
+                    console.warn('⚠️ Missing required columns:', missingColumns);
+                    console.log('💡 Suggestion: Check your CSV headers match exactly:', requiredColumns);
+                }
+                
+                // Show sample data for debugging
+                if (debugMode) {
+                    console.log('📊 Sample shooter data:');
+                    allData.slice(0, 3).forEach((row, i) => {
+                        console.log(`  Row ${i}:`, {
+                            name: row['Shooter Name'],
+                            academy: row['Academy'],
+                            eventId: row['Event ID'],
+                            score: row['Score']
+                        });
+                    });
+                }
+            }
+
+            // Extract all unique events
+            availableEvents.clear();
+            allData.forEach((row, index) => {
+                const eventIds = row['Event ID'];
+                if (eventIds) {
+                    const events = eventIds.toString().split(',').map(e => e.trim()).filter(e => e);
+                    events.forEach(event => {
+                        if (event) availableEvents.add(event);
+                    });
+                    
+                    if (debugMode && index < 3) {
+                        console.log(`🎯 Row ${index} events: "${eventIds}" → [${events.join(', ')}]`);
+                    }
+                }
+            });
+
+            console.log(`🎯 Available events: ${availableEvents.size} unique events`);
+            if (debugMode) console.log('🎯 Event list:', Array.from(availableEvents));
+            
+            // Validation summary
+            console.log('📊 DATA VALIDATION SUMMARY:');
+            console.log(`   Total rows processed: ${data.length}`);
+            console.log(`   Valid shooter records: ${allData.length}`);
+            console.log(`   Unique events found: ${availableEvents.size}`);
+            console.log(`   Event mappings loaded: ${eventMapping.size}`);
+            
+            if (allData.length === 0) {
+                showError('No valid shooter data found. Please check your CSV format and column names.');
+                return;
+            }
+        }
+
+        function sortData() {
+            if (debugMode) console.log('🔀 Sorting data with tie-breaking rules...');
+            
+            filteredData.sort((a, b) => {
+                // Primary sort: Score (highest to lowest)
+                const scoreA = parseFloat(a['Score']) || 0;
+                const scoreB = parseFloat(b['Score']) || 0;
+                
+                if (scoreB !== scoreA) {
+                    return scoreB - scoreA;
+                }
+                
+                // If scores are equal, apply tie-breaking rules
+                console.log(`🔗 Tie detected between ${a['Shooter Name']} and ${b['Shooter Name']} (Score: ${scoreA})`);
+                
+                // Tie-breaker 1: 10x (highest to lowest)
+                const tenxA = parseFloat(a['10x']) || 0;
+                const tenxB = parseFloat(b['10x']) || 0;
+                if (tenxB !== tenxA) {
+                    console.log(`  ↳ Resolved by 10x: ${a['Shooter Name']} (${tenxA}) vs ${b['Shooter Name']} (${tenxB})`);
+                    return tenxB - tenxA;
+                }
+                
+                // Tie-breaker 2-7: S6, S5, S4, S3, S2, S1 (highest to lowest)
+                const series = ['S6', 'S5', 'S4', 'S3', 'S2', 'S1'];
+                for (const seriesCol of series) {
+                    const valueA = parseFloat(a[seriesCol]) || 0;
+                    const valueB = parseFloat(b[seriesCol]) || 0;
+                    if (valueB !== valueA) {
+                        console.log(`  ↳ Resolved by ${seriesCol}: ${a['Shooter Name']} (${valueA}) vs ${b['Shooter Name']} (${valueB})`);
+                        return valueB - valueA;
+                    }
+                }
+                
+                // If still tied after all criteria, maintain original order
+                console.log(`  ↳ Still tied after all criteria - maintaining original order`);
+                return 0;
+            });
+            
+            // Mark tied groups for visual indication
+            markTiedGroups();
+        }
+
+        function markTiedGroups() {
+            // Clear previous tie indicators
+            filteredData.forEach(row => {
+                delete row._isTied;
+            });
+            
+            // Group by score and mark ties
+            for (let i = 0; i < filteredData.length - 1; i++) {
+                const currentScore = parseFloat(filteredData[i]['Score']) || 0;
+                const nextScore = parseFloat(filteredData[i + 1]['Score']) || 0;
+                
+                if (currentScore === nextScore) {
+                    filteredData[i]._isTied = true;
+                    filteredData[i + 1]._isTied = true;
+                    
+                    // Continue marking all rows with the same score
+                    let j = i + 2;
+                    while (j < filteredData.length && (parseFloat(filteredData[j]['Score']) || 0) === currentScore) {
+                        filteredData[j]._isTied = true;
+                        j++;
+                    }
+                }
+            }
+        }
+
+        function renderTable() {
+            if (debugMode) console.log('🖼️ Rendering table with', filteredData.length, 'rows');
+            
+            if (filteredData.length === 0) {
+                const message = allData.length === 0 ? 
+                    'No valid data found. Check console for details.' : 
+                    'No results found for selected filters';
+                    
+                tableBody.innerHTML = `<tr><td colspan="15" class="no-data">${message}</td></tr>`;
+                return;
+            }
+
+            const rows = filteredData.map((row, index) => {
+                if (debugMode && index < 2) {
+                    console.log(`🏆 Rendering row ${index}:`, {
+                        name: row['Shooter Name'],
+                        score: row['Score'],
+                        academy: row['Academy']
+                    });
+                }
+                
+                // Add tie indicator class if this row is part of a tied group
+                const tieClass = row._isTied ? 'tie-indicator' : '';
+                
+                return `
+                    <tr class="${tieClass}">
+                        <td class="serial-col">${index + 1}</td>
+                        <td class="name-col">${row['Shooter Name'] || ''}</td>
+                        <td class="academy-col">${row['Academy'] || ''}</td>
+                        <td class="event-col">${row['Event ID'] || ''}</td>
+                        <td class="score-col">${row['Score'] || ''}</td>
+                        <td>${row['Decimal Score'] || ''}</td>
+                        <td>${row['10x'] || ''}</td>
+                        <td>${row['S1'] || ''}</td>
+                        <td>${row['S2'] || ''}</td>
+                        <td>${row['S3'] || ''}</td>
+                        <td>${row['S4'] || ''}</td>
+                        <td>${row['S5'] || ''}</td>
+                        <td>${row['S6'] || ''}</td>
+                        <td>${row['Penalty'] || ''}</td>
+                        <td>${row['Remarks'] || ''}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            tableBody.innerHTML = rows;
+            console.log('✅ Table rendered successfully with tie-breaking sorting');
+        }
+
+        function showFilterModal() {
+            if (availableEvents.size === 0) {
+                alert('No event data available');
+                return;
+            }
+
+            if (debugMode) console.log('🔧 Opening filter modal with events:', Array.from(availableEvents));
+
+            populateEventsList();
+            filterModal.style.display = 'block';
+            searchInput.focus();
+        }
+
+        function populateEventsList(searchTerm = '') {
+            const events = Array.from(availableEvents)
+                .map(eventId => ({
+                    id: eventId,
+                    name: eventMapping.get(eventId) || eventId,
+                    displayText: eventMapping.has(eventId) ? `${eventMapping.get(eventId)}` : eventId
+                }))
+                .filter(event => {
+                    if (!searchTerm) return true;
+                    const search = searchTerm.toLowerCase();
+                    return event.displayText.toLowerCase().includes(search) || 
+                           event.id.toLowerCase().includes(search);
+                })
+                .sort((a, b) => a.displayText.localeCompare(b.displayText));
+
+            if (events.length === 0) {
+                filterOptions.innerHTML = '<div class="no-results">No events found matching your search</div>';
+                return;
+            }
+
+            const options = events.map(event => {
+                const isChecked = document.getElementById(`event-${event.id}`)?.checked || false;
+                return `
+                    <div class="filter-option ${isChecked ? 'selected' : ''}" onclick="toggleEventSelection('${event.id}')">
+                        <input type="checkbox" id="event-${event.id}" value="${event.id}" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation()">
+                        <label for="event-${event.id}" onclick="event.stopPropagation(); toggleEventSelection('${event.id}')">${event.displayText}</label>
+                        <span class="event-id">${event.id}</span>
+                    </div>
+                `;
+            }).join('');
+
+            filterOptions.innerHTML = options;
+        }
+
+        function filterEventsList() {
+            const searchTerm = searchInput.value;
+            populateEventsList(searchTerm);
+        }
+
+        function toggleEventSelection(eventId) {
+            const checkbox = document.getElementById(`event-${eventId}`);
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked;
+                updateFilterOptionStyle(eventId, checkbox.checked);
+                if (debugMode) console.log(`✅ Toggled ${eventId}: ${checkbox.checked}`);
+            }
+        }
+
+        function updateFilterOptionStyle(eventId, isChecked) {
+            const filterOption = document.getElementById(`event-${eventId}`).closest('.filter-option');
+            if (filterOption) {
+                if (isChecked) {
+                    filterOption.classList.add('selected');
+                } else {
+                    filterOption.classList.remove('selected');
+                }
+            }
+        }
+
+        function hideFilterModal() {
+            filterModal.style.display = 'none';
+        }
+
+        function applyEventFilter() {
+            const selectedEvents = [];
+            const checkboxes = filterOptions.querySelectorAll('input[type="checkbox"]:checked');
+            
+            checkboxes.forEach(checkbox => {
+                selectedEvents.push(checkbox.value);
+            });
+
+            if (debugMode) console.log('🔍 Applying filter for events:', selectedEvents);
+
+            if (selectedEvents.length === 0) {
+                // No events selected, show all data
+                filteredData = [...allData];
+                if (debugMode) console.log('📊 No filters selected, showing all data');
+            } else {
+                // Filter data based on selected events
+                filteredData = allData.filter((row, index) => {
+                    const rowEvents = row['Event ID'];
+                    if (!rowEvents) {
+                        if (debugMode && index < 3) console.log(`❌ Row ${index} has no Event ID`);
+                        return false;
+                    }
+                    
+                    // Split comma-separated event IDs and trim whitespace
+                    const events = rowEvents.toString().split(',').map(e => e.trim()).filter(e => e);
+                    
+                    // Check if any of the row's events match any of the selected events
+                    const hasMatchingEvent = events.some(event => selectedEvents.includes(event));
+                    
+                    if (debugMode && index < 3) {
+                        console.log(`🎯 Row ${index}: "${rowEvents}" → [${events.join(', ')}] → Match: ${hasMatchingEvent}`);
+                    }
+                    
+                    return hasMatchingEvent;
+                });
+                
+                if (debugMode) {
+                    console.log(`📊 Filter applied: ${filteredData.length} rows match selected events`);
+                }
+            }
+
+            sortData();
+            renderTable();
+            updateResultsCount();
+            hideFilterModal();
+        }
+
+        function clearAllFilters() {
+            const checkboxes = filterOptions.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                updateFilterOptionStyle(checkbox.value, false);
+            });
+        }
+
+        function downloadPDF() {
+            try {
+                if (debugMode) console.log('📄 Starting PDF generation...');
+                
+                if (filteredData.length === 0) {
+                    alert('No data to download. Please load results first.');
+                    return;
+                }
+
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+
+                // Add title
+                doc.setFontSize(16);
+                doc.setFont(undefined, 'bold');
+                doc.text('VSCA Shooting Championship 2025 - Results', 15, 20);
+                
+                // Add timestamp and filter info
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'normal');
+                const now = new Date();
+                doc.text(`Generated on: ${now.toLocaleString()}`, 15, 28);
+                doc.text(`Total shooters: ${filteredData.length}`, 15, 34);
+
+                // Prepare table data
+                const headers = [
+                    'S.No', 'Shooter Name', 'Academy', 'Event ID', 'Score', 
+                    'Decimal Score', '10x', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', 
+                    'Penalty', 'Remarks'
+                ];
+
+                const tableData = filteredData.map((row, index) => [
+                    index + 1,
+                    row['Shooter Name'] || '',
+                    row['Academy'] || '',
+                    row['Event ID'] || '',
+                    row['Score'] || '',
+                    row['Decimal Score'] || '',
+                    row['10x'] || '',
+                    row['S1'] || '',
+                    row['S2'] || '',
+                    row['S3'] || '',
+                    row['S4'] || '',
+                    row['S5'] || '',
+                    row['S6'] || '',
+                    row['Penalty'] || '',
+                    row['Remarks'] || ''
+                ]);
+
+                // Generate table
+                doc.autoTable({
+                    head: [headers],
+                    body: tableData,
+                    startY: 40,
+                    styles: {
+                        fontSize: 7,
+                        cellPadding: 1.5,
+                    },
+                    headStyles: {
+                        fillColor: [52, 73, 94],
+                        textColor: [255, 255, 255],
+                        fontSize: 8,
+                        fontStyle: 'bold'
+                    },
+                    alternateRowStyles: {
+                        fillColor: [248, 249, 250]
+                    },
+                    columnStyles: {
+                        0: { halign: 'center', cellWidth: 12 }, // S.No
+                        1: { cellWidth: 35 }, // Shooter Name
+                        2: { cellWidth: 25 }, // Academy
+                        3: { cellWidth: 20 }, // Event ID
+                        4: { halign: 'center', cellWidth: 15 }, // Score
+                        5: { halign: 'center', cellWidth: 18 }, // Decimal Score
+                        6: { halign: 'center', cellWidth: 10 }, // 10x
+                        7: { halign: 'center', cellWidth: 10 }, // S1
+                        8: { halign: 'center', cellWidth: 10 }, // S2
+                        9: { halign: 'center', cellWidth: 10 }, // S3
+                        10: { halign: 'center', cellWidth: 10 }, // S4
+                        11: { halign: 'center', cellWidth: 10 }, // S5
+                        12: { halign: 'center', cellWidth: 10 }, // S6
+                        13: { halign: 'center', cellWidth: 15 }, // Penalty
+                        14: { cellWidth: 25 } // Remarks
+                    },
+                    margin: { left: 15, right: 15 }
+                });
+
+                // Save the PDF
+                const filename = `VSCA_Results_${now.getFullYear()}_${(now.getMonth() + 1).toString().padStart(2, '0')}_${now.getDate().toString().padStart(2, '0')}.pdf`;
+                doc.save(filename);
+                
+                if (debugMode) console.log('✅ PDF generated successfully:', filename);
+                
+            } catch (error) {
+                console.error('❌ PDF generation failed:', error);
+                alert('Failed to generate PDF. Please try again.');
+            }
+        }
+
+        function updateResultsCount() {
+            const count = filteredData.length;
+            const total = allData.length;
+            resultsCount.innerHTML = `
+                <div class="status-indicator"></div>
+                ${count} of ${total} shooters displayed
+            `;
+        }
+
+        function showError(message) {
+            console.error('❌ Error:', message);
+            tableBody.innerHTML = `<tr><td colspan="15" class="error">${message}<br><small>Check browser console (F12) for detailed logs</small></td></tr>`;
+            resultsCount.innerHTML = `
+                <div class="status-indicator" style="background: #e74c3c;"></div>
+                Error loading data
+            `;
+        }
+
+        // Helper function to get event display name
+        function getEventDisplayName(eventId) {
+            const eventName = eventMapping.get(eventId);
+            return eventName ? `${eventName} (${eventId})` : eventId;
+        }
+
+        // Debug helper - can be called from browser console
+        window.debugCSVData = function() {
+            console.log('=== CSV DEBUG INFO ===');
+            console.log('All data:', allData);
+            console.log('Filtered data:', filteredData);
+            console.log('Available events:', Array.from(availableEvents));
+            console.log('Event mapping:', Array.from(eventMapping.entries()));
+            console.log('Sample row keys:', allData.length > 0 ? Object.keys(allData[0]) : 'No data');
+        };
+    </script>
+</body>
+</html>
