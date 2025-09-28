@@ -1,5 +1,5 @@
 Shooter Name,Academy,Event ID,Score,Decimal Score,10x,S1,S2,S3,S4,S5,S6,Penalty,Remarks
-ANANYA.G,VSCA,V08,376,,13,96,92,92,96,,,,4147
+ANANYA.G,VSCA,"V08,V09,V06,V07",376,,13,96,92,92,96,,,,4147
 Tanmai Ram k M,VSCA,"V04,V05",115,,0,29,17,37,32,,,,4130
 SHRIDARSH ANAND IYER,Mysore District Rifle Association ,V05,368,,9,93,94,92,89,,,,4209
 Shuchika N,VSCA,V20,322,,7,83,77,82,80,,,,4031
@@ -96,29 +96,29 @@ Sashreek Mitra,Hawkeye shooting academy ,"V11,V12,V13,V14,V15",364,,3,89,92,91,9
 Chandan R,MSSA,V21,243,,,82,85,76,,,,,4502
 KARTHIK V,ERODE RIFLE ACADEMY,"V21,V22,V23,V24,V25",281,,,94,95,92,,,,,4503
 M.DHANESH,ERODE RIFLE ACADEMY,"V24,V25",249,,,82,82,85,,,,,4505
-Chinthan k v,VSCA,"V22,V23",268,,,86,89,93,,,,,4506
+Chinthan k v,VSCA,"V22,V23,V21,V24",268,,,86,89,93,,,,,4506
 SANAH MP,Amber valley residential school chikamaglur,V28,275,,,94,88,93,,,,,4507
 Vikram Sharma,Gun For Glory ,V21,270,,,96,89,85,,,,,4508
 Harsharaj Madhava Shetty,Mangalore Rifle Club,V21,258,,,81,88,89,,,,,4509
-THANUSH ADI D A,VSCA,"V23,V24,V25",254,,,84,82,88,,,,,4512
-Tharun S A,Troop 192 NCC,V23,245,,,78,80,87,,,,,4547
+THANUSH ADI D A,VSCA,"V23,V24,V25,V22",254,,,84,82,88,,,,,4512
+Tharun S A,TROOP 192 NCC,V23,245,,,78,80,87,,,,,4547
 DHANYASRI.B,TROOP 192 NCC,V28,193,,,66,62,65,,,,,4551
 Dipin Krishnan,Gun For Glory ,V21,265,,,83,95,87,,,,,4521
 Karthik T V ,VSCA,V21,211,,,71,66,74,,,,,4522
-Adithya BN,Troop 192 NCC,V22,189,,,59,58,72,,,,,4523
+Adithya BN,TROOP 192 NCC,V22,189,,,59,58,72,,,,,4523
 E AKASH ,TROOP 192 NCC,V22,252,,,87,89,76,,,,,4524
 Hemanth Aditya L ,TROOP 192 NCC,V22,267,,,92,87,88,,,,,4525
-Rathan r poojari ,Troop 192 ncc,V23,274,,,92,92,90,,,,,4526
-Preetham Gowda,BMSCCM ,V23,240,,,79,79,82,,,,,4527
-Shivaank patel,VSCA,V25,257,,,88,81,88,,,,,4528
+Rathan r poojari ,TROOP 192 NCC,V23,274,,,92,92,90,,,,,4526
+Preetham Gowda,TROOP 192 NCC,V23,240,,,79,79,82,,,,,4527
+Shivaank patel,VSCA,"V25,V24,V23,V22",257,,,88,81,88,,,,,4528
 Shivaali patel,VSCA,V30,247,,,83,90,74,,,,,4530
 Pavsn N,VSCA,V21,151,,,44,45,62,,,,,4501
-NSBVR HARSHAVARDHAN P,Troop 192 NCC,V22,250,,,84,83,83,,,,,4543
-Aadithya Kannan,Troop 192 NCC,V23,236,,,80,80,76,,,,,4545
-Akanksh sridhar,Troop 192 ncc,V23,257,,,84,84,89,,,,,4546
+NSBVR HARSHAVARDHAN P,TROOP 192 NCC,V22,250,,,84,83,83,,,,,4543
+Aadithya Kannan,TROOP 192 NCC,V23,236,,,80,80,76,,,,,4545
+Akanksh sridhar,TROOP 192 NCC,V23,257,,,84,84,89,,,,,4546
 THANUSHREE,TROOP 192 NCC,V28,222,,,81,70,71,,,,,4548
 Namrutha G,TROOP 192 NCC,V28,227,,,78,77,72,,,,,4549
-Swati Manoj pawaskar ,Troop 192 NCC,V28,234,,,76,80,78,,,,,4550
+Swati Manoj pawaskar ,TROOP 192 NCC,V28,234,,,76,80,78,,,,,4550
 Naveen Kumar G P,KSRA,V31,266,,,85,92,89,,,,,4553
 DHASANTH T S,ERODE RIFLE ACADEMY,"V24,V25",274,,,88,96,90,,,,,4566
 Harish K,SDAT,"V24,V25",243,,,82,82,79,,,,,4565
@@ -142,10 +142,10 @@ Angel sharlet ,Trigger X shooting academy ,"V26,V28,V29",230,,,78,79,73,,,,,4593
 Girijesh  R,Trigger X shooting academy ,"V21,V22,V23,V24",262,,,88,91,83,,,,,4594
 VISHAL S I,Trigger X shooting academy ,"V21,V23",264,,,89,88,87,,,,,4596
 Vishrutha,VSCA,"V27,V28,V29",262,,,86,88,88,,,,,4518
-Rajesh K,Roriez Sports Shooting Academy,"V21 , V22 , V23 ",230,,,73,71,86,,,,,4608
-Aarshey V,Roriez Sports Shooting Academy,"V22 , V23 ",273,,,88,93,92,,,,,4609
-Yatheesh BB,Roriez Sports Shooting Academy,"V23 , V25 ",70,,,9,26,35,,,,,4611
-HARISH R E ,Trigger X shooting academy ,V21 ,257,,,82,86,89,,,,,4617
+Rajesh K,Roriez Sports Shooting Academy,"V21,V22,V23",230,,,73,71,86,,,,,4608
+Aarshey V,Roriez Sports Shooting Academy,"V22,V23",273,,,88,93,92,,,,,4609
+Yatheesh BB,Roriez Sports Shooting Academy,"V23,V25",70,,,9,26,35,,,,,4611
+HARISH R E ,Trigger X shooting academy ,V21,257,,,82,86,89,,,,,4617
 Gagan Chandra,VSCA,V25,78,,,22,20,36,,,,,4513
 JASWANTH,Trigger X shooting academy ,"V21,V23",261,,,84,90,87,,,,,4595
 VARCHUS S,BRSA,"V01,V02,V03,V04,V05",395,,31,98,99,100,98,,,,4146
@@ -175,3 +175,78 @@ Harsha D P,art of shooting,"V02,V03,V04,V05",383,,10,94,95,95,99,,,,4237
 Nakul k,VSCA,V04,382,,19,96,92,97,97,,,,4229
 Deeksha c,VSCA,V10,298,,3,74,76,74,74,,,,4223
 Samarth B Gampu ,VSCA,"V04,V05",354,,2,88,91,86,89,,,,4056
+ABHIRAM.R,TROOP 192 NCC,"V21,V22,V23,V24",267,,,91,85,91,,,,,4532
+Dr Rajendra prasad yt,Mysore District Rifle Association ,"V21,V31",275,,,94,93,88,,,,,4533
+Sushanth Girish,TROOP 192 NCC,"V22,V23,V24",261,,,89,84,88,,,,,4534
+Sharath Keshava R,TROOP 192 NCC,"V22,V23,V24",244,,,82,85,77,,,,,4535
+Avyakta Bharateesha Bilchode,TROOP 192 NCC,V25,211,,,77,73,61,,,,,4536
+Stuti Abhijith Iyer,TROOP 192 NCC,"V29,V30",242,,,81,84,77,,,,,4538
+Shreya Mattikoppa ,TROOP 192 NCC,"V29,V30",218,,,75,74,69,,,,,4539
+Navyashree S N ,TROOP 192 NCC,"V29,V30",152,,,48,50,54,,,,,4540
+Sinchana Krishna,TROOP 192 NCC,V30,235,,,80,70,85,,,,,4541
+YUKTHA SHREE V,TROOP 192 NCC,V30,265,,,90,84,91,,,,,4542
+ABHISHEK B S,ERODE RIFLE ACADEMY,"V25,V23,V24",241,,,74,87,80,,,,,4529
+MOKSHITH M Y,VSCA,V25,151,,,47,49,55,,,,,4556
+Shashank M ,TROOP 192 NCC,"V23,V24",255,,,90,84,81,,,,,4554
+Gowravaram Abhinand ,TROOP 192 NCC,V24,220,,,66,76,78,,,,,4555
+Samar Shinde,Hoysala Shooting Academy,V25,256,,,81,88,87,,,,,4704
+Charvika G Das ,TROOP 192 NCC,V25,201,,,76,65,60,,,,,4557
+Hitha Y Shetty,TROOP 192 NCC,"V27,V28,V29",235,,,81,77,77,,,,,4558
+Nanditha Y ,TROOP 192 NCC,"V27,V30",244,,,77,84,83,,,,,4559
+Manasvi Hegde ,TROOP 192 NCC,V29,237,,,80,74,83,,,,,4560
+VISMITHA GOWDA R ,TROOP 192 NCC,"V29,V30",187,,,52,71,64,,,,,4561
+Yukthaa Shivaprasad,TROOP 192 NCC,V30,94,,,37,30,27,,,,,4562
+Tridhara Bharadwaj L,TROOP 192 NCC,V30,231,,,79,78,74,,,,,4564
+BASAVARAJ,Hoysala Shooting Academy,V31,276,,,90,93,93,,,,,4715
+T kushal ,VSCA,"V04,V05",133,,1,39,41,33,20,,,,4102
+Tanush M Matur,VSCA,V05,315,,1,80,76,78,81,,,,4170
+Proksha v ,VSCA,"V08,V09,V10,V07,V06",388,,22,98,97,97,96,,,,4149
+Hitha N Raj,VSCA,"V06,V07,V08,V09,V10",381,,13,94,95,95,97,,,,4148
+Jeevan kishore D,VSCA,V11,342,,3,90,82,88,82,,,,4047
+Samar Shanubhog,VSCA,"V11,V12,V13,V14",353,,7,83,82,93,95,,,,4057
+Lihal Muthu,VSCA,"V14,V12,V13",342,,3,83,91,87,81,,,,4233
+Dhruva Yogeesh,VSCA,"V15,V14,V12,V13,V11",326,,4,81,81,81,83,,,,4054
+Vaibhav v,VSCA,V15,303,,0,74,77,81,71,,,,4150
+Vijendra Shetty,VSCA,"V11,V12,V13",344,,1,86,86,85,87,,,,4741
+Dineshwaran ,Trigger X shooting academy ,V04,377,,8,96,97,93,91,,,,4226
+NEEL PHADNAVIS,Hubli rifle shooting academy,"V03,V04",380,,16,93,96,95,96,,,,4161
+ANUNITHA MR,KPR AIR RIFLE ACADEMY,"V06,V09",382,,16,94,95,96,97,,,,4138
+Harsith ,Trigger X shooting academy ,V04,347,,3,87,87,91,82,,,,4227
+ANIRUDDHA REDDY,Hubli rifle shooting academy,"V03,V04",364,,4,91,93,90,90,,,,4162
+Vrinda Srivastava,Twin Bee Shooting Academy ,"V06,V07,V08,V09,V10",389,,27,99,98,98,94,,,,4020
+Kaushik ,Trigger X shooting academy ,V04,346,,4,86,82,87,91,,,,4228
+Satyam Agrawal,Hawkeye shooting academy ,V11,357,,6,91,89,89,88,,,,4243
+SIMRAN DHOOT,Hubli rifle shooting academy,V16,354,,4,88,94,93,79,,,,4156
+Amrutha Aradhya,VSCA,V19,230,,0,63,48,61,58,,,,4081
+ADHRIT JITHIN,Hawkeye shooting academy ,"V12,V13,V14,V15",349,,4,88,87,84,90,,,,4116
+SINCHANA HORAKERI,Hubli rifle shooting academy,V09,369,,8,88,92,95,94,,,,4166
+KESHAVADITYA B,Hubli rifle shooting academy,"V03,V04",367,,8,94,89,92,92,,,,4164
+SWAROOPINI DESAI,Hubli rifle shooting academy,"V08,V09",376,,9,95,93,96,92,,,,4165
+VEDAVATI A,Hubli rifle shooting academy,V19,346,,6,90,84,89,83,,,,4157
+Harsha vijetha V ,VSCA,V11,276,,1,65,73,78,60,,,,4084
+Megana H,SICM Shooting acedemy,V17,338,,2,88,86,84,80,,,,4088
+Samruddh S Math,Hawkeye shooting academy ,"V03,V04,V05",385,,20,96,95,98,96,,,,4113
+S Prathish,BEST SHOT SHOOTING ACADEMY,"V03,V04",354,,4,88,90,89,87,,,,4199
+Daivik R Shetty ,BEST SHOT SHOOTING ACADEMY,V05,254,,1,53,72,61,68,,,,4201
+E.B Grihitha ,Hawkeye shooting academy ,"V06,V07,V08,V09,V10",381,,15,97,96,96,92,,,,4191
+ARAVINTH KUMAR R.,Hoysala Shooting Academy,V11,335,,0,81,86,83,85,,,,4719
+Adithya Vithal Bankapur,BEST SHOT SHOOTING ACADEMY,V11,356,,5,85,88,89,94,,,,4189
+SINCHANA B L,SICM Shooting acedemy,V18,344,,1,91,83,83,87,,,,4106
+Suraj.N,KSRA,V11,362,,5,88,93,91,90,,,,4197
+Viraansh l,KSRA,V12,349,,4,83,88,90,88,,,,4198
+Pallavi Vivek ,KSRA ,V16,329,,0,82,78,88,81,,,,4132
+Ghanika Lokesh Gowda ,Hawkeye shooting academy ,"V18,V19,V20",305,,1,77,78,65,85,,,,4168
+S SADHURYA,BEST SHOT SHOOTING ACADEMY,"V18,V19",336,,2,81,87,81,87,,,,4082
+DEEPIKA  NAYAK,Hoysala Shooting Academy,V16,332,,2,84,82,81,85,,,,4716
+Raajeev Kumar,Hoysala Shooting Academy,V11,325,,2,85,74,85,81,,,,4721
+Manjusha ,Hoysala Shooting Academy,V16,342,,0,83,82,88,89,,,,4727
+Achintya Krishna ,TROOP 192 NCC,V22,244,,,84,82,78,,,,,4510
+K P SHREYAS RAO,TROOP 192 NCC,"V22,V23",268,,,88,90,90,,,,,4511
+Charith manjunath ,TROOP 192 NCC,V25,176,,,69,55,52,,,,,4514
+SHESHACHYUTHA.R.G,TROOP 192 NCC,V25,181,,,67,57,57,,,,,4515
+Anwita Devi ,TROOP 192 NCC,"V27,V28,V29",270,,,90,90,90,,,,,4516
+Ananya Girish,TROOP 192 NCC,"V27,V28,V29",240,,,72,82,86,,,,,4517
+ANVITHA PRASAD ,TROOP 192 NCC,V29,153,,,57,53,43,,,,,4519
+Shiva Charan P,VSCA,V25,260,,,89,91,80,,,,,4612
+Monika,VSCA,V30,230,,,74,76,80,,,,,4614
+Ganavi S,TROOP 192 NCC,V29,78,,,36,14,28,,,,,4537
