@@ -480,6 +480,81 @@
             border-left: 3px solid #f39c12;
         }
 
+        /* Championship table styling */
+        .championship-table-container {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(52, 73, 94, 0.06);
+            border: 1px solid rgba(189, 195, 199, 0.3);
+            max-height: 50vh;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .championship-info {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+            margin-bottom: 20px;
+        }
+
+        #championshipTable th {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        #championshipTable td {
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 0.85rem;
+        }
+
+        #championshipTable tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        #championshipTable tr:hover {
+            background-color: rgba(52, 152, 219, 0.04);
+        }
+
+        .rank-1 {
+            background: linear-gradient(90deg, #fff9c4 0%, #ffeaa7 100%) !important;
+            border-left: 4px solid #f39c12;
+            font-weight: 600;
+        }
+
+        .rank-2 {
+            background: linear-gradient(90deg, #f1f2f6 0%, #e9ecef 100%) !important;
+            border-left: 4px solid #95a5a6;
+            font-weight: 600;
+        }
+
+        .rank-3 {
+            background: linear-gradient(90deg, #fdf2e9 0%, #f4e7d1 100%) !important;
+            border-left: 4px solid #e67e22;
+            font-weight: 600;
+        }
+
+        .academy-name {
+            text-align: left !important;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .points-cell {
+            font-weight: 700;
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1) !important;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -575,6 +650,16 @@
                     </svg>
                     Download PDF
                 </button>
+                <button class="filter-btn" id="championshipBtn" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); box-shadow: 0 2px 8px rgba(243, 156, 18, 0.2);">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                        <path d="M4 22h16"></path>
+                        <path d="M10 14.66V17c0 .55.47.98.97 1.21C11.25 18.4 11.61 18.5 12 18.5s.75-.1 1.03-.29c.5-.23.97-.66.97-1.21v-2.34"></path>
+                        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                    </svg>
+                    Championship
+                </button>
             </div>
             <div class="results-count" id="resultsCount">
                 <div class="status-indicator"></div>
@@ -612,8 +697,52 @@
         </div>
     </div>
 
-    <!-- Filter Modal -->
-    <div id="filterModal" class="modal">
+    <!-- Championship Modal -->
+    <div id="championshipModal" class="modal">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                        <path d="M4 22h16"></path>
+                        <path d="M10 14.66V17c0 .55.47.98.97 1.21C11.25 18.4 11.61 18.5 12 18.5s.75-.1 1.03-.29c.5-.23.97-.66.97-1.21v-2.34"></path>
+                        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                    </svg>
+                    Academy Championship Standings
+                </h2>
+                <span class="close" id="closeChampionshipModal">&times;</span>
+            </div>
+            <div class="championship-info">
+                <p style="color: #7f8c8d; margin-bottom: 20px; font-size: 0.9rem;">
+                    Points System: 🥇 1st Place = 5 points | 🥈 2nd Place = 3 points | 🥉 3rd Place = 1 point
+                </p>
+            </div>
+            <div class="championship-table-container">
+                <table id="championshipTable" style="font-size: 0.85rem;">
+                    <thead>
+                        <tr>
+                            <th style="width: 60px;">Rank</th>
+                            <th>Academy</th>
+                            <th style="width: 80px; text-align: center;">🥇 Gold</th>
+                            <th style="width: 80px; text-align: center;">🥈 Silver</th>
+                            <th style="width: 80px; text-align: center;">🥉 Bronze</th>
+                            <th style="width: 100px; text-align: center; background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">Total Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="championshipTableBody">
+                        <tr>
+                            <td colspan="6" class="loading">Calculating championship standings...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="downloadChampionshipPDF">Download Championship PDF</button>
+                <button class="btn btn-secondary" id="closeChampionshipBtn">Close</button>
+            </div>
+        </div>
+    </div>
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title">
@@ -651,27 +780,40 @@
         // DOM elements
         const filterBtn = document.getElementById('filterBtn');
         const downloadBtn = document.getElementById('downloadBtn');
+        const championshipBtn = document.getElementById('championshipBtn');
         const filterModal = document.getElementById('filterModal');
+        const championshipModal = document.getElementById('championshipModal');
         const closeModal = document.getElementById('closeModal');
+        const closeChampionshipModal = document.getElementById('closeChampionshipModal');
+        const closeChampionshipBtn = document.getElementById('closeChampionshipBtn');
         const filterOptions = document.getElementById('filterOptions');
         const searchInput = document.getElementById('searchInput');
         const applyFilter = document.getElementById('applyFilter');
         const clearFilter = document.getElementById('clearFilter');
         const tableBody = document.getElementById('tableBody');
         const resultsCount = document.getElementById('resultsCount');
+        const championshipTableBody = document.getElementById('championshipTableBody');
+        const downloadChampionshipPDF = document.getElementById('downloadChampionshipPDF');
 
         // Event listeners
         filterBtn.addEventListener('click', showFilterModal);
         downloadBtn.addEventListener('click', downloadPDF);
+        championshipBtn.addEventListener('click', showChampionshipModal);
         closeModal.addEventListener('click', hideFilterModal);
+        closeChampionshipModal.addEventListener('click', hideChampionshipModal);
+        closeChampionshipBtn.addEventListener('click', hideChampionshipModal);
         applyFilter.addEventListener('click', applyEventFilter);
         clearFilter.addEventListener('click', clearAllFilters);
         searchInput.addEventListener('input', filterEventsList);
+        downloadChampionshipPDF.addEventListener('click', downloadChampionshipPDFFile);
 
         // Close modal when clicking outside
         window.addEventListener('click', (event) => {
             if (event.target === filterModal) {
                 hideFilterModal();
+            }
+            if (event.target === championshipModal) {
+                hideChampionshipModal();
             }
         });
 
@@ -1111,6 +1253,221 @@
 
         function hideFilterModal() {
             filterModal.style.display = 'none';
+        }
+
+        function calculateChampionshipStandings() {
+            if (debugMode) console.log('🏆 Calculating championship standings...');
+            
+            const academyStats = new Map();
+            
+            // Initialize academy stats
+            filteredData.forEach(row => {
+                const academy = row['Academy'];
+                if (academy && academy.toString().trim()) {
+                    const academyName = academy.toString().trim();
+                    if (!academyStats.has(academyName)) {
+                        academyStats.set(academyName, {
+                            name: academyName,
+                            gold: 0,
+                            silver: 0,
+                            bronze: 0,
+                            totalPoints: 0
+                        });
+                    }
+                }
+            });
+            
+            // Count podium finishes (top 3 positions)
+            filteredData.forEach((row, index) => {
+                const academy = row['Academy'];
+                if (academy && academy.toString().trim()) {
+                    const academyName = academy.toString().trim();
+                    const stats = academyStats.get(academyName);
+                    
+                    if (stats) {
+                        const position = index + 1; // 1-based ranking
+                        
+                        if (position === 1) {
+                            stats.gold++;
+                            stats.totalPoints += 5;
+                        } else if (position === 2) {
+                            stats.silver++;
+                            stats.totalPoints += 3;
+                        } else if (position === 3) {
+                            stats.bronze++;
+                            stats.totalPoints += 1;
+                        }
+                        
+                        if (debugMode && position <= 3) {
+                            console.log(`🏅 ${academyName}: Position ${position} (${row['Shooter Name']})`);
+                        }
+                    }
+                }
+            });
+            
+            // Convert to array and sort by total points (descending), then by gold, silver, bronze
+            const sortedAcademies = Array.from(academyStats.values()).sort((a, b) => {
+                if (b.totalPoints !== a.totalPoints) {
+                    return b.totalPoints - a.totalPoints;
+                }
+                if (b.gold !== a.gold) {
+                    return b.gold - a.gold;
+                }
+                if (b.silver !== a.silver) {
+                    return b.silver - a.silver;
+                }
+                return b.bronze - a.bronze;
+            });
+            
+            if (debugMode) {
+                console.log('🏆 Championship standings calculated:');
+                sortedAcademies.forEach((academy, index) => {
+                    console.log(`  ${index + 1}. ${academy.name}: ${academy.totalPoints} pts (🥇${academy.gold} 🥈${academy.silver} 🥉${academy.bronze})`);
+                });
+            }
+            
+            return sortedAcademies;
+        }
+
+        function renderChampionshipTable() {
+            const academyStandings = calculateChampionshipStandings();
+            
+            if (academyStandings.length === 0) {
+                championshipTableBody.innerHTML = '<tr><td colspan="6" class="no-data">No academy data available</td></tr>';
+                return;
+            }
+            
+            const rows = academyStandings.map((academy, index) => {
+                const rank = index + 1;
+                let rankClass = '';
+                
+                if (rank === 1) rankClass = 'rank-1';
+                else if (rank === 2) rankClass = 'rank-2';
+                else if (rank === 3) rankClass = 'rank-3';
+                
+                return `
+                    <tr class="${rankClass}">
+                        <td style="text-align: center; font-weight: 600;">${rank}</td>
+                        <td class="academy-name">${academy.name}</td>
+                        <td style="text-align: center; font-weight: 600; color: #f39c12;">${academy.gold}</td>
+                        <td style="text-align: center; font-weight: 600; color: #95a5a6;">${academy.silver}</td>
+                        <td style="text-align: center; font-weight: 600; color: #e67e22;">${academy.bronze}</td>
+                        <td class="points-cell">${academy.totalPoints}</td>
+                    </tr>
+                `;
+            }).join('');
+            
+            championshipTableBody.innerHTML = rows;
+            console.log('✅ Championship table rendered successfully');
+        }
+
+        function showChampionshipModal() {
+            if (filteredData.length === 0) {
+                alert('No data available for championship calculation. Please load results first.');
+                return;
+            }
+            
+            if (debugMode) console.log('🏆 Opening championship modal...');
+            
+            // Show loading state
+            championshipTableBody.innerHTML = '<tr><td colspan="6" class="loading">Calculating championship standings...</td></tr>';
+            championshipModal.style.display = 'block';
+            
+            // Render championship table with a small delay for better UX
+            setTimeout(() => {
+                renderChampionshipTable();
+            }, 100);
+        }
+
+        function hideChampionshipModal() {
+            championshipModal.style.display = 'none';
+        }
+
+        function downloadChampionshipPDFFile() {
+            try {
+                if (debugMode) console.log('📄 Starting championship PDF generation...');
+                
+                const academyStandings = calculateChampionshipStandings();
+                
+                if (academyStandings.length === 0) {
+                    alert('No championship data to download.');
+                    return;
+                }
+
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+
+                // Add title
+                doc.setFontSize(18);
+                doc.setFont(undefined, 'bold');
+                doc.text('VSCA Championship 2025', 105, 25, { align: 'center' });
+                doc.text('Academy Standings', 105, 35, { align: 'center' });
+                
+                // Add subtitle
+                doc.setFontSize(12);
+                doc.setFont(undefined, 'normal');
+                const now = new Date();
+                doc.text(`Generated on: ${now.toLocaleString()}`, 105, 45, { align: 'center' });
+                
+                // Add points system info
+                doc.setFontSize(10);
+                doc.text('Points System: 1st Place = 5 points | 2nd Place = 3 points | 3rd Place = 1 point', 105, 55, { align: 'center' });
+
+                // Prepare table data
+                const headers = ['Rank', 'Academy', 'Gold', 'Silver', 'Bronze', 'Total Points'];
+                const tableData = academyStandings.map((academy, index) => [
+                    index + 1,
+                    academy.name,
+                    academy.gold,
+                    academy.silver,
+                    academy.bronze,
+                    academy.totalPoints
+                ]);
+
+                // Generate table
+                doc.autoTable({
+                    head: [headers],
+                    body: tableData,
+                    startY: 65,
+                    styles: {
+                        fontSize: 10,
+                        cellPadding: 3,
+                        halign: 'center'
+                    },
+                    headStyles: {
+                        fillColor: [52, 73, 94],
+                        textColor: [255, 255, 255],
+                        fontSize: 11,
+                        fontStyle: 'bold'
+                    },
+                    columnStyles: {
+                        0: { halign: 'center', cellWidth: 20 }, // Rank
+                        1: { halign: 'left', cellWidth: 60 }, // Academy
+                        2: { halign: 'center', cellWidth: 20, fillColor: [255, 249, 196] }, // Gold
+                        3: { halign: 'center', cellWidth: 20, fillColor: [241, 242, 246] }, // Silver
+                        4: { halign: 'center', cellWidth: 20, fillColor: [253, 242, 233] }, // Bronze
+                        5: { halign: 'center', cellWidth: 30, fillColor: [254, 240, 240], fontStyle: 'bold' } // Total Points
+                    },
+                    alternateRowStyles: {
+                        fillColor: [248, 249, 250]
+                    },
+                    margin: { left: 20, right: 20 }
+                });
+
+                // Save the PDF
+                const filename = `VSCA_Championship_${now.getFullYear()}_${(now.getMonth() + 1).toString().padStart(2, '0')}_${now.getDate().toString().padStart(2, '0')}.pdf`;
+                doc.save(filename);
+                
+                if (debugMode) console.log('✅ Championship PDF generated successfully:', filename);
+                
+            } catch (error) {
+                console.error('❌ Championship PDF generation failed:', error);
+                alert('Failed to generate championship PDF. Please try again.');
+            }
         }
 
         function applyEventFilter() {
