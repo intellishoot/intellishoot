@@ -474,6 +474,12 @@
             font-weight: 500;
         }
 
+        /* Tie indicator styling */
+        .tie-indicator {
+            background: linear-gradient(90deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 3px solid #f39c12;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -697,7 +703,7 @@
         }
 
         function loadEventsFile() {
-            if (debugMode) console.log('🔍 Loading events.csv...');
+            if (debugMode) console.log('📂 Loading events.csv...');
             
             return fetch('events.csv')
                 .then(response => {
@@ -750,7 +756,7 @@
             let processedCount = 0;
             
             eventsData.forEach((row, index) => {
-                if (debugMode && index < 3) console.log(`📝 Event row ${index}:`, row);
+                if (debugMode && index < 3) console.log(`🔍 Event row ${index}:`, row);
                 
                 // Clean headers by trimming whitespace
                 const cleanRow = {};
@@ -777,7 +783,7 @@
         }
 
         function loadResultsFile() {
-            if (debugMode) console.log('🔍 Loading vsca2025.csv...');
+            if (debugMode) console.log('📂 Loading vsca2025.csv...');
             
             return fetch('vsca2025.csv')
                 .then(response => {
@@ -835,8 +841,8 @@
                 }
                 
                 if (debugMode && index < 3) {
-                    console.log(`📝 Row ${index} original:`, row);
-                    console.log(`📝 Row ${index} cleaned:`, cleanRow);
+                    console.log(`🔍 Row ${index} original:`, row);
+                    console.log(`🔍 Row ${index} cleaned:`, cleanRow);
                 }
                 
                 return cleanRow;
@@ -915,11 +921,71 @@
         }
 
         function sortData() {
+            if (debugMode) console.log('🔀 Sorting data with tie-breaking rules...');
+            
             filteredData.sort((a, b) => {
+                // Primary sort: Score (highest to lowest)
                 const scoreA = parseFloat(a['Score']) || 0;
                 const scoreB = parseFloat(b['Score']) || 0;
-                return scoreB - scoreA; // Highest to lowest
+                
+                if (scoreB !== scoreA) {
+                    return scoreB - scoreA;
+                }
+                
+                // If scores are equal, apply tie-breaking rules
+                console.log(`🔗 Tie detected between ${a['Shooter Name']} and ${b['Shooter Name']} (Score: ${scoreA})`);
+                
+                // Tie-breaker 1: 10x (highest to lowest)
+                const tenxA = parseFloat(a['10x']) || 0;
+                const tenxB = parseFloat(b['10x']) || 0;
+                if (tenxB !== tenxA) {
+                    console.log(`  ↳ Resolved by 10x: ${a['Shooter Name']} (${tenxA}) vs ${b['Shooter Name']} (${tenxB})`);
+                    return tenxB - tenxA;
+                }
+                
+                // Tie-breaker 2-7: S6, S5, S4, S3, S2, S1 (highest to lowest)
+                const series = ['S6', 'S5', 'S4', 'S3', 'S2', 'S1'];
+                for (const seriesCol of series) {
+                    const valueA = parseFloat(a[seriesCol]) || 0;
+                    const valueB = parseFloat(b[seriesCol]) || 0;
+                    if (valueB !== valueA) {
+                        console.log(`  ↳ Resolved by ${seriesCol}: ${a['Shooter Name']} (${valueA}) vs ${b['Shooter Name']} (${valueB})`);
+                        return valueB - valueA;
+                    }
+                }
+                
+                // If still tied after all criteria, maintain original order
+                console.log(`  ↳ Still tied after all criteria - maintaining original order`);
+                return 0;
             });
+            
+            // Mark tied groups for visual indication
+            markTiedGroups();
+        }
+
+        function markTiedGroups() {
+            // Clear previous tie indicators
+            filteredData.forEach(row => {
+                delete row._isTied;
+            });
+            
+            // Group by score and mark ties
+            for (let i = 0; i < filteredData.length - 1; i++) {
+                const currentScore = parseFloat(filteredData[i]['Score']) || 0;
+                const nextScore = parseFloat(filteredData[i + 1]['Score']) || 0;
+                
+                if (currentScore === nextScore) {
+                    filteredData[i]._isTied = true;
+                    filteredData[i + 1]._isTied = true;
+                    
+                    // Continue marking all rows with the same score
+                    let j = i + 2;
+                    while (j < filteredData.length && (parseFloat(filteredData[j]['Score']) || 0) === currentScore) {
+                        filteredData[j]._isTied = true;
+                        j++;
+                    }
+                }
+            }
         }
 
         function renderTable() {
@@ -943,8 +1009,11 @@
                     });
                 }
                 
+                // Add tie indicator class if this row is part of a tied group
+                const tieClass = row._isTied ? 'tie-indicator' : '';
+                
                 return `
-                    <tr>
+                    <tr class="${tieClass}">
                         <td class="serial-col">${index + 1}</td>
                         <td class="name-col">${row['Shooter Name'] || ''}</td>
                         <td class="academy-col">${row['Academy'] || ''}</td>
@@ -965,7 +1034,7 @@
             }).join('');
 
             tableBody.innerHTML = rows;
-            console.log('✅ Table rendered successfully');
+            console.log('✅ Table rendered successfully with tie-breaking sorting');
         }
 
         function showFilterModal() {
