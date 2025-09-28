@@ -1321,7 +1321,7 @@
         }
 
         function calculateChampionshipStandings() {
-            if (debugMode) console.log('🏆 Calculating championship standings per event...');
+            if (debugMode) console.log('🏆 Calculating championship standings per individual event...');
             
             const selectedEvents = getSelectedChampionshipEvents();
             if (selectedEvents.length === 0) {
@@ -1353,23 +1353,29 @@
             
             // Process each selected event separately
             selectedEvents.forEach(eventId => {
-                if (debugMode) console.log(`🎯 Processing event: ${eventId}`);
+                if (debugMode) console.log(`🎯 Processing individual event: ${eventId}`);
                 
-                // Filter shooters for this specific event
+                // Filter shooters for this SPECIFIC event only (not comma-separated)
                 const eventShooters = allData.filter(row => {
                     const rowEvents = row['Event ID'];
                     if (!rowEvents) return false;
                     
+                    // Split comma-separated event IDs and check if this specific event is included
                     const events = rowEvents.toString().split(',').map(e => e.trim()).filter(e => e);
                     return events.includes(eventId);
-                });
+                }).map(shooter => ({
+                    ...shooter,
+                    currentEventId: eventId // Track which event we're processing
+                }));
                 
                 if (eventShooters.length === 0) {
                     console.warn(`⚠️ No shooters found for event ${eventId}`);
                     return;
                 }
                 
-                // Sort shooters for this event using the same tie-breaking rules
+                if (debugMode) console.log(`📊 Event ${eventId}: Found ${eventShooters.length} participants`);
+                
+                // Sort shooters for this specific event using tie-breaking rules
                 const sortedEventShooters = [...eventShooters].sort((a, b) => {
                     // Primary sort: Score (highest to lowest)
                     const scoreA = parseFloat(a['Score']) || 0;
@@ -1399,8 +1405,10 @@
                     return 0;
                 });
                 
-                // Award points for top 3 in this event
-                sortedEventShooters.forEach((shooter, index) => {
+                // Award points for top 3 in this specific event
+                const top3 = sortedEventShooters.slice(0, 3);
+                
+                top3.forEach((shooter, index) => {
                     const academy = shooter['Academy'];
                     if (academy && academy.toString().trim()) {
                         const academyName = academy.toString().trim();
@@ -1409,45 +1417,54 @@
                         if (stats) {
                             const position = index + 1;
                             let points = 0;
+                            let medalType = '';
                             
                             if (position === 1) {
                                 stats.gold++;
                                 points = 5;
-                                if (debugMode) console.log(`🥇 ${eventId}: ${shooter['Shooter Name']} (${academyName}) - 1st place (5 pts)`);
+                                medalType = '🥇 GOLD';
                             } else if (position === 2) {
                                 stats.silver++;
                                 points = 3;
-                                if (debugMode) console.log(`🥈 ${eventId}: ${shooter['Shooter Name']} (${academyName}) - 2nd place (3 pts)`);
+                                medalType = '🥈 SILVER';
                             } else if (position === 3) {
                                 stats.bronze++;
                                 points = 1;
-                                if (debugMode) console.log(`🥉 ${eventId}: ${shooter['Shooter Name']} (${academyName}) - 3rd place (1 pt)`);
+                                medalType = '🥉 BRONZE';
                             }
                             
-                            if (points > 0) {
-                                stats.totalPoints += points;
-                                
-                                // Track event details for debugging
-                                if (!stats.eventDetails.has(eventId)) {
-                                    stats.eventDetails.set(eventId, []);
-                                }
-                                stats.eventDetails.get(eventId).push({
-                                    shooter: shooter['Shooter Name'],
-                                    position: position,
-                                    points: points,
-                                    score: shooter['Score']
-                                });
+                            stats.totalPoints += points;
+                            
+                            // Track event details for debugging
+                            if (!stats.eventDetails.has(eventId)) {
+                                stats.eventDetails.set(eventId, []);
+                            }
+                            stats.eventDetails.get(eventId).push({
+                                shooter: shooter['Shooter Name'],
+                                position: position,
+                                points: points,
+                                score: shooter['Score'],
+                                medalType: medalType
+                            });
+                            
+                            if (debugMode) {
+                                console.log(`  ${medalType} Event ${eventId}: ${shooter['Shooter Name']} (${academyName}) - Score: ${shooter['Score']} - ${points} pts`);
                             }
                         }
                     }
                 });
                 
                 if (debugMode) {
-                    console.log(`✅ Event ${eventId} processed: ${sortedEventShooters.length} shooters, top 3 awarded points`);
+                    console.log(`✅ Event ${eventId} medals awarded:`);
+                    top3.forEach((shooter, index) => {
+                        const position = index + 1;
+                        const medal = position === 1 ? '🥇' : position === 2 ? '🥈' : '🥉';
+                        console.log(`    ${medal} ${position}. ${shooter['Shooter Name']} (${shooter['Academy']}) - ${shooter['Score']}`);
+                    });
                 }
             });
             
-            // Convert to array and sort by total points (descending), then by gold, silver, bronze
+            // Convert to array and sort by total points, then by medal counts
             const sortedAcademies = Array.from(academyStats.values())
                 .filter(academy => academy.totalPoints > 0) // Only include academies with points
                 .sort((a, b) => {
@@ -1464,16 +1481,21 @@
                 });
             
             if (debugMode) {
-                console.log('🏆 Final championship standings:');
+                console.log('\n🏆 FINAL CHAMPIONSHIP STANDINGS:');
+                console.log('==========================================');
                 sortedAcademies.forEach((academy, index) => {
-                    console.log(`  ${index + 1}. ${academy.name}: ${academy.totalPoints} pts (🥇${academy.gold} 🥈${academy.silver} 🥉${academy.bronze})`);
+                    console.log(`${index + 1}. ${academy.name}`);
+                    console.log(`   Total Points: ${academy.totalPoints}`);
+                    console.log(`   Medals: 🥇${academy.gold} 🥈${academy.silver} 🥉${academy.bronze}`);
+                    console.log('   Event Breakdown:');
                     
-                    // Show event breakdown
+                    // Show detailed event breakdown
                     academy.eventDetails.forEach((eventResults, eventId) => {
                         eventResults.forEach(result => {
-                            console.log(`    └─ ${eventId}: ${result.shooter} (${result.position}${result.position === 1 ? 'st' : result.position === 2 ? 'nd' : 'rd'}) - ${result.points} pts`);
+                            console.log(`     └─ ${eventId}: ${result.medalType} ${result.shooter} (Score: ${result.score}) = ${result.points} pts`);
                         });
                     });
+                    console.log('');
                 });
             }
             
