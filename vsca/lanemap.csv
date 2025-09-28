@@ -1,6 +1,6 @@
 laneno,lanename,shootername,timestamp
-L1,Lane 1,Anil ,00:00 01-01-2025
-L2,Lane 2,Madhu,00:00 01-01-2025
-L3,Lane 3,Dhyan,00:00 01-01-2025
+L1,Lane 1,Shooter 1 ,00:00 01-01-2025
+L2,Lane 2,Shooter 2,00:00 01-01-2025
+L3,Lane 3,Shooter 3,00:00 01-01-2025
 L4,Lane 4,Shooter 4,00:00 01-01-2025
 L5,Lane 5,Shooter 5,00:00 01-01-2025
