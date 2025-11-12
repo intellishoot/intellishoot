@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SIUS PDF to CSV Converter</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    input, button { margin-top: 1em; }
+    pre { background: #f4f4f4; padding: 1em; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h2>SIUS Shooting Report to CSV</h2>
+  <input type="file" id="pdfUpload" accept="application/pdf" />
+  <button onclick="processPDF()">Convert to CSV</button>
+  <pre id="output"></pre>
+
+  <script>
+    async function processPDF() {
+      const fileInput = document.getElementById('pdfUpload');
+      const output = document.getElementById('output');
+      if (!fileInput.files.length) return alert('Please upload a PDF file.');
+
+      const file = fileInput.files[0];
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+
+      let fullText = '';
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        fullText += content.items.map(item => item.str).join(' ') + '\n';
+      }
+
+      const arrowToClock = {
+        '/': '2c',
+        '\\': '10c',
+        '-': '3c',
+        '~': '5c',
+        '+': '8c',
+        'x': 'C'
+      };
+
+      const total = fullText.match(/Total:\s+(\d+)/)?.[1] || '';
+      const innerTens = fullText.match(/Inner\s+tens:\s+(\d+)/)?.[1] || '';
+      const mpi = fullText.match(/MPI:\s+X:\s*([-\d.]+)\s*mm;\s*Y:\s*([-\d.]+)/);
+      const group = fullText.match(/Group size:\s+Ø:\s+([\d.]+)\s*mm/);
+      const seriesRegex = /Series\s+(?!1P)(\d+):.*?Series total:\s+(\d+)\s+\(([\d.]+)\)/g;
+
+      let seriesData = [];
+      let match;
+      while ((match = seriesRegex.exec(fullText)) !== null) {
+        seriesData.push({
+          series: `Series ${match[1]}`,
+          score: match[2],
+          decimal: match[3]
+        });
+      }
+
+      const shotRegex = /Series\s+(?!1P)(\d+):.*?((?:10x[\/\\\-~+]?|10[\/\\\-~+]?|9[\/\\\-~+]?|8[\/\\\-~+]?|91|81|104|101)[\s]*)+/g;
+      let seriesShots = [];
+      let shotMatch;
+      while ((shotMatch = shotRegex.exec(fullText)) !== null) {
+        const seriesNum = shotMatch[1];
+        const shotsRaw = shotMatch[2].trim().split(/\s+/);
+        const shots = shotsRaw.map(s => {
+          const arrow = s.match(/[\/\\\-~+]/)?.[0];
+          const clock = arrow ? arrowToClock[arrow] || '' : '';
+          return `${s}${clock ? ' (' + clock + ')' : ''}`;
+        });
+        seriesShots.push({ series: `Series ${seriesNum}`, shots });
+      }
+
+      let csv = 'Metric,Value\n';
+      csv += `Total Score,${total}\n`;
+      csv += `Inner Tens,${innerTens}\n`;
+      csv += `MPI X,${mpi?.[1] || ''}\n`;
+      csv += `MPI Y,${mpi?.[2] || ''}\n`;
+      csv += `Group Size,${group?.[1] || ''}\n\n`;
+      csv += 'Series,Score,Decimal,Shots\n';
+
+      seriesData.forEach((s, i) => {
+        const shotLine = seriesShots[i]?.shots.join(' | ') || '';
+        csv += `${s.series},${s.score},${s.decimal},"${shotLine}"\n`;
+      });
+
+      output.textContent = csv;
+
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'sius_scores.csv';
+      link.textContent = 'Download CSV';
+      output.appendChild(document.createElement('br'));
+      output.appendChild(link);
+    }
+  </script>
+</body>
+</html>
