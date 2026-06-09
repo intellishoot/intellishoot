@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIUS Telemetry Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         :root { --bg:#f4f4f5; --card:#fff; --line:#e5e7eb; --muted:#64748b; --ink:#1e293b; }
         * { box-sizing: border-box; }
@@ -85,6 +86,11 @@
     <!-- ===================== SETUP / CONNECTION ===================== -->
     <div class="card" id="setupCard">
         <div class="setup-grid">
+            <div>
+                <label for="inEmail">Coach Email</label>
+                <input id="inEmail" type="email" autocomplete="email"
+                       placeholder="you@example.com" />
+            </div>
             <div>
                 <label for="inShooter">Shooter ID</label>
                 <input id="inShooter" placeholder="e.g. IND-12345 (from additional_info)" />
@@ -209,6 +215,25 @@
     const SUPABASE_URL = 'https://gbpqzopsbeyeycxklrvt.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_Zp-qdGwQsS4SpDWffOo3bA_vlGcljxr';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // --- Backend logging + coach email notification ---
+    const SESSION_LOG_TABLE = 'session_logs';   // Supabase table (see SQL in README)
+    const SUPPORT_EMAIL      = 'support@intellishoot.com';
+
+    // EmailJS (client-side mail). Create a free account at emailjs.com, then fill these
+    // in. Until they are set, email notifications are skipped (session logging still works).
+    const EMAILJS_PUBLIC_KEY  = 's67bOZBhr4Hl15Z-r';
+    const EMAILJS_SERVICE_ID  = 'service_e15em97';
+    const EMAILJS_TEMPLATE_ID = 'template_sjvde24';
+
+    // localStorage keys
+    const LS_EMAIL          = 'intellishoot_coach_email';   // last-used email (autofill)
+    const LS_NOTIFIED_EMAILS = 'intellishoot_notified_emails'; // emails already announced
+
+    const emailjsReady = EMAILJS_PUBLIC_KEY && !EMAILJS_PUBLIC_KEY.startsWith('YOUR_');
+    if (emailjsReady && window.emailjs) {
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
 
     // --- SIUS _SHOT field indices (0-based). Verified against the official SIUS
     //     support docs: support.sius.com/forums/topic/siusdata-socket-information/
@@ -440,12 +465,19 @@
     // ============================================================
     document.getElementById('btnStart').addEventListener('click', startSession);
     document.getElementById('btnEnd').addEventListener('click', endSession);
+    prefillCoachEmail();   // autofill email for returning users
 
     function startSession() {
+        const email = document.getElementById('inEmail').value.trim();
+        if (!isValidEmail(email)) { alert('Enter a valid coach email to start a session.'); return; }
         const shooterId = document.getElementById('inShooter').value.trim();
         if (!shooterId) { alert('Enter a Shooter ID to start a session.'); return; }
 
+        // Remember the email for return visits (browser memory).
+        localStorage.setItem(LS_EMAIL, email);
+
         session = {
+            email,
             shooterId,
             targetType: document.getElementById('inTarget').value,
             seriesCount: parseInt(document.getElementById('inSeries').value, 10)
@@ -471,6 +503,72 @@
         drawTarget();
         renderSummary();
         subscribeLive();
+
+        // Backend logging + (first-time-only) support notification — non-blocking.
+        logSessionStart(session);
+        maybeNotifySupport(session);
+    }
+
+    // ============================================================
+    // EMAIL CAPTURE / BACKEND LOGGING / SUPPORT NOTIFICATION
+    // ============================================================
+    function isValidEmail(e) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+    }
+
+    // Auto-populate the email for returning users (from browser memory).
+    function prefillCoachEmail() {
+        const saved = localStorage.getItem(LS_EMAIL);
+        if (saved) document.getElementById('inEmail').value = saved;
+    }
+
+    // Log every session start to Supabase (for auditing/analytics).
+    async function logSessionStart(s) {
+        try {
+            const { error } = await supabaseClient.from(SESSION_LOG_TABLE).insert({
+                email: s.email,
+                shooter_id: s.shooterId,
+                discipline: s.targetType,
+                series_count: s.seriesCount,
+                user_agent: navigator.userAgent,
+                source: 'livecoach-web'
+            });
+            if (error) console.warn('Session log insert failed:', error.message);
+        } catch (e) {
+            console.warn('Session log error:', e);
+        }
+    }
+
+    function getNotifiedEmails() {
+        try { return JSON.parse(localStorage.getItem(LS_NOTIFIED_EMAILS) || '[]'); }
+        catch (e) { return []; }
+    }
+
+    // Email support@intellishoot.com the FIRST time a new coach email is seen.
+    async function maybeNotifySupport(s) {
+        const key = s.email.toLowerCase();
+        const seen = getNotifiedEmails();
+        if (seen.includes(key)) return;                    // already announced this email
+        if (!emailjsReady || !window.emailjs) {
+            console.info('EmailJS not configured — skipping support notification.');
+            return;
+        }
+        try {
+            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                to_email:     SUPPORT_EMAIL,
+                coach_email:  s.email,
+                shooter_id:   s.shooterId,
+                discipline:   TARGETS[s.targetType].label,
+                series_count: s.seriesCount,
+                started_at:   new Date().toISOString(),
+                message: `New coach registered on Live Coach: ${s.email} started a `
+                       + `${TARGETS[s.targetType].label} session for shooter ${s.shooterId}.`
+            });
+            seen.push(key);
+            localStorage.setItem(LS_NOTIFIED_EMAILS, JSON.stringify(seen));
+        } catch (e) {
+            console.warn('Support email failed (will retry next new session):', e);
+        }
     }
 
     function endSession() {
