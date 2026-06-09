@@ -1,732 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIUS Telemetry Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntelliShoot — Live Coaching for Precision Shooting</title>
     <style>
-        :root { --bg:#f4f4f5; --card:#fff; --line:#e5e7eb; --muted:#64748b; --ink:#1e293b; }
-        * { box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: var(--ink); display: flex; flex-direction: column; align-items: center; }
-        .header { margin-bottom: 16px; text-align: center; }
-        .header h2 { margin: 0; }
-        .header p { margin: 4px 0 0; color: var(--muted); }
+        :root {
+            --green: #16a34a;
+            --green-dark: #15803d;
+            --ink: #0f172a;
+            --muted: #64748b;
+            --line: #e5e7eb;
+            --bg: #f8fafc;
+            --card: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+        .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
 
-        .card { background: var(--card); padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.08); width: 100%; max-width: 1080px; margin-bottom: 20px; }
+        /* Hero */
+        .hero {
+            background: radial-gradient(1200px 500px at 50% -10%, #dcfce7 0%, transparent 60%), var(--bg);
+            text-align: center;
+            padding: 80px 0 64px;
+            border-bottom: 1px solid var(--line);
+        }
+        .badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: var(--green-dark);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+        .hero h1 { font-size: clamp(32px, 6vw, 52px); line-height: 1.1; letter-spacing: -0.02em; }
+        .hero h1 span { color: var(--green); }
+        .hero p.lead {
+            font-size: clamp(16px, 2.4vw, 20px);
+            color: var(--muted);
+            max-width: 660px;
+            margin: 18px auto 32px;
+        }
+        .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 17px; font-weight: 700; text-decoration: none;
+            padding: 16px 30px; border-radius: 12px; transition: transform .05s ease, box-shadow .2s ease;
+        }
+        .btn-primary {
+            background: var(--green); color: #fff;
+            box-shadow: 0 8px 20px rgba(22,163,74,.30);
+        }
+        .btn-primary:hover { background: var(--green-dark); box-shadow: 0 10px 26px rgba(22,163,74,.40); }
+        .btn-primary:active { transform: translateY(1px); }
+        .btn-ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+        .btn-ghost:hover { border-color: #cbd5e1; }
+        .btn .arrow { font-size: 20px; line-height: 1; }
 
-        /* Setup form */
-        .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; align-items: end; }
-        label { display:block; font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
-        input, select { width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; background:#fff; }
-        .actions { display:flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
-        button { padding: 11px 18px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
-        .btn-primary { background:#16a34a; color:#fff; }
-        .btn-primary:hover { background:#15803d; }
-        .btn-secondary { background:#e2e8f0; color:#334155; }
-        .btn-secondary:hover { background:#cbd5e1; }
-        .btn-danger { background:#ef4444; color:#fff; }
-        .btn-danger:hover { background:#dc2626; }
-        button:disabled { opacity:.5; cursor: not-allowed; }
+        /* Sections */
+        section { padding: 56px 0; }
+        h2 { font-size: 28px; letter-spacing: -0.01em; margin-bottom: 6px; }
+        .section-sub { color: var(--muted); margin-bottom: 28px; max-width: 680px; }
+        h3.subhead { font-size: 19px; margin: 34px 0 14px; }
 
-        .status-pill { display:inline-block; padding: 6px 12px; border-radius: 999px; font-weight: 600; font-size: 13px; }
-        .status-ok { background:#dcfce7; color:#166534; }
-        .status-bad { background:#fee2e2; color:#991b1b; }
-        .status-idle { background:#e2e8f0; color:#475569; }
-        .status-wait { background:#fef9c3; color:#854d0e; }
+        /* Feature / benefit grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+        .card .ico { font-size: 24px; }
+        .card h3 { font-size: 16px; margin: 10px 0 6px; }
+        .card p { font-size: 14px; color: var(--muted); }
 
-        .hidden { display:none !important; }
+        .tint { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 
-        /* Live dashboard */
-        .live-grid { display:flex; gap: 32px; flex-wrap: wrap; }
-        .target-container { width: 380px; flex-shrink: 0; }
-        canvas { border: 1px solid var(--line); background:#fff; border-radius: 8px; }
-        .target-caption { text-align:center; color:var(--muted); font-size:13px; margin-top:8px; }
-        .data-panel { flex: 1; min-width: 420px; overflow-x:auto; }
+        /* Numbered steps */
+        .steps { display: grid; gap: 14px; }
+        .step {
+            display: flex; gap: 16px; align-items: flex-start;
+            background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px;
+        }
+        .step .n {
+            flex: 0 0 36px; height: 36px; width: 36px; border-radius: 50%;
+            background: var(--green); color: #fff; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .step h4 { font-size: 16px; margin-bottom: 2px; }
+        .step p { font-size: 14px; color: var(--muted); }
 
-        .session-bar { display:flex; gap: 20px; flex-wrap: wrap; align-items:center; margin-bottom: 14px; padding: 12px 16px; background:#f8fafc; border:1px solid var(--line); border-radius:8px; }
-        .session-bar .meta { font-size: 13px; }
-        .session-bar .meta b { display:block; font-size: 16px; color: var(--ink); }
-        .badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        .badge-pistol { background:#e0f2fe; color:#0369a1; }
-        .badge-rifle { background:#fce7f3; color:#be185d; }
-        .badge-match { background:#dcfce7; color:#166534; }
-        .badge-sighter { background:#fef9c3; color:#854d0e; }
-        .badge-unknown { background:#e2e8f0; color:#475569; }
+        /* What to watch list */
+        .watch { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .watch .card h3 { display: flex; align-items: center; gap: 8px; }
+        .watch .tag { font-size: 11px; font-weight: 700; color: var(--green-dark); background: #dcfce7; padding: 2px 8px; border-radius: 999px; }
 
-        table { width:100%; border-collapse: collapse; margin-top: 8px; }
-        th, td { text-align:left; padding: 8px 10px; border-bottom: 1px solid #eee; font-size: 13px; white-space: nowrap; }
-        th { background:#f8fafc; color: var(--muted); font-weight:600; position: sticky; top: 0; }
-        .num { text-align:right; font-variant-numeric: tabular-nums; }
-        .row-highlight { animation: flash 1.5s ease-out; }
-        @keyframes flash { 0% { background:#fef08a; } 100% { background: transparent; } }
-        .scroll-box { max-height: 360px; overflow-y:auto; border:1px solid var(--line); border-radius:8px; }
+        /* Tips */
+        .tips { list-style: none; display: grid; gap: 10px; }
+        .tips li { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--green); border-radius: 8px; padding: 12px 16px; font-size: 14px; }
+        .tips li b { color: var(--ink); }
 
-        /* Summary */
-        .summary-cols { display:flex; gap: 24px; flex-wrap: wrap; }
-        .summary-block { flex:1; min-width: 320px; }
-        .summary-block h3 { margin: 0 0 10px; font-size: 15px; }
-        .totals { display:flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
-        .stat { background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding: 12px 16px; min-width: 120px; }
-        .stat .label { font-size: 12px; color: var(--muted); }
-        .stat .value { font-size: 22px; font-weight: 700; }
+        /* Platforms */
+        .platforms { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .platform { display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+        .platform .ico { font-size: 30px; }
+        .platform h3 { font-size: 17px; }
+        .platform p { font-size: 14px; color: var(--muted); margin-top: 2px; }
 
-        .note { font-size: 12px; color: var(--muted); background:#f8fafc; border-left: 3px solid #cbd5e1; padding: 8px 12px; border-radius: 4px; margin-top: 12px; }
-        .warn { border-left-color:#f59e0b; background:#fffbeb; }
+        /* CTA strip */
+        .cta-strip { background: var(--ink); color: #fff; border-radius: 16px; padding: 40px; text-align: center; }
+        .cta-strip h2 { color: #fff; }
+        .cta-strip p { color: #cbd5e1; margin: 6px 0 22px; }
+
+        footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 13px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h2>SIUS Telemetry Dashboard</h2>
-        <p>Agent <strong id="agentToken">SYS-BLR-001</strong></p>
-    </div>
-
-    <!-- ===================== SETUP / CONNECTION ===================== -->
-    <div class="card" id="setupCard">
-        <div class="setup-grid">
-            <div>
-                <label for="inEmail">Coach Email</label>
-                <input id="inEmail" type="email" autocomplete="email"
-                       placeholder="you@example.com" />
-            </div>
-            <div>
-                <label for="inShooter">Shooter ID</label>
-                <input id="inShooter" placeholder="e.g. IND-12345 (from additional_info)" />
-            </div>
-            <div>
-                <label for="inTarget">Target Type</label>
-                <select id="inTarget">
-                    <option value="pistol">10m Air Pistol</option>
-                    <option value="rifle">10m Air Rifle</option>
-                </select>
-            </div>
-            <div>
-                <label for="inSeries">Series in Session</label>
-                <select id="inSeries">
-                    <option value="6">6 series (60 shots)</option>
-                    <option value="4">4 series (40 shots)</option>
-                </select>
+    <!-- HERO -->
+    <header class="hero">
+        <div class="wrap">
+            <span class="badge">● Real-Time Performance Coaching</span>
+            <h1>IntelliShoot <span>Live Coach</span></h1>
+            <p class="lead">
+                Turn every shot into instant, objective feedback. IntelliShoot puts a live picture
+                of an athlete's group, scores, rhythm and trend in front of the coach — so guidance
+                happens in the moment, when it changes the next shot, not after the match.
+            </p>
+            <div class="cta-row">
+                <a class="btn btn-primary" href="Livecoach.html">
+                    Launch Live Coach <span class="arrow">→</span>
+                </a>
+                <a class="btn btn-ghost" href="#coaching">Coaching 101</a>
             </div>
         </div>
-        <div class="actions">
-            <button class="btn-primary" id="btnStart">▶ Start New Session</button>
-            <button class="btn-secondary" id="btnTest">⟳ Test Connection (fetch last 10 shots)</button>
-            <span id="connStatus" class="status-pill status-idle">Not connected</span>
-        </div>
+    </header>
 
-        <!-- Calibration preview (last 10 shots) -->
-        <div id="calibBox" class="hidden" style="margin-top:18px;">
-            <h3 style="margin:0 0 8px; font-size:14px;">Calibration — last 10 shots in Supabase</h3>
-            <div class="scroll-box">
-                <table>
-                    <thead><tr>
-                        <th>Inserted (created_at)</th><th>Shooter (additional_info)</th><th>SIUS [3]</th>
-                        <th>Phase code [9]</th><th>Phase (guess)</th><th class="num">Score</th><th class="num">Decimal</th>
-                        <th class="num">X</th><th class="num">Y</th><th>Clock</th>
-                    </tr></thead>
-                    <tbody id="calibBody"></tbody>
-                </table>
-            </div>
-            <div class="note warn">
-                Use this to verify what the SIUS system is actually sending. Per the official SIUS
-                <code>_SHOT</code> spec, the <b>Shooter ID is field [3]</b> and the <b>phase/status field [9] is undocumented</b>
-                — confirm the codes above match reality before trusting the phase split.
-            </div>
-        </div>
-    </div>
-
-    <!-- ===================== LIVE DASHBOARD ===================== -->
-    <div class="card hidden" id="liveCard">
-        <div class="session-bar">
-            <div class="meta">Shooter<b id="sbShooter">—</b></div>
-            <div class="meta">Discipline<b id="sbTarget">—</b></div>
-            <div class="meta">Progress<b id="sbProgress">0 / 0 match shots</b></div>
-            <div class="meta">Current Series<b id="sbSeries">—</b></div>
-            <span id="liveStatus" class="status-pill status-wait">Waiting for live shots…</span>
-            <button class="btn-danger" id="btnEnd" style="margin-left:auto;">■ End Session</button>
-        </div>
-
-        <div class="live-grid">
-            <div class="target-container">
-                <canvas id="targetCanvas" width="380" height="380"></canvas>
-                <div class="target-caption" id="targetCaption">ISSF Target</div>
-            </div>
-            <div class="data-panel">
-                <div class="scroll-box">
-                    <table>
-                        <thead><tr>
-                            <th>#</th><th>Series</th><th>Phase</th>
-                            <th class="num">Score</th><th class="num">Ring</th>
-                            <th>Clock</th><th class="num">X / Y (m)</th>
-                            <th>Shot Time</th><th class="num">Δ Prev</th>
-                        </tr></thead>
-                        <tbody id="telemetryLog"></tbody>
-                    </table>
+    <!-- BENEFITS -->
+    <section>
+        <div class="wrap">
+            <h2>Why live coaching works</h2>
+            <p class="section-sub">
+                Improvement is fastest when feedback is immediate, objective and specific.
+                A live system delivers all three — every shot, every series.
+            </p>
+            <div class="grid">
+                <div class="card">
+                    <div class="ico">🎯</div>
+                    <h3>Objective, not guesswork</h3>
+                    <p>Real numbers replace “it felt like a nine.” Coach and athlete look at the same truth, shot for shot.</p>
+                </div>
+                <div class="card">
+                    <div class="ico">⚡</div>
+                    <h3>Adjust in the moment</h3>
+                    <p>A tighter feedback loop means corrections land while the athlete can still act on them — not in a debrief next week.</p>
+                </div>
+                <div class="card">
+                    <div class="ico">🧭</div>
+                    <h3>Spot the tendency</h3>
+                    <p>See recurring patterns — a low-left drift, a rushed shot after a ten — long before they cost a final.</p>
+                </div>
+                <div class="card">
+                    <div class="ico">📈</div>
+                    <h3>Build consistency</h3>
+                    <p>Decimal scores and inner-ten counts make the quality of the hold visible, so you can train stability, not just score.</p>
+                </div>
+                <div class="card">
+                    <div class="ico">⏱️</div>
+                    <h3>Master rhythm</h3>
+                    <p>Shot-to-shot timing reveals tempo — rushing under pressure or hesitating — so you can coach a repeatable cadence.</p>
+                </div>
+                <div class="card">
+                    <div class="ico">🧠</div>
+                    <h3>Stay motivated</h3>
+                    <p>Visible, session-over-session progress keeps athletes engaged and makes goals concrete and measurable.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- ===================== SUMMARY ===================== -->
-    <div class="card hidden" id="summaryCard">
-        <h2 style="margin-top:0;">Session Summary</h2>
-        <div class="summary-cols">
-            <div class="summary-block">
-                <h3>🎯 Match</h3>
-                <div class="scroll-box" style="max-height:260px;">
-                    <table>
-                        <thead><tr><th>Series</th><th class="num">Decimal</th><th class="num">Integer</th><th class="num">10x</th></tr></thead>
-                        <tbody id="matchSeriesBody"></tbody>
-                    </table>
+    <!-- COACHING 101 -->
+    <section id="coaching" class="tint">
+        <div class="wrap">
+            <h2>Live Coaching 101</h2>
+            <p class="section-sub">
+                A short primer on using real-time data to raise performance. The goal is never
+                “more numbers” — it's a faster, cleaner loop of <b>observe → understand → adjust</b>.
+            </p>
+
+            <h3 class="subhead">What to watch — and what it tells you</h3>
+            <div class="watch">
+                <div class="card">
+                    <h3>📍 Group &amp; direction <span class="tag">WHERE</span></h3>
+                    <p>The shot plot and clock-face direction show <b>where</b> shots are landing. A consistent bias (say, “8:00”) points to position, grip, sight or aiming — a fixable cause, not bad luck.</p>
                 </div>
-                <div class="totals">
-                    <div class="stat"><div class="label">Total (ISSF integer)</div><div class="value" id="matchInt">0</div></div>
-                    <div class="stat"><div class="label">Total (decimal)</div><div class="value" id="matchDec">0.0</div></div>
-                    <div class="stat"><div class="label">Inner Tens (10x)</div><div class="value" id="matchX">0</div></div>
+                <div class="card">
+                    <h3>💯 Decimal &amp; inner-tens <span class="tag">QUALITY</span></h3>
+                    <p>Decimal scores and 10x counts reveal the <b>quality of the hold</b>. Two “tens” aren't equal — 10.1 vs 10.7 is the difference between surviving and dominating a final.</p>
+                </div>
+                <div class="card">
+                    <h3>⏱️ Shot timing <span class="tag">RHYTHM</span></h3>
+                    <p>The gap between shots exposes <b>tempo</b>. A shot fired far quicker than usual is often a rushed “grab” — frequently the low-scorer of the series.</p>
+                </div>
+                <div class="card">
+                    <h3>🟡 Sighters vs match <span class="tag">READINESS</span></h3>
+                    <p>Sighters confirm zero and warm-up quality. A big gap between sighter and match scores signals a <b>focus or pressure</b> issue, not a technical one.</p>
+                </div>
+                <div class="card">
+                    <h3>📊 Series trend <span class="tag">ENDURANCE</span></h3>
+                    <p>Score per 10-shot series shows <b>stamina and concentration</b>. A late-series drop points to fatigue or attention lapses to train for.</p>
+                </div>
+                <div class="card">
+                    <h3>🔁 Shot-after-shot <span class="tag">MINDSET</span></h3>
+                    <p>Watch what follows a great shot and a bad one. Over-holding after a miss, or relaxing after a ten, are <b>mental patterns</b> worth naming.</p>
                 </div>
             </div>
 
-            <div class="summary-block">
-                <h3>🟡 Sighters</h3>
-                <div class="totals">
-                    <div class="stat"><div class="label">Shots</div><div class="value" id="sightCount">0</div></div>
-                    <div class="stat"><div class="label">Total (integer)</div><div class="value" id="sightInt">0</div></div>
-                    <div class="stat"><div class="label">Total (decimal)</div><div class="value" id="sightDec">0.0</div></div>
-                    <div class="stat"><div class="label">10x</div><div class="value" id="sightX">0</div></div>
+            <h3 class="subhead">How to run a live session</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="n">1</div>
+                    <div>
+                        <h4>Set up the athlete &amp; session</h4>
+                        <p>Pick the shooter and discipline and start a session. Each one is saved, so you can compare today against last week.</p>
+                    </div>
                 </div>
-                <h3 style="margin-top:18px;">❔ Unclassified</h3>
-                <div class="totals">
-                    <div class="stat"><div class="label">Shots (phase code not recognised)</div><div class="value" id="unkCount">0</div></div>
+                <div class="step">
+                    <div class="n">2</div>
+                    <div>
+                        <h4>Warm up on sighters</h4>
+                        <p>Use sighters to confirm zero and settle. Check the group is centred before match shots count — fix equipment issues here, not mid-match.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="n">3</div>
+                    <div>
+                        <h4>Observe more than you talk</h4>
+                        <p>Let the data accumulate. One or two shots is noise; a pattern across a series is signal. Resist coaching every shot.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="n">4</div>
+                    <div>
+                        <h4>One pattern, one cue</h4>
+                        <p>When a tendency is clear, give a single, specific, actionable cue (“finish your follow-through”) rather than a list. Then watch whether it lands.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="n">5</div>
+                    <div>
+                        <h4>Debrief with the summary</h4>
+                        <p>After the session, review series totals, inner-tens and trend together. Agree on one focus for next time — and track it.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subhead">Coaching tips</h3>
+            <ul class="tips">
+                <li><b>Coach the process, not the score.</b> Talk about hold, trigger and follow-through; the score follows the process.</li>
+                <li><b>Let the athlete read the data first.</b> Ask “what do you notice?” before you tell them — it builds self-coaching.</li>
+                <li><b>One change at a time.</b> Stacking corrections muddies cause and effect; isolate variables.</li>
+                <li><b>Pressure-test on purpose.</b> Use the live score to simulate finals tension, then watch rhythm and decimals hold or break.</li>
+                <li><b>Celebrate quality.</b> A centred 10.6 under pressure deserves more attention than a lucky edge-ten.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- PLATFORMS -->
+    <section>
+        <div class="wrap">
+            <h2>Coach from anywhere</h2>
+            <p class="section-sub">The same live session on the surface that suits you.</p>
+            <div class="platforms">
+                <div class="platform">
+                    <div class="ico">🌐</div>
+                    <div>
+                        <h3>Live Coach (Web)</h3>
+                        <p>Zero-install browser dashboard: live target plot, shot table with timing, and per-session summary. Open it on the range laptop or any tablet.</p>
+                    </div>
+                </div>
+                <div class="platform">
+                    <div class="ico">📱</div>
+                    <div>
+                        <h3>Mobile &amp; Desktop App</h3>
+                        <p>Companion app (Android / iOS / Windows / macOS) that groups sessions by athlete and stores them locally for offline review and progress tracking.</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="note">
-            <b>10x rule:</b> a shot counts as an inner ten when its decimal score ≥ the configured threshold
-            (<span id="noteThresh"></span>). Match shots are grouped into series of 10 in arrival order.
+    </section>
+
+    <!-- CTA STRIP -->
+    <section style="padding-top:0;">
+        <div class="wrap">
+            <div class="cta-strip">
+                <h2>Ready to coach the next shot?</h2>
+                <p>Open the live dashboard and start a session.</p>
+                <a class="btn btn-primary" href="Livecoach.html">
+                    Launch Live Coach <span class="arrow">→</span>
+                </a>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <script>
-    // ============================================================
-    // CONFIGURATION
-    // ============================================================
-    const SUPABASE_URL = 'https://gbpqzopsbeyeycxklrvt.supabase.co';
-    const SUPABASE_ANON_KEY = 'sb_publishable_Zp-qdGwQsS4SpDWffOo3bA_vlGcljxr';
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    <footer>
+        <div class="wrap">
+            IntelliShoot · Live Coaching for Precision Shooting · for authorised range &amp; coaching use.
+        </div>
+    </footer>
 
-    // --- Backend logging + coach email notification ---
-    const SESSION_LOG_TABLE = 'session_logs';   // Supabase table (see SQL in README)
-    const SUPPORT_EMAIL      = 'support@intellishoot.com';
-
-    // EmailJS (client-side mail). Create a free account at emailjs.com, then fill these
-    // in. Until they are set, email notifications are skipped (session logging still works).
-    const EMAILJS_PUBLIC_KEY  = 's67bOZBhr4Hl15Z-r';
-    const EMAILJS_SERVICE_ID  = 'service_e15em97';
-    const EMAILJS_TEMPLATE_ID = 'template_sjvde24';
-
-    // localStorage keys
-    const LS_EMAIL          = 'intellishoot_coach_email';   // last-used email (autofill)
-    const LS_NOTIFIED_EMAILS = 'intellishoot_notified_emails'; // emails already announced
-
-    const emailjsReady = EMAILJS_PUBLIC_KEY && !EMAILJS_PUBLIC_KEY.startsWith('YOUR_');
-    if (emailjsReady && window.emailjs) {
-        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-    }
-
-    // --- SIUS _SHOT field indices (0-based). Verified against the official SIUS
-    //     support docs: support.sius.com/forums/topic/siusdata-socket-information/
-    //     Confirmed: [0] _SHOT, [3] Shooter ID, [6] Timestamp, [10] Score,
-    //     [11] Decimal, [14] X, [15] Y, [20] Shot timestamp.
-    //     UNVERIFIED (SIUS lists as "Unknown"): [9] phase/status, [12], [22].
-    const F = {
-        HEADER: 0, FIRING_POINT: 1, LANE: 2, SHOOTER_ID: 3,
-        TIMESTAMP: 6, PHASE: 9, SCORE: 10, DECIMAL: 11,
-        X: 14, Y: 15, SHOT_TS: 20
-    };
-
-    // --- Phase classification. [9] is an UNDOCUMENTED status bitfield. Observed
-    //     values (7, 39, 519, 551, 544) all decompose into a low 3-bit code plus
-    //     high flag bits (32, 512). The mapping below is the project's HYPOTHESIS
-    //     from arch.md — edit these lists once validated against labelled sessions.
-    const MATCH_CODES   = new Set(['7']);
-    const SIGHTER_CODES = new Set(['39', '519', '551']);
-    function classifyPhase(code) {
-        if (MATCH_CODES.has(code))   return 'Match';
-        if (SIGHTER_CODES.has(code)) return 'Sighter';
-        return 'Unknown';
-    }
-
-    // --- Inner-ten (10x) decimal thresholds (editable). Approximate ISSF values.
-    const INNER_TEN_THRESHOLD = { pistol: 10.2, rifle: 10.5 };
-
-    // --- ISSF target geometry (ring diameters in mm), verified via ISSF rulebook /
-    //     Wikipedia. blackMaxDia = outer diameter of the black aiming area.
-    const TARGETS = {
-        pistol: {
-            label: '10m Air Pistol',
-            rings: { 10:11.5, 9:27.5, 8:43.5, 7:59.5, 6:75.5, 5:91.5, 4:107.5, 3:123.5, 2:139.5, 1:155.5 },
-            innerTenDia: 5.0, blackMaxDia: 59.5
-        },
-        rifle: {
-            label: '10m Air Rifle',
-            rings: { 10:0.5, 9:5.5, 8:10.5, 7:15.5, 6:20.5, 5:25.5, 4:30.5, 3:35.5, 2:40.5, 1:45.5 },
-            innerTenDia: 0.5, blackMaxDia: 30.5
-        }
-    };
-
-    // ============================================================
-    // STATE
-    // ============================================================
-    let session = null;       // { shooterId, targetType, seriesCount }
-    let channel = null;       // realtime subscription
-    let shots = [];           // all accepted shots this session (parsed)
-    const seenKeys = new Set();
-
-    // ============================================================
-    // PARSING
-    // ============================================================
-    function parseRawShot(raw) {
-        if (!raw || raw.indexOf('_SHOT') === -1) return null;
-        const p = raw.split(';');
-        if (p.length < 24) return null;
-        const decimalRaw = parseFloat(p[F.DECIMAL]);
-        return {
-            shooterId: (p[F.SHOOTER_ID] || '').trim(),
-            phaseCode: (p[F.PHASE] || '').trim(),
-            score:     parseInt(p[F.SCORE], 10) || 0,
-            decimal:   isNaN(decimalRaw) ? 0 : decimalRaw / 10.0,   // [11] is x10
-            x:         parseFloat(p[F.X]) || 0,
-            y:         parseFloat(p[F.Y]) || 0,
-            shotTime:  (p[F.TIMESTAMP] || '').trim(),               // HH:MM:SS.ss
-            shotTs:    p[F.SHOT_TS]
-        };
-    }
-
-    // Authoritative ShooterID comes from additional_info (set by the agent's config),
-    // matching imonitor.go's getShooterID(). The SIUS array field [3] is only a fallback.
-    function rowShooterId(parsed, additionalInfo) {
-        if (Array.isArray(additionalInfo)) {
-            for (const info of additionalInfo) {
-                if (info && info.ShooterID != null) return String(info.ShooterID);
-            }
-        }
-        return parsed.shooterId || '';
-    }
-
-    function shooterMatches(parsed, additionalInfo, wanted) {
-        if (!wanted) return true;
-        return rowShooterId(parsed, additionalInfo) === wanted;
-    }
-
-    // "HH:MM:SS.ss" -> seconds
-    function timeToSeconds(t) {
-        if (!t) return null;
-        const m = t.match(/(\d+):(\d+):(\d+(?:\.\d+)?)/);
-        if (!m) return null;
-        return (+m[1]) * 3600 + (+m[2]) * 60 + parseFloat(m[3]);
-    }
-
-    function isInnerTen(parsed) {
-        return parsed.decimal >= INNER_TEN_THRESHOLD[session.targetType];
-    }
-
-    // Recompute clock face from X/Y (Atan2(x, y) so 12:00 = up), matches the Go agent.
-    function clockFace(x, y) {
-        if (x === 0 && y === 0) return 'Center';
-        let deg = Math.atan2(x, y) * 180 / Math.PI;
-        if (deg < 0) deg += 360;
-        let h = Math.round(deg / 30);
-        if (h === 0) h = 12;
-        return h + ':00';
-    }
-
-    // ============================================================
-    // TARGET RENDERING
-    // ============================================================
-    const canvas = document.getElementById('targetCanvas');
-    const ctx = canvas.getContext('2d');
-    const CENTER = canvas.width / 2;
-    const DRAW_RADIUS = 175;       // px from centre to outermost ring
-    let pxPerMeter = 2000;         // recomputed per target
-
-    function drawTarget() {
-        const spec = TARGETS[session.targetType];
-        const outerDiaMm = spec.rings[1];
-        const outerRadiusM = (outerDiaMm / 2) / 1000;
-        pxPerMeter = DRAW_RADIUS / outerRadiusM;
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // rings outer -> inner so inner rings paint on top
-        for (let ring = 1; ring <= 10; ring++) {
-            const diaMm = spec.rings[ring];
-            const rPx = (diaMm / 2 / 1000) * pxPerMeter;
-            const isBlack = diaMm <= spec.blackMaxDia + 0.001;
-
-            ctx.beginPath();
-            ctx.arc(CENTER, CENTER, rPx, 0, 2 * Math.PI);
-            ctx.fillStyle = isBlack ? '#1a1a1a' : '#ffffff';
-            ctx.fill();
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = isBlack ? '#ffffff' : '#333333';
-            ctx.stroke();
-
-            // ring number on the white part (lower vertical), skip tiny rings
-            if (!isBlack && rPx > 14) {
-                ctx.fillStyle = '#333';
-                ctx.font = '11px sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText(ring, CENTER, CENTER + rPx - 6);
-            }
-        }
-
-        // inner-ten marker (dashed)
-        const itPx = (spec.innerTenDia / 2 / 1000) * pxPerMeter;
-        if (itPx > 2) {
-            ctx.beginPath();
-            ctx.setLineDash([3, 3]);
-            ctx.arc(CENTER, CENTER, itPx, 0, 2 * Math.PI);
-            ctx.strokeStyle = '#22c55e';
-            ctx.stroke();
-            ctx.setLineDash([]);
-        }
-    }
-
-    function plotShot(x_m, y_m, newest) {
-        const px = CENTER + x_m * pxPerMeter;
-        const py = CENTER - y_m * pxPerMeter;
-        ctx.beginPath();
-        ctx.arc(px, py, newest ? 5 : 4, 0, 2 * Math.PI);
-        ctx.fillStyle = newest ? '#22c55e' : '#ef4444';
-        ctx.fill();
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = '#fff';
-        ctx.stroke();
-    }
-
-    function redrawAllShots() {
-        drawTarget();
-        shots.forEach((s, i) => plotShot(s.x, s.y, i === shots.length - 1));
-    }
-
-    // ============================================================
-    // CONNECTION TEST / CALIBRATION (last 10 shots — not auto-loaded)
-    // ============================================================
-    document.getElementById('btnTest').addEventListener('click', testConnection);
-
-    async function testConnection() {
-        const pill = document.getElementById('connStatus');
-        pill.className = 'status-pill status-wait';
-        pill.textContent = 'Testing…';
-
-        try {
-            const { data, error } = await supabaseClient
-                .from('telemetry_shots')
-                .select('raw_shot, clock_face, created_at, additional_info')
-                .order('created_at', { ascending: false })
-                .limit(10);
-
-            if (error) throw error;
-
-            pill.className = 'status-pill status-ok';
-            pill.textContent = `Connected — ${data.length} shot(s) found`;
-
-            const body = document.getElementById('calibBody');
-            body.innerHTML = '';
-            data.forEach(row => {
-                const s = parseRawShot(row.raw_shot);
-                if (!s) return;
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${new Date(row.created_at).toLocaleString()}</td>
-                    <td style="font-weight:600;">${rowShooterId(s, row.additional_info) || '—'}</td>
-                    <td style="color:#94a3b8;">${s.shooterId || '—'}</td>
-                    <td>${s.phaseCode}</td>
-                    <td>${classifyPhase(s.phaseCode)}</td>
-                    <td class="num">${s.score}</td>
-                    <td class="num">${s.decimal.toFixed(1)}</td>
-                    <td class="num">${s.x.toFixed(4)}</td>
-                    <td class="num">${s.y.toFixed(4)}</td>
-                    <td>${row.clock_face || clockFace(s.x, s.y)}</td>`;
-                body.appendChild(tr);
-            });
-            document.getElementById('calibBox').classList.remove('hidden');
-        } catch (e) {
-            pill.className = 'status-pill status-bad';
-            pill.textContent = 'Connection failed';
-            console.error(e);
-        }
-    }
-
-    // ============================================================
-    // SESSION LIFECYCLE
-    // ============================================================
-    document.getElementById('btnStart').addEventListener('click', startSession);
-    document.getElementById('btnEnd').addEventListener('click', endSession);
-    prefillCoachEmail();   // autofill email for returning users
-
-    function startSession() {
-        const email = document.getElementById('inEmail').value.trim();
-        if (!isValidEmail(email)) { alert('Enter a valid coach email to start a session.'); return; }
-        const shooterId = document.getElementById('inShooter').value.trim();
-        if (!shooterId) { alert('Enter a Shooter ID to start a session.'); return; }
-
-        // Remember the email for return visits (browser memory).
-        localStorage.setItem(LS_EMAIL, email);
-
-        session = {
-            email,
-            shooterId,
-            targetType: document.getElementById('inTarget').value,
-            seriesCount: parseInt(document.getElementById('inSeries').value, 10)
-        };
-        shots = [];
-        seenKeys.clear();
-
-        // header / session bar
-        const spec = TARGETS[session.targetType];
-        document.getElementById('sbShooter').textContent = shooterId;
-        document.getElementById('sbTarget').innerHTML =
-            `<span class="badge badge-${session.targetType}">${spec.label}</span>`;
-        document.getElementById('targetCaption').textContent =
-            `${spec.label} — green dashed = inner ten (${spec.innerTenDia} mm)`;
-        document.getElementById('noteThresh').textContent =
-            `${session.targetType} ≥ ${INNER_TEN_THRESHOLD[session.targetType].toFixed(1)}`;
-
-        document.getElementById('telemetryLog').innerHTML = '';
-        document.getElementById('setupCard').classList.add('hidden');
-        document.getElementById('liveCard').classList.remove('hidden');
-        document.getElementById('summaryCard').classList.remove('hidden');
-
-        drawTarget();
-        renderSummary();
-        subscribeLive();
-
-        // Backend logging + (first-time-only) support notification — non-blocking.
-        logSessionStart(session);
-        maybeNotifySupport(session);
-    }
-
-    // ============================================================
-    // EMAIL CAPTURE / BACKEND LOGGING / SUPPORT NOTIFICATION
-    // ============================================================
-    function isValidEmail(e) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-    }
-
-    // Auto-populate the email for returning users (from browser memory).
-    function prefillCoachEmail() {
-        const saved = localStorage.getItem(LS_EMAIL);
-        if (saved) document.getElementById('inEmail').value = saved;
-    }
-
-    // Log every session start to Supabase (for auditing/analytics).
-    async function logSessionStart(s) {
-        try {
-            const { error } = await supabaseClient.from(SESSION_LOG_TABLE).insert({
-                email: s.email,
-                shooter_id: s.shooterId,
-                discipline: s.targetType,
-                series_count: s.seriesCount,
-                user_agent: navigator.userAgent,
-                source: 'livecoach-web'
-            });
-            if (error) console.warn('Session log insert failed:', error.message);
-        } catch (e) {
-            console.warn('Session log error:', e);
-        }
-    }
-
-    function getNotifiedEmails() {
-        try { return JSON.parse(localStorage.getItem(LS_NOTIFIED_EMAILS) || '[]'); }
-        catch (e) { return []; }
-    }
-
-    // Email support@intellishoot.com the FIRST time a new coach email is seen.
-    async function maybeNotifySupport(s) {
-        const key = s.email.toLowerCase();
-        const seen = getNotifiedEmails();
-        if (seen.includes(key)) return;                    // already announced this email
-        if (!emailjsReady || !window.emailjs) {
-            console.info('EmailJS not configured — skipping support notification.');
-            return;
-        }
-        try {
-            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                to_email:     SUPPORT_EMAIL,
-                coach_email:  s.email,
-                shooter_id:   s.shooterId,
-                discipline:   TARGETS[s.targetType].label,
-                series_count: s.seriesCount,
-                started_at:   new Date().toISOString(),
-                message: `New coach registered on Live Coach: ${s.email} started a `
-                       + `${TARGETS[s.targetType].label} session for shooter ${s.shooterId}.`
-            });
-            seen.push(key);
-            localStorage.setItem(LS_NOTIFIED_EMAILS, JSON.stringify(seen));
-        } catch (e) {
-            console.warn('Support email failed (will retry next new session):', e);
-        }
-    }
-
-    function endSession() {
-        if (channel) { supabaseClient.removeChannel(channel); channel = null; }
-        document.getElementById('liveStatus').className = 'status-pill status-idle';
-        document.getElementById('liveStatus').textContent = 'Session ended';
-        document.getElementById('setupCard').classList.remove('hidden');
-    }
-
-    // ============================================================
-    // LIVE FEED — only NEW inserts after the session starts
-    // ============================================================
-    function subscribeLive() {
-        if (channel) supabaseClient.removeChannel(channel);
-        channel = supabaseClient
-            .channel('live-telemetry')
-            .on('postgres_changes',
-                { event: 'INSERT', schema: 'public', table: 'telemetry_shots' },
-                (payload) => handleIncoming(payload.new))
-            .subscribe((status) => {
-                const pill = document.getElementById('liveStatus');
-                if (status === 'SUBSCRIBED') {
-                    pill.className = 'status-pill status-ok';
-                    pill.textContent = 'Live — waiting for shots';
-                } else if (status === 'CLOSED' || status === 'CHANNEL_ERROR') {
-                    pill.className = 'status-pill status-bad';
-                    pill.textContent = 'Connection lost. Reconnecting…';
-                }
-            });
-    }
-
-    function handleIncoming(row) {
-        const parsed = parseRawShot(row.raw_shot);
-        if (!parsed) return;
-        if (!shooterMatches(parsed, row.additional_info, session.shooterId)) return;
-
-        const key = row.id != null ? 'id:' + row.id : 'raw:' + row.raw_shot;
-        if (seenKeys.has(key)) return;
-        seenKeys.add(key);
-
-        const phase = classifyPhase(parsed.phaseCode);
-        const shot = {
-            ...parsed,
-            phase,
-            clock: row.clock_face || clockFace(parsed.x, parsed.y),
-            seconds: timeToSeconds(parsed.shotTime)
-        };
-        shots.push(shot);
-
-        const pill = document.getElementById('liveStatus');
-        pill.className = 'status-pill status-ok';
-        pill.textContent = 'Live — receiving shots';
-
-        appendRow(shot);
-        redrawAllShots();
-        renderSummary();
-    }
-
-    // ============================================================
-    // LIVE TABLE
-    // ============================================================
-    function matchSeriesOf(shotObj) {
-        // 1-based series index among MATCH shots, in arrival order
-        let idx = 0;
-        for (const s of shots) {
-            if (s === shotObj) break;
-            if (s.phase === 'Match') idx++;
-        }
-        return shotObj.phase === 'Match' ? Math.floor(idx / 10) + 1 : null;
-    }
-
-    function appendRow(shot) {
-        const tbody = document.getElementById('telemetryLog');
-        const shotNum = shots.length;
-
-        // delta vs the previous shot of the SAME phase
-        let delta = '—';
-        for (let i = shots.length - 2; i >= 0; i--) {
-            if (shots[i].phase === shot.phase && shots[i].seconds != null && shot.seconds != null) {
-                const d = shot.seconds - shots[i].seconds;
-                delta = (d >= 0 ? '+' : '') + d.toFixed(1) + 's';
-                break;
-            }
-        }
-
-        const series = matchSeriesOf(shot);
-        const phaseBadge = shot.phase === 'Match' ? 'badge-match'
-            : shot.phase === 'Sighter' ? 'badge-sighter' : 'badge-unknown';
-
-        const tr = document.createElement('tr');
-        tr.className = 'row-highlight';
-        tr.innerHTML = `
-            <td>${shotNum}</td>
-            <td>${series ? 'S' + series : '—'}</td>
-            <td><span class="badge ${phaseBadge}">${shot.phase}</span> <span style="color:#94a3b8;font-size:11px;">${shot.phaseCode}</span></td>
-            <td class="num" style="font-weight:700;">${shot.decimal.toFixed(1)}</td>
-            <td class="num">${shot.score}</td>
-            <td>${shot.clock}</td>
-            <td class="num" style="color:#666;font-size:12px;">${shot.x.toFixed(3)} / ${shot.y.toFixed(3)}</td>
-            <td>${shot.shotTime || '—'}</td>
-            <td class="num">${delta}</td>`;
-        tbody.prepend(tr);
-    }
-
-    // ============================================================
-    // SUMMARY
-    // ============================================================
-    function renderSummary() {
-        const matchShots   = shots.filter(s => s.phase === 'Match');
-        const sighterShots = shots.filter(s => s.phase === 'Sighter');
-        const unknownShots = shots.filter(s => s.phase === 'Unknown');
-
-        // ---- Match grouped into series of 10 ----
-        const body = document.getElementById('matchSeriesBody');
-        body.innerHTML = '';
-        let mInt = 0, mDec = 0, mX = 0;
-        const seriesCount = Math.max(session.seriesCount, Math.ceil(matchShots.length / 10));
-
-        for (let s = 0; s < seriesCount; s++) {
-            const slice = matchShots.slice(s * 10, s * 10 + 10);
-            if (slice.length === 0 && s >= session.seriesCount) continue;
-            const sInt = slice.reduce((a, b) => a + b.score, 0);
-            const sDec = slice.reduce((a, b) => a + b.decimal, 0);
-            const sX   = slice.filter(isInnerTen).length;
-            mInt += sInt; mDec += sDec; mX += sX;
-
-            const extra = s >= session.seriesCount;
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>Series ${s + 1}${extra ? ' (extra)' : ''} <span style="color:#94a3b8;">(${slice.length}/10)</span></td>
-                <td class="num">${sDec.toFixed(1)}</td>
-                <td class="num">${sInt}</td>
-                <td class="num">${sX}</td>`;
-            if (extra) tr.style.color = '#b45309';
-            body.appendChild(tr);
-        }
-
-        document.getElementById('matchInt').textContent = `${mInt}${mX ? '-' + mX + 'x' : ''}`;
-        document.getElementById('matchDec').textContent = mDec.toFixed(1);
-        document.getElementById('matchX').textContent = mX;
-
-        // ---- Sighters ----
-        document.getElementById('sightCount').textContent = sighterShots.length;
-        document.getElementById('sightInt').textContent   = sighterShots.reduce((a, b) => a + b.score, 0);
-        document.getElementById('sightDec').textContent   = sighterShots.reduce((a, b) => a + b.decimal, 0).toFixed(1);
-        document.getElementById('sightX').textContent     = sighterShots.filter(isInnerTen).length;
-
-        // ---- Unknown ----
-        document.getElementById('unkCount').textContent = unknownShots.length;
-
-        // ---- Session bar progress ----
-        document.getElementById('sbProgress').textContent =
-            `${matchShots.length} / ${session.seriesCount * 10} match shots`;
-        const curSeries = matchShots.length === 0 ? 1
-            : Math.min(Math.floor((matchShots.length - 1) / 10) + 1, session.seriesCount);
-        document.getElementById('sbSeries').textContent =
-            `Series ${curSeries} of ${session.seriesCount}`;
-    }
-    </script>
 </body>
 </html>
