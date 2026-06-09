@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntelliShoot — SIUS Telemetry &amp; Live Coaching</title>
+    <style>
+        :root {
+            --green: #16a34a;
+            --green-dark: #15803d;
+            --ink: #0f172a;
+            --muted: #64748b;
+            --line: #e5e7eb;
+            --bg: #f8fafc;
+            --card: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+        .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+        /* Hero */
+        .hero {
+            background: radial-gradient(1200px 500px at 50% -10%, #dcfce7 0%, transparent 60%), var(--bg);
+            text-align: center;
+            padding: 80px 0 64px;
+            border-bottom: 1px solid var(--line);
+        }
+        .badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: var(--green-dark);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+        .hero h1 { font-size: clamp(32px, 6vw, 52px); line-height: 1.1; letter-spacing: -0.02em; }
+        .hero h1 span { color: var(--green); }
+        .hero p.lead {
+            font-size: clamp(16px, 2.4vw, 20px);
+            color: var(--muted);
+            max-width: 640px;
+            margin: 18px auto 32px;
+        }
+        .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 17px; font-weight: 700; text-decoration: none;
+            padding: 16px 30px; border-radius: 12px; transition: transform .05s ease, box-shadow .2s ease;
+        }
+        .btn-primary {
+            background: var(--green); color: #fff;
+            box-shadow: 0 8px 20px rgba(22,163,74,.30);
+        }
+        .btn-primary:hover { background: var(--green-dark); box-shadow: 0 10px 26px rgba(22,163,74,.40); }
+        .btn-primary:active { transform: translateY(1px); }
+        .btn-ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+        .btn-ghost:hover { border-color: #cbd5e1; }
+        .btn .arrow { font-size: 20px; line-height: 1; }
+
+        /* Sections */
+        section { padding: 56px 0; }
+        h2 { font-size: 26px; letter-spacing: -0.01em; margin-bottom: 6px; }
+        .section-sub { color: var(--muted); margin-bottom: 28px; }
+
+        /* Pipeline */
+        .pipeline { display: flex; align-items: stretch; gap: 12px; flex-wrap: wrap; justify-content: center; }
+        .node {
+            flex: 1 1 180px; min-width: 160px; background: var(--card); border: 1px solid var(--line);
+            border-radius: 12px; padding: 18px; text-align: center;
+        }
+        .node .ico { font-size: 26px; }
+        .node h3 { font-size: 15px; margin-top: 8px; }
+        .node p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+        .arrow-sep { display: flex; align-items: center; color: var(--green); font-size: 22px; font-weight: 700; }
+        @media (max-width: 720px) { .arrow-sep { transform: rotate(90deg); } }
+
+        /* Feature grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+        .card .ico { font-size: 24px; }
+        .card h3 { font-size: 16px; margin: 10px 0 6px; }
+        .card p { font-size: 14px; color: var(--muted); }
+
+        /* Platforms */
+        .platforms { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .platform { display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+        .platform .ico { font-size: 30px; }
+        .platform h3 { font-size: 17px; }
+        .platform p { font-size: 14px; color: var(--muted); margin-top: 2px; }
+
+        /* CTA strip */
+        .cta-strip {
+            background: var(--ink); color: #fff; border-radius: 16px; padding: 40px;
+            text-align: center; margin: 8px 0 0;
+        }
+        .cta-strip h2 { color: #fff; }
+        .cta-strip p { color: #cbd5e1; margin: 6px 0 22px; }
+
+        footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 13px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="wrap">
+            <span class="badge">● Live SIUS Electronic Scoring Telemetry</span>
+            <h1>IntelliShoot <span>Live Coach</span></h1>
+            <p class="lead">
+                Real-time shot analytics for ISSF 10m Air Pistol &amp; Air Rifle. The agent reads
+                a live SIUS scoring system, decodes every shot, and streams it to a coaching
+                dashboard — score, decimal, direction, series and inner-tens, as it happens.
+            </p>
+            <div class="cta-row">
+                <a class="btn btn-primary" href="Livecoach.html">
+                    Launch Live Coach <span class="arrow">→</span>
+                </a>
+                <a class="btn btn-ghost" href="#how">How it works</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- WHAT IT DOES -->
+    <section>
+        <div class="wrap">
+            <h2>What it does</h2>
+            <p class="section-sub">An edge-to-cloud telemetry pipeline for electronic target ranges.</p>
+            <div class="grid">
+                <div class="card">
+                    <div class="ico">🎯</div>
+                    <h3>Live shot capture</h3>
+                    <p>Tails the SIUS CommService log without locking it, extracting each <code>_SHOT</code> the instant it lands.</p>
+                </div>
+                <div class="card">
+                    <div class="ico">🧭</div>
+                    <h3>Clock-face direction</h3>
+                    <p>Converts X/Y impact coordinates into a coach-friendly clock direction (e.g. “2:00 high-right”).</p>
+                </div>
+                <div class="card">
+                    <div class="ico">📊</div>
+                    <h3>Series &amp; 10x scoring</h3>
+                    <p>Groups shots into series of 10 with decimal and ISSF-integer totals and inner-ten counts.</p>
+                </div>
+                <div class="card">
+                    <div class="ico">🔌</div>
+                    <h3>Resilient by design</h3>
+                    <p>Decoupled worker pool with automatic date-stamped CSV fallback if the network drops.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+        <div class="wrap">
+            <h2>How it works</h2>
+            <p class="section-sub">From the target face to your screen in real time.</p>
+            <div class="pipeline">
+                <div class="node">
+                    <div class="ico">🖥️</div>
+                    <h3>SIUS CommService</h3>
+                    <p>Electronic targets write shot data to a local log.</p>
+                </div>
+                <div class="arrow-sep">→</div>
+                <div class="node">
+                    <div class="ico">⚙️</div>
+                    <h3>Telemetry Agent</h3>
+                    <p>Go agent parses shots &amp; syncs to the cloud.</p>
+                </div>
+                <div class="arrow-sep">→</div>
+                <div class="node">
+                    <div class="ico">☁️</div>
+                    <h3>Supabase</h3>
+                    <p>Stores shots and pushes live updates.</p>
+                </div>
+                <div class="arrow-sep">→</div>
+                <div class="node">
+                    <div class="ico">📡</div>
+                    <h3>Live Coach</h3>
+                    <p>Web &amp; mobile clients render the feed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLATFORMS -->
+    <section>
+        <div class="wrap">
+            <h2>Available everywhere</h2>
+            <p class="section-sub">One data pipeline, multiple coaching surfaces.</p>
+            <div class="platforms">
+                <div class="platform">
+                    <div class="ico">🌐</div>
+                    <div>
+                        <h3>Live Coach (Web)</h3>
+                        <p>Zero-install browser dashboard: live ISSF target plot, shot table with timing, and per-session summary. Open it from any device.</p>
+                    </div>
+                </div>
+                <div class="platform">
+                    <div class="ico">📱</div>
+                    <div>
+                        <h3>Mobile &amp; Desktop App</h3>
+                        <p>Flutter app (Android / iOS / Windows / macOS) adding athlete grouping and saved sessions stored locally for offline review.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA STRIP -->
+    <section style="padding-top:0;">
+        <div class="wrap">
+            <div class="cta-strip">
+                <h2>Ready to coach?</h2>
+                <p>Open the live dashboard and start a session.</p>
+                <a class="btn btn-primary" href="Livecoach.html">
+                    Launch Live Coach <span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            IntelliShoot · SIUS High-Performance Telemetry · for authorised range &amp; coaching use.
+        </div>
+    </footer>
+
+</body>
+</html>
